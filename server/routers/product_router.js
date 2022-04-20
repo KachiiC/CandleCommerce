@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const { index, create} = require('../controllers/products_controller')
+const { index, create, singleProduct} = require('../controllers/products_controller')
 
 router.get('/', index);
+
+router.get('/product/:id', singleProduct)
 
 router.post('/newProduct', create)
 

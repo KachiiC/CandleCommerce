@@ -1,3 +1,4 @@
+const { ObjectID } = require('bson');
 const { Product } = require('../models/products')
 
 async function index (req, res) {
@@ -23,4 +24,14 @@ async function create (req, res) {
   }
 }
 
-module.exports = { index, create }
+async function singleProduct (req, res) {
+  try {
+    const product = await Product.findOne({_id: new ObjectID(req.params)});
+    res.status(201);
+    res.send(product)
+  } catch (err) {
+    console.error(err);
+    res.status(400);
+  }
+}
+module.exports = { index, create, singleProduct}
