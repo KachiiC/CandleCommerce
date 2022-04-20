@@ -9,7 +9,7 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className='home_nav_left'>
-        <h1>CandleCommerce</h1>
+        <h1>Candl eCommerce</h1>
         <a href={instagram} >Instagram logo</a>
         <a href={facebook} >Facebook logo</a>
       </div>

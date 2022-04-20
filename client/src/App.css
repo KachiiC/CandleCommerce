@@ -76,3 +76,48 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0
   cursor: pointer;
   background-color:#ecd2cf ;
 }
+
+.home_button {
+  padding: 2%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin: 2%;
+  background-color: #FFE4E1;
+  border: none;
+  position: absolute;
+  z-index: 1;
+}
+.home_button:hover {
+  cursor: pointer;
+  background-color:#ecd2cf ;
+}
+
+.img_container {
+   height: 100vh;
+   max-height: 100vh;
+   position: relative;
+   overflow: hidden;
+}
+
+.details_picture {
+  display: block;
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+}
+
+.details_layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.inner_details_layout {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-self: flex-start;
+  align-items: center;
+  padding: 30px;
+  width: 100%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 24px;
+}
