@@ -1,6 +1,12 @@
+* {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
 body {
   background-color: #FFE4E1;
 }
+
+/* Navbar styling */
 
 .navbar {
   background-color: #FFF0F5;
@@ -17,7 +23,6 @@ body {
   display: grid;
   grid-template-rows: 1fr 1fr;
   padding: 2%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   max-height: 130px;
 }
 .nav_left_title {
@@ -44,9 +49,9 @@ body {
   justify-self: center;
   align-items: center;
   height: 100%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 1.75em;
 }
+
 .picture_home {
   max-width: 50%;
   justify-self: center;
@@ -55,7 +60,6 @@ body {
 
 .title_home {
   align-self: flex-end;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .login_basket_wrapper {
@@ -72,15 +76,15 @@ body {
   margin: 2%;
   background-color: #FFE4E1;
   border: none;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: large;
 }
-
 
 .login_basket:hover {
   cursor: pointer;
   background-color:#ecd2cf ;
 }
+
+/* Homepage styling */
 
 .products {
   display: grid;
@@ -112,6 +116,7 @@ border-radius: 10px;
   background-color:#ecd2cf ;
 }
 
+/* The button in the top left of every page styling */
 .home_button {
   padding: 2%;
   margin: 2%;
@@ -120,11 +125,14 @@ border-radius: 10px;
   position: absolute;
   z-index: 1;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  font-size: large;
 }
 .home_button:hover {
   cursor: pointer;
   background-color:#ecd2cf ;
 }
+
+/* Product details page styling */
 
 .img_container {
    height: 100vh;
@@ -153,7 +161,6 @@ border-radius: 10px;
   align-items: center;
   padding: 30px;
   width: 100%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 24px;
 }
 
@@ -169,4 +176,68 @@ border-radius: 10px;
   padding: 5%;
   width: 150%;
   height: 50%;
+}
+
+/* Basket page styling */
+
+.basket_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: aquamarine;
+}
+
+.basket_outer {
+  display: flex;
+  justify-content: center;
+}
+
+.empty_basket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.basket_elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.basket_element {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.element_container {
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  align-items:center;
+  border: 1px solid black;
+  padding: 20px;
+  margin: 20px;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+.basket_name {
+  padding: 20px;
+}
+
+.basket_delete {
+  display: flex;
+  justify-self: flex-end;
+  padding: 2%;
+  margin: 2%;
+  z-index: 1;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  font-size: large;
+}
+
+.basket_total {
+  align-self: flex-end;
 }

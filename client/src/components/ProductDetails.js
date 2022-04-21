@@ -24,18 +24,17 @@ export default function ProductDetails(props) {
 
   function addToBasket(event) {
     event.preventDefault();
-    //placeholder
     const newItem = {
        title: product.title,
        price: product.price,
        colour: event.target.candleColour.value,
        scent: event.target.candleScent.value,
     }
-    event.target.candleColour.value = 'Colour';
-    event.target.candleColour.value = 'Scent';
-
-    props.setBasket(basket => [...basket, newItem])
-    history.push('/basket')
+    
+    //ensures that the item can only be submitted if it has a valid value
+    let checkItem = true && newItem.scent !== 'Scent' && newItem.colour !== 'Colour'
+    checkItem && props.setBasket(basket => [...basket, newItem]) 
+    checkItem && history.push('/basket')
   }
 
   return (

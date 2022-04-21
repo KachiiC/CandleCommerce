@@ -13,6 +13,7 @@ function App() {
 
 const [products, setProducts] = useState([]);
 const [basket, setBasket] = useState([]);
+const [total, setTotal] = useState()
 
 useEffect(() => {
   getProducts().then(data => {
@@ -29,10 +30,10 @@ useEffect(() => {
           <Products products={products}/>
         </Route>
         <Route path="/product/:id" >
-          <ProductDetails setBasket={setBasket} />
+          <ProductDetails setBasket={setBasket} setTotal={setTotal} />
         </Route>
         <Route>
-          <Basket basket={basket} path="/basket"/>
+          <Basket setTotal={setTotal} total={total} basket={basket} path="/basket"/>
         </Route>
       </Switch>
     </div>
