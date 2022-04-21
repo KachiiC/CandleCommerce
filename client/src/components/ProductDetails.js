@@ -29,8 +29,9 @@ export default function ProductDetails(props) {
        price: product.price,
        colour: event.target.candleColour.value,
        scent: event.target.candleScent.value,
+       total: 1
     }
-    
+
     //ensures that the item can only be submitted if it has a valid value
     let checkItem = true && newItem.scent !== 'Scent' && newItem.colour !== 'Colour'
     checkItem && props.setBasket(basket => [...basket, newItem]) 

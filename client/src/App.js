@@ -30,7 +30,7 @@ useEffect(() => {
           <Products products={products}/>
         </Route>
         <Route path="/product/:id" >
-          <ProductDetails setBasket={setBasket} setTotal={setTotal} />
+          <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
         </Route>
         <Route>
           <Basket setTotal={setTotal} total={total} basket={basket} path="/basket"/>

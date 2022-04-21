@@ -10,9 +10,9 @@ export default function BasketElements(props) {
         <>
         <div className='element_container'>
           <div>
-            <button>+</button>
+            <button className='basket_delete'> +</button>
             <p>{counter}</p>
-            <button>-</button>
+            <button className='basket_delete'>-</button>
           </div>
           <div className='basket_element'>
             <p className='basket_name'>Title: {el.title} </p>
