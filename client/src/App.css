@@ -231,21 +231,50 @@ border-radius: 10px;
   padding: 20px;
 }
 /* Buttons in basket */
-.basket_delete {
+.basket_counter_button{
   display: flex;
-  justify-self: flex-end;
+  justify-self: center;
   padding: 10%;
   margin: 4%;
   z-index: 1;
   font-size: large;
   justify-content: center;
+  border: none;
+  border-radius: 100%;
   background-color: #FFE4E1;
+}
+
+.basket_delete_button {
+  display: flex;
+  justify-self: center;
+  padding: 10%;
+  margin: 4%;
+  z-index: 1;
+  font-size: large;
+  justify-content: center;
   border: none;
   border-radius: 20%;
+  background-color: #FFE4E1;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
 }
 
-.basket_delete:hover{
+
+.basket_counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFE4E1;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+
+.basket_counter_total {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.basket_delete_button:hover, .basket_counter_button:hover {
   cursor: pointer;
   background-color:#ecd2cf ;
 }

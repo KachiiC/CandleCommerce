@@ -9,19 +9,24 @@ export default function ProductDetails(props) {
 
   const history = useHistory();
 
+  //access the id in the url
   const { id } = useParams();
   const [product, setProduct] = useState({})
 
+  //sets the currently selected colour
   const [colour, setColour] = useState('')
 
+  //sets scents to be the array inside the object with the colour value
   let scents = product.colours && product.colours.find(colourObject => colourObject.colour === colour)?.scents
 
+  //fetches the data of a specific product
    useEffect(() => {
     getProduct(id).then(data => {
       return setProduct(data)
     })
   }, [id])
 
+  //when form is handled adds product to the basket state
   function addToBasket(event) {
     event.preventDefault();
     const newItem = {
@@ -29,13 +34,15 @@ export default function ProductDetails(props) {
        price: product.price,
        colour: event.target.candleColour.value,
        scent: event.target.candleScent.value,
-       total: 1
     }
 
     //ensures that the item can only be submitted if it has a valid value
     let checkItem = true && newItem.scent !== 'Scent' && newItem.colour !== 'Colour'
-    checkItem && props.setBasket(basket => [...basket, newItem]) 
-    checkItem && history.push('/basket')
+    if (checkItem) {
+      props.setBasket(basket => [...basket, newItem]); 
+      history.push('/basket');   
+      props.setTotal(current => [...current, newItem.price])
+    }
   }
 
   return (

@@ -1,29 +1,10 @@
-import {useState} from 'react'
-
+import BasketElement from "./BasketElement"
 export default function BasketElements(props) {
-
-  const [counter, setCounter] = useState()
-
+  
   return (
-    props.basket.map(el => {
+    props.basket.map((el, index) => {
       return (
-        <>
-        <div className='element_container'>
-          <div>
-            <button className='basket_delete'> +</button>
-            <p>{counter}</p>
-            <button className='basket_delete'>-</button>
-          </div>
-          <div className='basket_element'>
-            <p className='basket_name'>Title: {el.title} </p>
-            <p className='basket_name'>Price: {el.price} </p>
-            <p className='basket_name'>Colour: {el.colour} </p>
-            <p className='basket_name'>Scent: {el.scent} </p>
-          </div>
-            <button className='basket_delete'>X</button>
-        </div>
-        </>
-
+        <BasketElement key={index} index={index} element={el} setTotal={props.setTotal} total={props.total} basket={props.basket} setBasket={props.setBasket}/>
       )
     })
   )
