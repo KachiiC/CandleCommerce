@@ -10,18 +10,15 @@ function removeItem() {
 
   return (
     <div className='element_container'>
-    <div className='basket_counter'>
-      {/* <button className='basket_counter_button'> -</button> */}
-      <p className='basket_counter_total'>1</p>
-      {/* <button className='basket_counter_button'>+</button> */}
-    </div>
-    <div className='basket_element'>
-      <p className='basket_name'>Title: {props.element.title} </p>
-      <p className='basket_name'>Price: {props.element.price} </p>
-      <p className='basket_name'>Colour: {props.element.colour} </p>
-      <p className='basket_name'>Scent: {props.element.scent} </p>
-    </div>
+      <div className='basket_element'>
+        <p className='basket_name'>Qty: 1</p>
+        <p className='basket_name'>Title: {props.element.title} </p>
+        <p className='basket_name'>Price: {props.element.price} </p>
+        <p className='basket_name'>Colour: {props.element.colour} </p>
+        <p className='basket_name'>Scent: {props.element.scent} </p>
+      </div>
       <button onClick={removeItem} className='basket_delete_button'>X</button>
   </div>
   )
 }
+

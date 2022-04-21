@@ -58,11 +58,11 @@ export default function ProductDetails(props) {
           </div>
           <div>
             <form className='add_to_basket_form' onSubmit={addToBasket} >
-                <select id="select_colour" onChange={(event) => setColour(event.target.value)} className="add_to_basket_selector" name="candleColour">
+                <select id="select_colour" onChange={(event) => setColour(event.target.value)} className="add_to_basket_dropdown" name="candleColour">
                 <option>Colour</option>
                   {product.colours && <BasketFormColours product={product} />}
                 </select>
-                <select className="add_to_basket_selector" name="candleScent">
+                <select className="add_to_basket_dropdown" name="candleScent">
                   {scents ? <BasketFormScents scents={scents}/> : <option>Scent</option>}
                 </select>
                 <button type="submit" className='add_to_basket_selector'>Add to basket</button>

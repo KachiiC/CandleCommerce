@@ -6,7 +6,7 @@ export default function Basket(props) {
 
   return (
     <>
-      <Link to="/"><button className='home_button'>Continue Shopping</button></Link>
+      <Link to="/"><button className='continue_shopping_button'>Continue Shopping</button></Link>
     <div className='basket_header'>
       <h1>Basket</h1>
     </div>
@@ -15,9 +15,9 @@ export default function Basket(props) {
       ?
         <div className='basket_elements'>
           <BasketElements setTotal={props.setTotal} total={props.total} basket={props.basket} setBasket={props.setBasket}/>
-          <div classname='total_order_button'>
-          <h2 className='basket_total'>Total: £{props.total.reduce((prevVal, currentVal) => prevVal + currentVal).toFixed(2) }</h2>
-          <button classname="home_button">Order</button>
+          <div className='total_order_button'>
+            <h2 className='basket_total'>Total: £{props.total.reduce((prevVal, currentVal) => prevVal + currentVal).toFixed(2) }</h2>
+            <button className="basket_order_button">Order</button>
           </div>
         </div>
       :
