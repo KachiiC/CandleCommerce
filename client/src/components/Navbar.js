@@ -5,9 +5,15 @@ import instagram_icon from '../media/instagram.png';
 import facebook_icon from '../media/facebook.png';
 
 export default function Navbar() {
+  
   const instagram = 'https://www.instagram.com/glowzocandles/?hl=en'
   const facebook = 'https://www.facebook.com/glowzocandles'
-
+  
+  const linkStyle = {
+    color: "black",
+    textDecoration: 'none',
+    textEmphasis: '500'
+  };
   const user = '';
 
   return (
@@ -20,7 +26,7 @@ export default function Navbar() {
         </div>
       </div>
       <h3 className='nav_title'>Welcome {user ? user.name + '!': 'to CandleCommerce!'}</h3>
-      <Link to={'/basket'} className='login_basket_wrapper'>
+      <Link style={linkStyle} to={'/basket'} className='login_basket_wrapper'>
       <button className='login_basket'>Login/Basket</button>
     </Link>
     </div>
