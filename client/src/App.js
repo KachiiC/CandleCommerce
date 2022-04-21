@@ -29,10 +29,10 @@ useEffect(() => {
           <Products products={products}/>
         </Route>
         <Route path="/product/:id" >
-          <ProductDetails />
+          <ProductDetails setBasket={setBasket} />
         </Route>
         <Route>
-          <Basket path="/basket"/>
+          <Basket basket={basket} path="/basket"/>
         </Route>
       </Switch>
     </div>

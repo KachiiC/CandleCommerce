@@ -10,6 +10,7 @@ body {
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 10px 10px 0 0;
+  min-height: 200px;
 }
 
 .home_nav_left {
@@ -17,7 +18,7 @@ body {
   grid-template-rows: 1fr 1fr;
   padding: 2%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  height: max-content;
+  max-height: 130px;
 }
 .nav_left_title {
   display: flex;
@@ -29,18 +30,19 @@ body {
 }
 .social_icons_wrapper {
   display: flex;
-  width: 40%;
+  max-width: 40%;
 }
 .social_icons {
   display: flex;
   padding: 5px;
-  width: 90%;
+  max-width: 90%;
+  max-height: 100%;
 }
 
 .nav_title {
   display: flex;
   justify-self: center;
-  align-items: flex-end;
+  align-items: center;
   height: 100%;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-size: 1.75em;
