@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import instagram_icon from '../media/instagram.png';
 import facebook_icon from '../media/facebook.png';
 
@@ -18,7 +20,9 @@ export default function Navbar() {
         </div>
       </div>
       <h3 className='nav_title'>Welcome {user ? user.name + '!': 'to CandleCommerce!'}</h3>
+      <Link to={'/basket'} className='login_basket_wrapper'>
       <button className='login_basket'>Login/Basket</button>
+    </Link>
     </div>
   )
 }
