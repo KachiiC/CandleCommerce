@@ -1,4 +1,6 @@
 import React from 'react'
+import instagram_icon from '../media/instagram.png';
+import facebook_icon from '../media/facebook.png';
 
 export default function Navbar() {
   const instagram = 'https://www.instagram.com/glowzocandles/?hl=en'
@@ -9,9 +11,11 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className='home_nav_left'>
-        <h1>Candl eCommerce</h1>
-        <a href={instagram} >Instagram logo</a>
-        <a href={facebook} >Facebook logo</a>
+        <h1 className="nav_left_title">Candl eCommerce</h1>
+        <div className="social_icons_wrapper">
+          <a href={instagram} ><img className="social_icons" src={instagram_icon} alt="instagram_icon"></img></a>
+          <a href={facebook} ><img className="social_icons" src={facebook_icon} alt="instagram_icon"></img></a>
+        </div>
       </div>
       <h3 className='nav_title'>Welcome {user ? user.name + '!': 'to CandleCommerce!'}</h3>
       <button className='login_basket'>Login/Basket</button>
