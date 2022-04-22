@@ -140,20 +140,36 @@ body {
 
 /* Product details page styling */
 
-.img_container {
-   height: 100vh;
-   max-height: 100vh;
-   position: relative;
-   overflow: hidden;
+
+
+@media (max-width: 750px) {
+  .img_container {
+     max-height:100vh;
+     position: relative;
+     overflow: hidden;
+     height: 300px;
+  }
+  .details_picture {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+@media (min-width: 751px) {
+  .img_container {
+     max-height:100vh;
+     position: relative;
+     overflow: hidden;
+     height: 100vh;
+  }
+  .details_picture {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
 }
 
-.details_picture {
-  display: block;
-  width: 100%;
-  height: auto;
-  position: absolute;
-  bottom: 0;
-}
+
 
 .details_layout {
   display: grid;

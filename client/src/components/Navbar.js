@@ -43,7 +43,7 @@ export default function Navbar(props) {
           <a href={facebook} ><img className="social_icons" src={facebook_icon} alt="instagram_icon"></img></a>
         </div>
       </div>
-      <h3 className='nav_title'>Welcome {props.user.firstName ? props.user.firstName + '!': 'to Candl eCommerce!'}</h3>
+      <h3 className='nav_title'>Welcome {props.user.firstName ? 'back, ' + props.user.firstName + '!': 'to Candl eCommerce!'}</h3>
       <div className='login_basket_wrapper'>
         { !props.user.firstName ? 
       <Link style={linkStyle} to={'/login'} >

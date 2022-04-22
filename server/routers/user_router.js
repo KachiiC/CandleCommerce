@@ -6,6 +6,5 @@ router.post('/register', userController.create);
 router.post('/login', userController.index);
 router.post('/logout', user_middleware, userController.logout);
 
-router.get('/orders', user_middleware, userController.userProfile); //will need to pop this into orders route. Note to self
 
 module.exports = router;

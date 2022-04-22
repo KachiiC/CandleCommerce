@@ -12,6 +12,7 @@ async function index (req, res) {
   }
 }
 
+//remove/comment this function in production environment, just helper so dev can quickly add products in PostMan
 async function create (req, res) {
   try {
     const {pic_one, pic_two, price, description, title, colours} = req.body;
