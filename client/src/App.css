@@ -22,16 +22,13 @@ body {
 .home_nav_left {
   display: grid;
   grid-template-rows: 1fr 1fr;
-  padding: 2%;
-  max-height: 130px;
 }
 .nav_left_title {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  height: 100%;
-  width: 100%;
-  font-size:1.5em;
+  justify-self: flex-start;
+  align-self: flex-start;
+  width: 20%;
+  top:0;
 }
 .social_icons_wrapper {
   display: flex;
@@ -42,6 +39,7 @@ body {
   padding: 5px;
   max-width: 90%;
   max-height: 100%;
+
 }
 
 .nav_title {
@@ -98,6 +96,7 @@ body {
   flex-wrap: wrap;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 0 0 10px 10px;
+  height: fit-content;
 }
 
 .product {
@@ -109,6 +108,8 @@ justify-content: center;
 background-color: #FFE4E1;
 box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 border-radius: 10px;
+/* min-height: 500px;
+max-height: 500px; */
 }
 
 .product:hover{
@@ -253,6 +254,7 @@ border-radius: 10px;
   display: flex;
   width: 100%;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .element_container {

@@ -2,12 +2,12 @@ const Express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
+const SECRET = process.env.SECRET || 'this is not very secure';
 
 const productRouter = require('./routers/product_router');
 const userRouter = require('./routers/user_router');
 const reviewsRouter = require('./routers/reviews_router');
 const ordersRouter = require('./routers/orders_router');
-const { singleProduct } = require('./controllers/products_controller');
 
 const app = Express();
 
@@ -16,6 +16,7 @@ app.use(cors())
     name: 'sid',
     saveUninitialized: false,
     resave: false,
+    secret: SECRET,
     cookie: {
       maxAge: 1000 * 60 * 60, // 1hr
       sameSite: true,
