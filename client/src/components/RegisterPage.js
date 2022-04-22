@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
   return (
      <>
-  <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
+  <Link to="/login"><button className='continue_shopping_button'>Login</button></Link>
   <div className='basket_header'>
     <h1>Create User</h1>
   </div>

@@ -16,12 +16,12 @@ function App() {
 
   const [products, setProducts] = useState([]);
   const [basket, setBasket] = useState([]);
-  const [total, setTotal] = useState([])
+  const [total, setTotal] = useState([]);
+  const [user, setUser] = useState({});
 
   //create custom hook useScroll --> neaten this up
   const location = useLocation();
   useEffect(() => {
-    console.log('Should be at top')
     window.scrollTo(0,0)
     }, [location]);
 
@@ -36,7 +36,7 @@ useEffect(() => {
     <div>
       <Switch>
         <Route exact path="/">
-          <Navbar />
+          <Navbar user={user} setUser={setUser}/>
           <Products products={products}/>
         </Route>
         <Route path="/product/:id" >
@@ -46,7 +46,7 @@ useEffect(() => {
           <Basket setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
         </Route>
         <Route path="/login">
-          <LoginPage />
+          <LoginPage setUser={setUser}/>
         </Route>
         <Route path="/register">
           <RegisterPage />

@@ -1,7 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import {checkUser} from '../services/userService.js';
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   
   const history = useHistory();
 
@@ -17,6 +17,13 @@ export default function LoginPage() {
     .then(response => {
       if (response) {
       console.log('logged in')
+      props.setUser({
+        _id: response._id,
+        email: response.email,
+        firstName: response.firstName,
+        lasName: response.lastName,
+        isAdmin: response.isAdmin
+      })
       return history.push('/'); 
       }
       return console.log('Incorrect username or password')

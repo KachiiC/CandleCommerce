@@ -22,3 +22,12 @@ export const checkUser = (user) => {
   .catch(err => console.error(err))
 }
 
+export const logoutUser = (user) => {
+  return fetch(`${url}/logout`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(user)
+  })
+  .then(response => response.json())
+  .catch(err => console.error(err))
+}

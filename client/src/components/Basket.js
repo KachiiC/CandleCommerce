@@ -6,7 +6,6 @@ export default function Basket(props) {
  
   const location = useLocation();
   useEffect(() => {
-    console.log('Should be at top')
     window.scrollTo(0,0)
     }, [location]);
 
