@@ -1,4 +1,4 @@
-const { Order } = require('../models/products')
+const { Order } = require('../models/orders') 
 
 async function index (req, res) {
   try {
@@ -13,8 +13,8 @@ async function index (req, res) {
 
 async function generate (req, res) {
   try {
-    const {submittedBy, resolved} = req.body;
-    const newOrder = await Order.create({submittedBy, resolved});
+    const {submittedBy, resolved, products, totalCost} = req.body;
+    const newOrder = await Order.create({submittedBy, resolved, products, totalCost});
     res.status(201);
     res.send(newOrder)
   } catch (err) {
