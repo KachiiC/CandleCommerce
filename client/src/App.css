@@ -216,14 +216,14 @@ body {
   border: none;
   position: absolute;
   z-index: 1;
-  background-color: #f8f1f3;
+  background-color:#FFE4E1;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   font-size: larger;
 }
 
 .continue_shopping_button:hover {
   cursor: pointer;
-  background-color:#FFE4E1 ;
+  background-color: #f8f1f3;
 }
 
 .basket_header {
@@ -257,7 +257,7 @@ body {
   padding: 20px;
   display: flex;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
@@ -307,18 +307,18 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 2%;
 }
 
 .basket_order_button {
   background-color: #FFE4E1;
-  border: none;
-  border-radius: 5%;
+  border: 1px solid #ecd2cf;
+  border-radius: 10px;
   font-size:30px;
   align-self: flex-end;
-  margin: 2%;
 }
 
-/* Login page */
+/* Login and registration pages */
 
 .loginFormContainer {
   display: flex;
@@ -333,7 +333,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #f8f1f3;
-  width: 40%;
+  width: 500px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
@@ -353,4 +353,6 @@ body {
 .login_newUser_buttons {
   display: flex;
   justify-content: space-around;
+ align-items: center;
 }
+

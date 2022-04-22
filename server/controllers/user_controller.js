@@ -7,7 +7,7 @@ async function index (req, res) {
     const user = await User.findOne({email: email});
     const validated = await bcrypt.compare(password, user.password);
     if(!validated) throw new Error();
-    //req.session.uid = user._id;
+    req.session.uid = user._id;
     res.status(200).send(user);
   } catch (err) {
     console.error(err);
@@ -38,6 +38,7 @@ async function create (req, res) {
   }
 }
 
+//call fetch request when a user logs in to access this data
 //when I call this for orders, need to check the isAdmin prop too
 const userProfile = async (req, res) => {
   try{

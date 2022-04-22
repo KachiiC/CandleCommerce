@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import { Link, useParams, useHistory } from 'react-router-dom'
+import { Link, useParams, useHistory, useLocation } from 'react-router-dom'
 import { getProduct } from '../services/productService';
 import BasketFormColours from './BasketFormColours'
 import BasketFormScents from './BasketFormScents'
@@ -8,6 +8,12 @@ import BasketFormScents from './BasketFormScents'
 export default function ProductDetails(props) {
 
   const history = useHistory();
+
+  const location = useLocation();
+  useEffect(() => {
+    console.log('Should be at top')
+    window.scrollTo(0,0)
+    }, [location]);
 
   //access the id in the url
   const { id } = useParams();

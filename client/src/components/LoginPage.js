@@ -1,26 +1,43 @@
-import { Link } from "react-router-dom"
-//import {checkUser} from ../services/userService.js
+import { Link, useHistory } from "react-router-dom"
+import {checkUser} from '../services/userService.js';
 
 export default function LoginPage() {
   
-  //call the checkUser on form submit
+  const history = useHistory();
 
+  //call the checkUser on form submit
+  function checkDetails(event) {
+    event.preventDefault();
+    const userCheck = {
+      email: event.target.loginEmail.value,
+      password: event.target.loginPassword.value
+    };
+  
+    checkUser(userCheck)
+    .then(response => {
+      if (response) {
+      console.log('logged in')
+      return history.push('/'); 
+      }
+      return console.log('Incorrect username or password')
+    })
+  }
 
   return (
     <>
-    <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
+  <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
   <div className='basket_header'>
     <h1>Login</h1>
   </div>
   <div className="loginFormContainer">
-    <form className="loginForm">
+    <form className="loginForm" onSubmit={checkDetails}>
       <div className="loginInputWrapper">
         <label>Email</label>
         <input className="loginInput" name="loginEmail" placeholder="Insert email" required></input>
       </div>
       <div className="loginInputWrapper">
         <label>Password</label>
-        <input className="loginInput" name="loginPassword" placeholder="Insert password" required></input>
+        <input className="loginInput" type="password" name="loginPassword" placeholder="Insert password" required></input>
       </div>
       <div className="login_newUser_buttons">
         <button type="submit" className="login_basket" >Login</button>

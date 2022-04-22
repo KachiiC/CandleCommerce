@@ -27,11 +27,20 @@ export default function Navbar() {
       </div>
       <h3 className='nav_title'>Welcome {user ? user.firstName + '!': 'to Candl eCommerce!'}</h3>
       <div className='login_basket_wrapper'>
+        { !user ? 
       <Link style={linkStyle} to={'/login'} >
         <button className='login_basket'>Login</button>
       </Link>
+      :
+      <Link style={linkStyle} to={'/logout'} >
+      <button className='login_basket'>Logout</button>
+    </Link>
+      }
         <Link style={linkStyle} to={'/basket'}>
         <button className='login_basket'>Basket</button>
+      </Link>
+      <Link style={linkStyle} to={'/orders'}>
+        <button className='login_basket'>Orders</button>
       </Link>
       </div>
     </div>

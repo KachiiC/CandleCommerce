@@ -2,7 +2,7 @@
 
 const url = 'http://localhost:3000';
 
-export const newUser = (user) => {
+export const createUser = (user) => {
   return fetch(`${url}/register`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
@@ -11,3 +11,14 @@ export const newUser = (user) => {
   .then(response => response.json())
   .catch(err => console.error(err))
 }
+
+export const checkUser = (user) => {
+  return fetch(`${url}/login`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(user)
+  })
+  .then(response => response.json())
+  .catch(err => console.error(err))
+}
+
