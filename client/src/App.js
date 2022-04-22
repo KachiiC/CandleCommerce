@@ -7,6 +7,7 @@ import Products from './components/Products';
 import { getProducts } from './services/productService';
 import ProductDetails from './components/ProductDetails';
 import Basket from './components/Basket';
+import LoginPage from './components/LoginPage';
 
 
 function App() {
@@ -32,8 +33,11 @@ useEffect(() => {
         <Route path="/product/:id" >
           <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
         </Route>
-        <Route>
-          <Basket setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} path="/basket"/>
+        <Route path="/basket">
+          <Basket setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
         </Route>
       </Switch>
     </div>

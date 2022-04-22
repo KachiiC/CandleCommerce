@@ -38,6 +38,7 @@ async function create (req, res) {
   }
 }
 
+//when I call this for orders, need to check the isAdmin prop too
 const userProfile = async (req, res) => {
   try{
     const {_id, email, firstName, lastName} = req.user;
