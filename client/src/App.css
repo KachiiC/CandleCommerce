@@ -152,17 +152,17 @@ border-radius: 10px;
 
 .details_layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;;
 }
 
 .inner_details_layout {
   display: grid;
   grid-template-rows: 1fr 1fr;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-end;
   padding: 30px;
   width: 100%;
-  font-size: 24px;
+  font-size: larger;
 }
 
 .add_to_basket_form {
@@ -309,5 +309,5 @@ border-radius: 10px;
   border-radius: 5%;
   font-size:30px;
   align-self: flex-end;
-
+  margin: 2%;
 }
