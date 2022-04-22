@@ -317,3 +317,40 @@ body {
   align-self: flex-end;
   margin: 2%;
 }
+
+/* Login page */
+
+.loginFormContainer {
+  display: flex;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginForm {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f1f3;
+  width: 40%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.loginInputWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  align-items: center;
+  font-size: larger;
+}
+
+.loginInput {
+  padding:10%;
+  margin: 5%;
+}
+
+.login_newUser_buttons {
+  display: flex;
+  justify-content: space-around;
+}

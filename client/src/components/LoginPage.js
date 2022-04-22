@@ -13,15 +13,19 @@ export default function LoginPage() {
     <h1>Login</h1>
   </div>
   <div className="loginFormContainer">
-    <form>
-      
-      <label>Email</label>
-      <input className="loginInput" name="loginEmail" placeholder="Insert email" required></input>
-
-      <label>Password</label>
-      <input className="loginInput" name="loginPassword" placeholder="Insert password" required></input>
-
-      <button type="submit" className="login_button" >Login</button>
+    <form className="loginForm">
+      <div className="loginInputWrapper">
+        <label>Email</label>
+        <input className="loginInput" name="loginEmail" placeholder="Insert email" required></input>
+      </div>
+      <div className="loginInputWrapper">
+        <label>Password</label>
+        <input className="loginInput" name="loginPassword" placeholder="Insert password" required></input>
+      </div>
+      <div className="login_newUser_buttons">
+        <button type="submit" className="login_basket" >Login</button>
+        <Link to="/register"><button className="login_basket" >New user?</button></Link>
+      </div>
     </form>
    </div>
   </>
