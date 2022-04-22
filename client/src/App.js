@@ -52,7 +52,7 @@ useEffect(() => {
           <RegisterPage />
         </Route>
         <Route path="/orders">
-          <Orders />
+          <Orders user={user}/>
         </Route>
       </Switch>
     </div>

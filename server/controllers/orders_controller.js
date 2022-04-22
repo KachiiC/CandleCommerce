@@ -38,8 +38,9 @@ async function update (req, res) {
 
 async function findUserOrders (req, res) {
   try {
-    const {submittedBy} = req.body;
-    const userOrders = await Order.find( {submittedBy: submittedBy} ); //find all with a condition?
+    console.log('requestBody', req.body)
+    const { submittedByUser} = req.body;
+    const userOrders = await Order.find( {submittedBy: submittedByUser}); //find all with a condition?
     res.status(200);
     res.send(userOrders);
   } catch (err) {

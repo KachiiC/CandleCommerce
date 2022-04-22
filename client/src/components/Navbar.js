@@ -12,27 +12,25 @@ export default function Navbar(props) {
   const instagram = 'https://www.instagram.com/glowzocandles/?hl=en'
   const facebook = 'https://www.facebook.com/glowzocandles'
   
+  function logout(event) {
+    event.preventDefault();
+    
+    logoutUser(props.user)
+    .then(response => {
+      if (response) {
+        console.log('logged out')
+        props.setUser({})
+        return history.push('/'); 
+      }
+      return console.log('Cannot logout')
+    })
+  }
+  
   const linkStyle = {
     color: "black",
     textDecoration: 'none',
     textEmphasis: '500'
   };
-
-  function logout(event) {
-    event.preventDefault();
-  
-    logoutUser(props.user)
-    .then(response => {
-      if (response) {
-      console.log('logged out')
-      props.setUser({})
-      return history.push('/'); 
-      }
-      return console.log('Cannot logout')
-    })
-  }
-
-
 
   return (
     <div className="navbar">
