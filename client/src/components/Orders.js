@@ -6,8 +6,10 @@ import OrderList from "./OrderList";
 
 export default function Orders(props) {
   
+  const [resolve, setResolve] = useState([false])
+
   const [orders, setOrders] = useState([]);
-  const [filteredOrders, setFilteredOrders] = useState([])
+  const [ORDERS, setORDERS] = useState([])
 
   function compare(a, b) {
     if (b.date > a.date) return 1;
@@ -20,30 +22,30 @@ export default function Orders(props) {
     getOrders().then(data => {
       data.sort(compare)
       setOrders(data)
-      setFilteredOrders(data)
+      setORDERS(data)
     })
     : 
     getUserOrders(props.user._id).then(data => { if(data) {
       data.sort(compare) 
       setOrders(data)
-      setFilteredOrders(data)
+      setORDERS(data)
     }
     else {
     setOrders([])
     }
   })
-}, [props.user.isAdmin,props.user._id])
+}, [props.user.isAdmin, props.user._id, resolve])
 
   function showAllOrders() {
-    setOrders(filteredOrders)
+    setOrders(ORDERS)
   }
 
   function showPendingOrders() {
-     setOrders(orders.filter(order => !order.resolved))
+    setOrders(ORDERS.filter(order => !order.resolved))
    }
 
-   function showCompletedOrders() {
-     setOrders(orders.filter(order => order.resolved))
+  function showCompletedOrders() {
+    setOrders(ORDERS.filter(order => order.resolved))
    }
 
   return (
@@ -67,7 +69,7 @@ export default function Orders(props) {
         orders.length ? 
           <div >
             <div className='order_elements'>
-              <OrderList user={props.user} orders={orders}  /> 
+              <OrderList resolve={props.resolve} setResolve={setResolve} user={props.user} orders={orders}  /> 
             </div>
           </div>
         : 

@@ -26,10 +26,10 @@ async function generate (req, res) {
 //used to change the status of resolved
 async function update (req, res) {
   try {
-    const {submittedBy, resolved} = req.body;
-    //const newOrder = await Order.create({submittedBy, resolved});
+    const { _id } = req.body;
+    const order = await Order.findByIdAndUpdate( _id, {resolved: true, date: Date.now()})
     res.status(201);
-    res.send(newOrder)
+    res.send(order)
   } catch (err) {
     console.error(err);
     res.status(400);

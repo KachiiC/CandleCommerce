@@ -31,10 +31,11 @@ export const createOrder = (order) => {
   .catch(err => console.error(err))
 }
 
-export const updateOrder = (order) => {
+export const updateOrder = (orderId) => {
   return fetch(`${url}/orders`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({_id: orderId})
   })
   .then(response => response.json())
   .catch(err => console.error(err))

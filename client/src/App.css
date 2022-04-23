@@ -129,7 +129,7 @@ body {
   border: none;
   position: absolute;
   z-index: 1;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   font-size: large;
 }
 
@@ -233,7 +233,7 @@ body {
   position: absolute;
   z-index: 1;
   background-color:#FFE4E1;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   font-size: larger;
 }
 
@@ -392,7 +392,8 @@ body {
   border-radius: 10px;
   width: 30%;
   justify-self: center;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 10px;
 }
 
 .order_filter_button:hover {
@@ -419,7 +420,7 @@ body {
   max-height: fit-content;
   background-color: #f8f1f3;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 .order_item {
   display: flex;

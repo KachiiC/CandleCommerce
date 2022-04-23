@@ -1,12 +1,14 @@
 import OrderProducts from "./OrderProducts"
 import moment from 'moment'
+import { updateOrder } from "../services/orderService"
 
 export default function OrderSingle(props) {
-  console.log('all orders', props.order)
+  //console.log('all orders', props.order)
 
   function resolveOrder() {
     //call put request from service
-    console.log(props.order._id)
+    updateOrder(props.order._id)
+    props.setResolve(!props.resolve)
   }
 
   return (
