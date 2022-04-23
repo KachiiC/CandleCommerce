@@ -32,7 +32,7 @@ export default function RegisterPage() {
   <div className='basket_header'>
     <h1>Create User</h1>
   </div>
-  <div className="loginFormContainer">
+  <div className="registerFormContainer">
     <form className="loginForm" onSubmit={newUser}>
       <div className="loginInputWrapper">
         <label>Email</label>

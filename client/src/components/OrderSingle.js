@@ -23,6 +23,7 @@ export default function OrderSingle(props) {
           </div>
           <div className="order_name">
             <p className='basket_name'>Ordered by: {props.order.user}</p>
+            <p className='basket_name'>Order id: {props.order._id}</p>
             <p className='basket_name'>Total: {props.order.totalCost}</p>
           </div>
         {props.user.isAdmin && <button onClick={resolveOrder} className="order_button">Complete order</button>}
