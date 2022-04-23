@@ -200,7 +200,7 @@ body {
   width: 50%;
   justify-self: center;
   background-color: #f8f1f3;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border:none;
   font-size: large;
 }
@@ -214,7 +214,7 @@ body {
   width: 50%;
   justify-self: center;
   background-color: #f8f1f3;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border:none;
   font-size: larger;
 }
@@ -233,13 +233,14 @@ body {
   position: absolute;
   z-index: 1;
   background-color:#FFE4E1;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
   font-size: larger;
 }
 
 .continue_shopping_button:hover {
   cursor: pointer;
   background-color: #f8f1f3;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .basket_header {
@@ -287,7 +288,7 @@ body {
   max-width: 100%;
   background-color: #f8f1f3;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .basket_name {
@@ -312,7 +313,8 @@ body {
 .basket_delete_button:hover, .basket_order_button:hover, .order_button:hover {
   cursor: pointer;
   background-color: #f8f1f3;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border: 1px solid #f8f1f3;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .basket_total {
@@ -344,10 +346,10 @@ body {
 }
 
 .loginForm {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: #f8f1f3;
   width: 500px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
@@ -356,20 +358,26 @@ body {
 .loginInputWrapper {
   display: flex;
   flex-direction: column;
-  padding: 10%;
-  align-items: center;
+  padding: 3%;
+  align-items: flex-start;
   font-size: larger;
+  width: 500px;
 }
 
 .loginInput {
-  padding:10%;
-  margin: 5%;
+  padding:2%;
+  margin: 1% 0;
+  width: 90%;
+  background-color: #f8f1f3;
+  border: 1px solid grey;
 }
 
 .login_newUser_buttons {
   display: flex;
   justify-content: space-around;
- align-items: center;
+  align-items: center;
+  margin: 10px;
+  align-self: center;
 }
 
 /* order styling (most classes taken from basket */
@@ -388,7 +396,7 @@ body {
 
 .order_filter_button {
   background-color: #f8f1f3;
-  border: 1px solid #ecd2cf;
+  border: 1px solid #FFE4E1;
   border-radius: 10px;
   width: 30%;
   justify-self: center;
@@ -446,8 +454,9 @@ body {
 
 .order_button {
   background-color: #FFE4E1;
-  border: 1px solid #ecd2cf;
+  border: 1px solid #FFE4E1;
   border-radius: 10px;
-  width: 50%;
+  width: 25%;
   justify-self: center;
+  padding: 10px;
 }
