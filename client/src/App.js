@@ -43,7 +43,7 @@ useEffect(() => {
           <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
         </Route>
         <Route path="/basket">
-          <Basket setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
+          <Basket user={user} setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
         </Route>
         <Route path="/login">
           <LoginPage setUser={setUser}/>

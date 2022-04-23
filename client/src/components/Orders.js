@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
 import { getOrders, getUserOrders, updateOrder } from '../services/orderService';
@@ -22,9 +22,14 @@ export default function Orders(props) {
     <>
     <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
     <div className='basket_header'>
-      <h1>Orders</h1>
+      { props.user.isAdmin?
+      <h1>All Orders</h1>
+      :
+      <h1>Your Orders</h1>
+      }
     </div>
     <div>
+      {/* This should be show in ascending order --> make sure sending date property over and write a sort in the order single component */}
       {orders.length ? <OrderList orders={orders}  /> : <h2 className='empty_basket'>You have no orders</h2>}
     </div>
     </>
