@@ -33,8 +33,8 @@ app.use(cors())
 
 async function bootstrap () {
   try {
-    app.listen(3000, () => {
-      console.log('Server up and running on http://localhost:3000');
+    app.listen(3001, () => {
+      console.log('Server up and running on http://localhost:3001');
     });
   } catch (err) {
     console.error(err);

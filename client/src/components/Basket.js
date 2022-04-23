@@ -24,7 +24,7 @@ export default function Basket(props) {
           totalCost: formattedTotal
         }
         createOrder(newOrder).then(response => response ? history.push('/orders') : console.log('Order not placed'));  
-        //clear basket here
+        props.setBasket([])
 
     }
       else {
