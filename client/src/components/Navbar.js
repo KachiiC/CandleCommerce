@@ -59,8 +59,10 @@ export default function Navbar(props) {
       <Link style={linkStyle} to={'/orders'}>
         <button className='login_basket'>Orders</button>
       </Link>
+      //reviews button
       }
       </div>
+      {/* search bar */}
     </div>
   )
 }

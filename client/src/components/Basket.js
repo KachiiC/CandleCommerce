@@ -14,18 +14,21 @@ export default function Basket(props) {
 
     function checkLogin () {
       if(props.user._id) {
+        //sets total cost from array to number
         const formattedTotal = +(props.total.reduce((prevVal, currentVal) => prevVal + currentVal).toFixed(2));
         console.log(formattedTotal)
         const newOrder = {
           submittedBy: props.user._id,
           resolved: false,
-          //sets total cost from array to number
           products: props.basket,
-          totalCost: formattedTotal
+          totalCost: formattedTotal,
+          user : props.user.email,
+          date: Date.now()
+          // address: form for address
         }
         createOrder(newOrder).then(response => response ? history.push('/orders') : console.log('Order not placed'));  
         props.setBasket([])
-
+        props.setTotal([])
     }
       else {
         history.push('/login');  
@@ -47,7 +50,6 @@ export default function Basket(props) {
           <BasketElements setTotal={props.setTotal} total={props.total} basket={props.basket} setBasket={props.setBasket}/>
           <div className='total_order_button'>
             <h2 className='basket_total'>Total: £{props.total.reduce((prevVal, currentVal) => prevVal + currentVal).toFixed(2) }</h2>
-            {/* write a function on submit to call the create order */}
             <button onClick={checkLogin} className="basket_order_button">Order</button>
             {/* add address form with this as the submit button --> also on submit timestamp the date and time using momentum */}
           </div>

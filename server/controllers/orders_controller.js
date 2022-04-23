@@ -13,8 +13,8 @@ async function index (req, res) {
 
 async function generate (req, res) {
   try {
-    const {submittedBy, resolved, products, totalCost} = req.body;
-    const newOrder = await Order.create({submittedBy, resolved, products, totalCost});
+    const {submittedBy, resolved, products, totalCost, user, date} = req.body;
+    const newOrder = await Order.create({submittedBy, resolved, products, totalCost, user, date});
     res.status(201);
     res.send(newOrder)
   } catch (err) {

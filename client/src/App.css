@@ -266,7 +266,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  width: 60%;
 }
 
 .basket_element {
@@ -309,7 +309,7 @@ body {
 }
 
 
-.basket_delete_button:hover, .basket_order_button:hover {
+.basket_delete_button:hover, .basket_order_button:hover, .order_button:hover {
   cursor: pointer;
   background-color: #f8f1f3;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -372,3 +372,81 @@ body {
  align-items: center;
 }
 
+/* order styling (most classes taken from basket */
+
+.order_outer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.order_filter_buttons {
+  display: flex;
+  justify-content: space-around;
+  margin:2%;
+}
+
+.order_filter_button {
+  background-color: #f8f1f3;
+  border: 1px solid #ecd2cf;
+  border-radius: 10px;
+  width: 30%;
+  justify-self: center;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.order_filter_button:hover {
+  background-color: #FFE4E1;
+  cursor: pointer;
+
+}
+
+.order_elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+.order_element_container {
+  display: grid;
+  padding: 20px;
+  margin: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: fit-content;
+  background-color: #f8f1f3;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
+}
+.order_item {
+  display: flex;
+}
+
+.order_format {
+  display: grid;
+}
+
+.order_items {
+  display: flex;
+  background-color: #FFE4E1;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.order_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.order_button {
+  background-color: #FFE4E1;
+  border: 1px solid #ecd2cf;
+  border-radius: 10px;
+  width: 50%;
+  justify-self: center;
+}
