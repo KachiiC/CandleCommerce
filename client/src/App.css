@@ -492,3 +492,16 @@ body {
   justify-self: center;
   padding: 10px;
 }
+/* Profile page */ 
+
+.profileInput{
+  padding:2%;
+  margin: 1% 0;
+  width: 90%;
+  background-color: #f8f1f3;
+  border: 1px solid grey;
+}
+
+.profileInput::placeholder {
+  color: black;
+}

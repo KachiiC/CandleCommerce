@@ -46,15 +46,15 @@ export default function ProfilePage(props) {
       </div>
       <div className="loginInputWrapper">
         <label>Password</label>
-        <input className="loginInput" type="password" name="updatePassword" placeholder="Update Password?"></input>
+        <input className="profileInput" type="password" name="updatePassword" placeholder="Update Password?"></input>
       </div>
       <div className="loginInputWrapper">
         <label>First Name</label>
-        <input className="loginInput" name="updateFirstName" placeholder={props.user.firstName}></input>
+        <input className="profileInput" name="updateFirstName" placeholder={props.user.firstName}></input>
       </div>
       <div className="loginInputWrapper">
         <label>Last Name</label>
-        <input className="loginInput" name="updateLastName" placeholder={props.user.lastName}></input>
+        <input className="profileInput" name="updateLastName" placeholder={props.user.lastName}></input>
       </div>
       <div className="login_newUser_buttons">
         <button type="submit" className="login_basket" >Update</button>
