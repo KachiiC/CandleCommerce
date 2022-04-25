@@ -10,6 +10,7 @@ import Basket from './components/Basket';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Orders from './components/Orders';
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -50,6 +51,9 @@ useEffect(() => {
         </Route>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/profile">
+          <ProfilePage setUser={setUser} user={user}/>
         </Route>
         <Route path="/orders">
           <Orders user={user}/>

@@ -31,3 +31,13 @@ export const logoutUser = (user) => {
   .then(response => response.json())
   .catch(err => console.error(err))
 }
+
+export const sendUpdatedUser = (user) => {
+  return fetch(`${url}/profile`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(user)
+  })
+  .then(response => response.json())
+  .catch(err => console.error(err))
+}

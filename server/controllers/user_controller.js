@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const e = require('express');
 const { User } = require('../models/users')
 
 async function index (req, res) {
@@ -51,6 +52,30 @@ const userProfile = async (req, res) => {
   }
 }
 
+async function updateDetails (req, res) {
+  try {
+  const {email, password, firstName, lastName} = req.body;
+  let hash;
+  if (password) {
+    hash = await bcrypt.hash(password, 10);
+  }
+  else {
+    hash = password
+  }
+  const filter = { email: email }
+  const update = {  
+    password: hash,
+    firstName: firstName,
+    lastName: lastName
+  }
+  const user = await User.findOneAndUpdate(filter, update)
+  res.status(201).send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(400);
+  }
+}
+
 const logout = (req, res) => {
   req.session.destroy((error) => {
     if (error) {
@@ -63,4 +88,4 @@ const logout = (req, res) => {
   })
 }
 
-module.exports = { index, create, userProfile, logout}
+module.exports = { index, create, userProfile, updateDetails, logout}

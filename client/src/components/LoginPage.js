@@ -21,12 +21,12 @@ export default function LoginPage(props) {
         _id: response._id,
         email: response.email,
         firstName: response.firstName,
-        lasName: response.lastName,
+        lastName: response.lastName,
         isAdmin: response.isAdmin
       })
       return history.push('/'); 
       }
-      return console.log('Incorrect username or password')
+      return alert('Incorrect username or password')
     })
   }
 

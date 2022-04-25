@@ -21,7 +21,7 @@ export default function RegisterPage() {
       console.log('user created')
       return history.push('/login'); 
       }
-      return console.log('Incorrect username or password')
+      return alert('Invalid username or password')
     })
 
   }

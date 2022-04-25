@@ -22,13 +22,13 @@ body {
 
 .home_nav_left {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  height: 80%;
+  grid-template-rows: 100px; 
+  height: 100%;
 }
 .nav_left_title {
   display: flex;
-  justify-self: flex-start;
-  align-self: flex-start;
+  justify-self: center;
+  align-self: center;
 }
 .social_icons_wrapper {
   display: flex;
@@ -39,10 +39,20 @@ body {
   padding: 5px;
   width: 50px;
 }
+.logo_icon_wrapper {
+  display: flex;
+  align-items: flex-start;
+}
+.logo_icon {
+  display: flex;
+  padding: 5px;
+  width: 50px;
+}
+
 
 .nav_title {
   display: flex;
-  justify-self: flex-end;
+  justify-self: center;
   align-items: flex-end;
   font-size: 1.75em;
   height: 80%;
@@ -67,7 +77,7 @@ body {
   justify-content: flex-start;
 }
 .login_basket {
-  padding: 2%;
+  padding: 3px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   margin: 2%;
   background-color: #FFE4E1;
@@ -90,13 +100,12 @@ body {
   width: 20%;
   background-color: #f8f1f3;
   border: 1px solid #999;
-  border-radius: 20px;
 }
 
 .searchContainer {
   display: flex;
   margin: 0 2% ;
-  padding: 20px;
+  padding: 3px;
   background-color: #f8f1f3;
   justify-content: flex-end;
   flex-wrap: wrap;
