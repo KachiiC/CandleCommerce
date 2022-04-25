@@ -62,7 +62,6 @@ export default function Navbar(props) {
       //reviews button
       }
       </div>
-      {/* search bar */}
     </div>
   )
 }

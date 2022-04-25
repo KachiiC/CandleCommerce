@@ -16,7 +16,7 @@ export default function OrderSingle(props) {
     <div className='order_element_container'>
           <div className="order_name">
           {props.order.resolved ? <h3 >Order has been shipped</h3> : <h3> Order has been placed</h3>}
-          <p>Placed on: {moment(props.order.date).format('MMMM Do YYYY, h:mm a')}</p>
+          {props.order.resolved ? <p> Shipped on: {moment(props.order.date).format('MMMM Do YYYY, h:mm a')} </p> :<p> Placed on: {moment(props.order.date).format('MMMM Do YYYY, h:mm a')} </p> }
           </div>
           <div className="order_format">
             {<OrderProducts orderProducts={props.order.products}/>}
