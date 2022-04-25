@@ -18,7 +18,6 @@ export default function ProfilePage(props) {
     sendUpdatedUser(userCheck)
     .then(response => {
       if (response) {
-        console.log(response)
       props.setUser({
         _id: response._id,
         email: response.email,

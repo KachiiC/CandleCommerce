@@ -11,6 +11,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import Orders from './components/Orders';
 import ProfilePage from './components/ProfilePage';
+import Reviews from './components/Reviews';
 
 
 function App() {
@@ -57,6 +58,9 @@ useEffect(() => {
         </Route>
         <Route path="/orders">
           <Orders user={user}/>
+        </Route>
+        <Route path="/reviews">
+          <Reviews user={user}/>
         </Route>
       </Switch>
     </div>
