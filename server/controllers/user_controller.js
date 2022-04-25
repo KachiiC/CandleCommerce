@@ -68,7 +68,8 @@ async function updateDetails (req, res) {
     firstName: firstName,
     lastName: lastName
   }
-  const user = await User.findOneAndUpdate(filter, update)
+  let user = await User.findOneAndUpdate(filter, update)
+  user = await User.findOne(filter)
   res.status(201).send(user);
   } catch (err) {
     console.error(err);

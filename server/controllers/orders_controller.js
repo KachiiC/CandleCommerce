@@ -27,7 +27,7 @@ async function generate (req, res) {
 async function update (req, res) {
   try {
     const { _id } = req.body;
-    const order = await Order.findByIdAndUpdate( _id, {resolved: true, date: Date.now()})
+    let order = await Order.findByIdAndUpdate( _id, {resolved: true, date: Date.now()})
     res.status(201);
     res.send(order)
   } catch (err) {

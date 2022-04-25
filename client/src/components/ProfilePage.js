@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import {sendUpdatedUser} from '../services/userService.js';
 
 export default function ProfilePage(props) {
 
+  const history = useHistory();
 
   //call the updateUser on form submit
   function newUser(event) {
@@ -12,13 +13,12 @@ export default function ProfilePage(props) {
       password:  event.target.updatePassword.value ?  event.target.updatePassword.value : props.user.password,
       firstName: event.target.updateFirstName.value ? event.target.updateFirstName.value : props.user.firstName,
       lastName: event.target.updateLastName.value ? event.target.updateLastName.value : props.user.lastName,
-
     };
   
     sendUpdatedUser(userCheck)
     .then(response => {
       if (response) {
-      console.log('logged in')
+        console.log(response)
       props.setUser({
         _id: response._id,
         email: response.email,
@@ -26,7 +26,8 @@ export default function ProfilePage(props) {
         lastName: response.lastName,
         isAdmin: response.isAdmin
       })
-        
+      history.push('/')
+      history.push('/profile')
       }
     })
   }

@@ -55,7 +55,7 @@ export default function Navbar(props) {
           <button onClick={logout} className='login_basket'>Logout</button>
           </Link>
        }
-        { props.user.lastName &&
+        { props.user._id &&
           <Link style={linkStyle} to={'/profile'}>
             <button className='login_basket'>Your Profile</button>
           </Link>
@@ -64,7 +64,7 @@ export default function Navbar(props) {
         <Link style={linkStyle} to={'/basket'}>
           <button className='login_basket'>Basket</button>
         </Link>
-        { props.user.lastName &&
+        { props.user._id &&
           <Link style={linkStyle} to={'/orders'}>
             <button className='login_basket'>Orders</button>
           </Link>
