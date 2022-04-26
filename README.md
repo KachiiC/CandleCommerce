@@ -10,7 +10,7 @@ To run:
 
 To add products use PostMan: --
 url: http://localhost:3001/newProduct --
-Data: 
+JSON is as follows 
 {
   "pic_one": "url_string",
   "pic_two": "url_string", 
