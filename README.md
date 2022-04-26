@@ -8,8 +8,8 @@ To run:
 4. call the command 'nodemon' --> from server folder
 5. call the command 'npm start' --> from client folder
 
-To add products use PostMan:
-url: http://localhost:3001/newProduct
+To add products use PostMan: --
+url: http://localhost:3001/newProduct --
 Data: 
 {
   "pic_one": "url_string",
