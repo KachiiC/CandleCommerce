@@ -35,8 +35,8 @@ model Order {
 
 model Product {
   id Int @id @default(autoincrement())
-  pic_one String
-  pic_two String
+  pic_one String?
+  pic_two String?
   price Float
   description String?
   title String
