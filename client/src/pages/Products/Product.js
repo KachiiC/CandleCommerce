@@ -1,19 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Product = (props) => {
+const Product = ({ product }) => {
 
-  const linkStyle = {
-    color: "black",
-    textDecoration: 'none',
-    fontSize: '20px',
-    textEmphasis: '500'
-  };
+  const {
+    _id,
+    pic_one,
+    title
+  } = product
 
   return (
-    <Link style={linkStyle} to={`/product/${props.product._id}`} className="product">
-      <img src={props.product.pic_one} className="picture_home" alt="picture_of_each_candle"></img>
-      <p className="title_home" >{props.product.title}</p>
+    <Link className="product-link-style product" to={`/product/${_id}`} >
+      <img src={pic_one} className="picture_home" alt="each_candle" />
+      <p className="title_home" >{title}</p>
     </Link>
   )
 }
