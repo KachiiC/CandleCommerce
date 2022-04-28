@@ -1,5 +1,5 @@
-import { useState, useEffect} from 'react';
-import { BrowserRouter as Router, Route, Switch, useLocation} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
 
 import './App.css';
 import Navbar from './components/Navbar';
@@ -24,22 +24,21 @@ function App() {
   //create custom hook useScroll --> neaten this up
   const location = useLocation();
   useEffect(() => {
-    window.scrollTo(0,0)
-    }, [location]);
+    window.scrollTo(0, 0)
+  }, [location]);
 
-useEffect(() => {
-  getProducts().then(data => {
-    return setProducts(data)
-  })
-}, [])
+  useEffect(() => {
+    getProducts().then(data => {
+      return setProducts(data)
+    })
+  }, [])
 
   return (
-    <Router>
-    <div>
+    <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Navbar user={user} setUser={setUser}/>
-          <Products products={products}/>
+          <Navbar user={user} setUser={setUser} />
+          <Products products={products} />
         </Route>
         <Route path="/product/:id" >
           <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
@@ -48,23 +47,22 @@ useEffect(() => {
           <Basket user={user} setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
         </Route>
         <Route path="/login">
-          <LoginPage setUser={setUser}/>
+          <LoginPage setUser={setUser} />
         </Route>
         <Route path="/register">
           <RegisterPage />
         </Route>
         <Route path="/profile">
-          <ProfilePage setUser={setUser} user={user}/>
+          <ProfilePage setUser={setUser} user={user} />
         </Route>
         <Route path="/orders">
-          <Orders user={user}/>
+          <Orders user={user} />
         </Route>
         <Route path="/reviews">
-          <Reviews user={user}/>
+          <Reviews user={user} />
         </Route>
       </Switch>
-    </div>
-    </Router>
+    </BrowserRouter >
   );
 }
 
