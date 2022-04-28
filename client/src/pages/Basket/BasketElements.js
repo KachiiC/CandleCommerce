@@ -1,13 +1,25 @@
 import BasketElement from "./BasketElement"
-const BasketElements = (props)  => {
 
-  return (
-    props.basket.map((el, index) => {
-      return (
-        <BasketElement key={index} index={index} element={el} setTotal={props.setTotal} total={props.total} basket={props.basket} setBasket={props.setBasket} />
-      )
-    })
-  )
+const BasketElements = (props) => {
+  const { setTotal, total, basket, setBasket } = props
+  const BasketElementProps = {
+    setTotal,
+    total,
+    basket,
+    setBasket,
+  }
+
+  const basketItems = basket.map((el, index) => (
+    <BasketElement
+      key={index}
+      index={index}
+      element={el}
+      {...BasketElementProps}
+    />
+  ))
+
+  return basketItems
+  
 }
 
 export default BasketElements

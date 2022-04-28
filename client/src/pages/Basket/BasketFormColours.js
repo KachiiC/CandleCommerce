@@ -1,13 +1,13 @@
 import React from 'react'
 
-const BasketFormColours = (props) => {
-  return (
-    props.product.colours.map(colour => {
-      return (
-        <option key={colour.colour}>{colour.colour}</option>
-      )
-    })
-  )
+const BasketFormColours = ({ product }) => {
+
+  const displayedColors = product.colours.map(colour => (
+    <option key={colour.colour}>{colour.colour}</option>
+  ))
+
+  return displayedColors
+
 }
 
 export default BasketFormColours

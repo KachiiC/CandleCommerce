@@ -1,0 +1,1 @@
+export const TotalAmount = input => input.reduce((prev, cur) => prev + cur).toFixed(2)

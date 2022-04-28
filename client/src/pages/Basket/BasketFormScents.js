@@ -1,13 +1,14 @@
 import React from 'react'
 
-const BasketFormScents = (props) => {
-  return (
-    props.scents.map(scent => {
-      return (
-        <option key={scent} >{scent}</option>
-      )
-    })
-  )
+const BasketFormScents = ({ scents }) => {
+
+  const displayBasketScents = scents.map(scent => {
+    return (
+      <option key={scent} >{scent}</option>
+    )
+  })
+
+  return displayBasketScents
 }
 
 export default BasketFormScents
