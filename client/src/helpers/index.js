@@ -11,3 +11,5 @@ export const Compare = (a, b) => {
 export const MomentFunc = input => moment(input).format('MMMM Do YYYY, h:mm a')
 
 export const searchWord = (input, search_word ) => input.toLowerCase().includes(search_word.toLowerCase())
+
+export const Targeter = (event, input) => event.target[input].value
