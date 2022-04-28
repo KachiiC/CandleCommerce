@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BasketFormScents(props) {
+const BasketFormScents = (props) => {
   return (
     props.scents.map(scent => {
       return (
@@ -9,3 +9,5 @@ export default function BasketFormScents(props) {
     })
   )
 }
+
+export default BasketFormScents

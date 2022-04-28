@@ -1,4 +1,4 @@
-export default function BasketElement(props) {
+const BasketElement = (props) => {
 
   function removeItem() {
     props.setBasket([
@@ -22,3 +22,4 @@ export default function BasketElement(props) {
   )
 }
 
+export default BasketElement

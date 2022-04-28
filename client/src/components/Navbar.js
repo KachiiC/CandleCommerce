@@ -4,7 +4,7 @@ import instagram_icon from '../media/instagram.png';
 import facebook_icon from '../media/facebook.png';
 import favicon from '../media/favicon.ico'
 
-export default function Navbar(props) {
+const Navbar = (props) => {
 
   const history = useHistory();
 
@@ -76,3 +76,6 @@ export default function Navbar(props) {
     </div>
   )
 }
+
+
+export default Navbar

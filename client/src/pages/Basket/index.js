@@ -3,7 +3,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom'
 import BasketElements from './BasketElements'
 import { createOrder } from '../../services/orderService'
 
-export default function Basket(props) {
+const Basket = (props) => {
 
   const history = useHistory();
 
@@ -16,7 +16,7 @@ export default function Basket(props) {
     if (props.user._id) {
       //sets total cost from array to number
       const formattedTotal = +(props.total.reduce((prevVal, currentVal) => prevVal + currentVal).toFixed(2));
-      console.log(formattedTotal)
+
       const newOrder = {
         submittedBy: props.user._id,
         resolved: false,
@@ -34,8 +34,6 @@ export default function Basket(props) {
       history.push('/login');
     }
   }
-
-
 
   return (
     <>
@@ -61,3 +59,4 @@ export default function Basket(props) {
     </>
   )
 }
+export default Basket 

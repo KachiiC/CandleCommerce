@@ -1,5 +1,5 @@
 import BasketElement from "./BasketElement"
-export default function BasketElements(props) {
+const BasketElements = (props)  => {
 
   return (
     props.basket.map((el, index) => {
@@ -9,3 +9,5 @@ export default function BasketElements(props) {
     })
   )
 }
+
+export default BasketElements

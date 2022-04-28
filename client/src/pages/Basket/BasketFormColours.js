@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function BasketFormColours(props) {
+const BasketFormColours = (props) => {
   return (
     props.product.colours.map(colour => {
       return (
@@ -9,3 +9,5 @@ export default function BasketFormColours(props) {
     })
   )
 }
+
+export default BasketFormColours
