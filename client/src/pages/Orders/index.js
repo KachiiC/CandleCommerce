@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
 
-import { getOrders, getUserOrders } from '../services/orderService';
+import { getOrders, getUserOrders } from '../../services/orderService';
 import OrderList from "./OrderList";
 
 export default function Orders(props) {
