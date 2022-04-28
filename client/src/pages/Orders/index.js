@@ -5,33 +5,35 @@ import { Compare } from "../../helpers";
 import { HomeButton } from "../../components/HomeButton";
 import './Orders.css'
 
-const Orders = (props) => {
+const Orders = ({ user }) => {
 
   const [resolve, setResolve] = useState([false])
-
   const [orders, setOrders] = useState([]);
   const [ORDERS, setORDERS] = useState([])
-  const { user } = props
+
+  const { isAdmin, _id } = user
 
   useEffect(() => {
-    user.isAdmin ?
-      getOrders().then(data => {
-        data.sort(Compare())
-        setOrders(data)
-        setORDERS(data)
-      })
-      :
-      getUserOrders(user._id).then(data => {
-        if (data) {
+    isAdmin ?
+      getOrders()
+        .then(data => {
           data.sort(Compare())
           setOrders(data)
           setORDERS(data)
-        }
-        else {
-          setOrders([])
-        }
-      })
-  }, [user.isAdmin, user._id, resolve])
+        })
+      :
+      getUserOrders(_id)
+        .then(data => {
+          if (data) {
+            data.sort(Compare())
+            setOrders(data)
+            setORDERS(data)
+          }
+          else {
+            setOrders([])
+          }
+        })
+  }, [isAdmin, _id, resolve])
 
   const showAllOrders = () => setOrders(ORDERS)
 
@@ -41,7 +43,7 @@ const Orders = (props) => {
 
   const HeaderLogic = () => {
 
-    const header = user.isAdmin ? "All Orders" : "Your Orders"
+    const header = isAdmin ? "All Orders" : "Your Orders"
 
     return (
       <div className='basket_header'>

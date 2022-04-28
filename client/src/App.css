@@ -10,24 +10,6 @@ body {
 
 /* Homepage styling */
 
-.searchBar {
-  padding: 1%;
-  margin: 1% 0;
-  width: 20%;
-  background-color: #f8f1f3;
-  border: 1px solid #999;
-}
-
-.searchContainer {
-  display: flex;
-  margin: 0 2%;
-  padding: 3px;
-  background-color: #f8f1f3;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  height: fit-content;
-}
 
 /* The button in the top left of every page styling */
 .home_button {
