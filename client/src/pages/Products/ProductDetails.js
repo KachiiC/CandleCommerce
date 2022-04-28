@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams, useHistory, useLocation } from 'react-router-dom'
-import { getProduct } from '../services/productService';
-import BasketFormColours from './Basket/BasketFormColours'
-import BasketFormScents from './Basket/BasketFormScents'
+import { getProduct } from '../../services/productService';
+import BasketFormColours from '../Basket/BasketFormColours'
+import BasketFormScents from '../Basket/BasketFormScents'
 
 
-export default function ProductDetails(props) {
+const ProductDetails = (props) => {
 
   const history = useHistory();
 
@@ -77,3 +77,5 @@ export default function ProductDetails(props) {
     </>
   )
 }
+
+export default ProductDetails

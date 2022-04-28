@@ -1,7 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import { createUser } from "../services/userService";
 
-export default function RegisterPage() {
+const RegisterPage = () => {
 
   const history = useHistory();
 
@@ -23,7 +23,6 @@ export default function RegisterPage() {
         }
         return alert('Invalid username or password')
       })
-
   }
 
   return (
@@ -58,3 +57,5 @@ export default function RegisterPage() {
     </>
   )
 }
+
+export default RegisterPage

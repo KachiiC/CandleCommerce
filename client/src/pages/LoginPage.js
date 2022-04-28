@@ -1,7 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import { checkUser } from '../services/userService.js';
 
-export default function LoginPage(props) {
+const LoginPage = (props) => {
 
   const history = useHistory();
 
@@ -55,3 +55,5 @@ export default function LoginPage(props) {
     </>
   )
 }
+
+export default LoginPage

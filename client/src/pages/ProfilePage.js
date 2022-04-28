@@ -1,7 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import { sendUpdatedUser } from '../services/userService.js';
 
-export default function ProfilePage(props) {
+const ProfilePage = (props) => {
 
   const history = useHistory();
 
@@ -63,3 +63,5 @@ export default function ProfilePage(props) {
     </>
   )
 }
+
+export default ProfilePage
