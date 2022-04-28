@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import BasketElements from './BasketElements'
-import { createOrder } from '../../services/orderService';
+import { createOrder } from '../../services/orderService'
 
 export default function Basket(props) {
  

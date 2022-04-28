@@ -1,6 +1,6 @@
 import OrderProducts from "./OrderProducts"
 import moment from 'moment'
-import { updateOrder } from "../services/orderService"
+import { updateOrder } from "../../services/orderService"
 
 export default function OrderSingle(props) {
   //console.log('all orders', props.order)
