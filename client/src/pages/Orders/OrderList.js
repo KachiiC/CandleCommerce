@@ -1,16 +1,23 @@
 import OrderSingle from './OrderSingle'
 
-
 const OrderList = (props) => {
 
-  return (
-    props.orders.map(order => {
-      return (
-        <OrderSingle resolve={props.resolve} setResolve={props.setResolve} key={order._id} order={order} user={props.user} />
-      )
-    }
+  const { orders, resolve, setResolve, user } = props
+
+  const displayOrderList = orders.map(order => {
+    return (
+      <OrderSingle
+        key={order._id}
+        order={order}
+        user={user}
+        resolve={resolve}
+        setResolve={setResolve}
+      />
     )
-  )
+  })
+
+  return displayOrderList
+
 }
 
 export default OrderList

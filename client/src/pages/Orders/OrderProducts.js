@@ -1,20 +1,22 @@
-const OrderProducts = (props) => {
+const OrderProducts = ({ orderProducts }) => {
 
-  return (
-    props.orderProducts.map(product => {
-      return (
-        <>
-          <div className="order_items">
-            <p className='basket_name'>Title: {product.title}</p>
-            <p className='basket_name'>Qty: 1</p>
-            <p className='basket_name'>Colour: {product.colour}</p>
-            <p className='basket_name'>Scent: {product.scent}</p>
-            <p className='basket_name'>Price: {product.price}</p>
-          </div>
-        </>
-      )
-    })
-  )
+  const displayOrderProps = orderProducts.map(product => {
+
+    const { title, colour, scent, price } = product
+
+    return (
+      <div className="order_items">
+        <p className='basket_name'>Title: {title}</p>
+        <p className='basket_name'>Qty: 1</p>
+        <p className='basket_name'>Colour: {colour}</p>
+        <p className='basket_name'>Scent: {scent}</p>
+        <p className='basket_name'>Price: {price}</p>
+      </div>
+    )
+  })
+
+  return displayOrderProps
+
 }
 
 export default OrderProducts

@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
 import { getOrders, getUserOrders } from '../../services/orderService'
 import OrderList from "./OrderList";
+import { Compare } from "../../helpers";
+import { HomeButton } from "../../components/HomeButton";
 
 const Orders = (props) => {
 
@@ -9,24 +10,19 @@ const Orders = (props) => {
 
   const [orders, setOrders] = useState([]);
   const [ORDERS, setORDERS] = useState([])
-
-  function compare(a, b) {
-    if (b.date > a.date) return 1;
-    if (b.date < a.date) return -1;
-    return 0;
-  }
+  const { user } = props
 
   useEffect(() => {
-    props.user.isAdmin ?
+    user.isAdmin ?
       getOrders().then(data => {
-        data.sort(compare)
+        data.sort(Compare())
         setOrders(data)
         setORDERS(data)
       })
       :
-      getUserOrders(props.user._id).then(data => {
+      getUserOrders(user._id).then(data => {
         if (data) {
-          data.sort(compare)
+          data.sort(Compare())
           setOrders(data)
           setORDERS(data)
         }
@@ -34,47 +30,67 @@ const Orders = (props) => {
           setOrders([])
         }
       })
-  }, [props.user.isAdmin, props.user._id, resolve])
+  }, [user.isAdmin, user._id, resolve])
 
-  function showAllOrders() {
-    setOrders(ORDERS)
+  const showAllOrders = () => setOrders(ORDERS)
+
+  const showPendingOrders = () => setOrders(ORDERS.filter(order => !order.resolved))
+
+  const showCompletedOrders = () => setOrders(ORDERS.filter(order => order.resolved))
+
+  const HeaderLogic = () => {
+
+    const header = user.isAdmin ? "All Orders" : "Your Orders"
+
+    return (
+      <div className='basket_header'>
+        <h1>{header}</h1>
+      </div >
+    )
   }
 
-  function showPendingOrders() {
-    setOrders(ORDERS.filter(order => !order.resolved))
+  const orderFilters = [
+    {
+      title: "Show all orders",
+      click: showAllOrders
+    },
+    {
+      title: "Show completed orders",
+      click: showCompletedOrders
+    },
+    {
+      title: "Show pending orders",
+      click: showPendingOrders
+    },
+  ]
+
+  const orderFilterButtons = orderFilters.map((btn) => (
+    <button onClick={btn.click} className="order_filter_button">
+      {btn.title}
+    </button>
+  ))
+
+  const orderListArgs = {
+    resolve,
+    setResolve,
+    user,
+    orders
   }
 
-  function showCompletedOrders() {
-    setOrders(ORDERS.filter(order => order.resolved))
-  }
+  const orderOuter = orders.length ?
+    <div className='order_elements'>
+      <OrderList {...orderListArgs} />
+    </div>
+    :
+    <h2 className='empty_basket'>You have no orders</h2>
 
   return (
     <>
-      <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
-      <div className='basket_header'>
-        {props.user.isAdmin ?
-          <h1>All Orders</h1>
-          :
-          <h1>Your Orders</h1>
-        }
-      </div >
-      <div className="order_filter_buttons">
-        <button onClick={showAllOrders} className="order_filter_button">Show all orders</button>
-        <button onClick={showCompletedOrders} className="order_filter_button">Show completed orders</button>
-        <button onClick={showPendingOrders} className="order_filter_button">Show pending orders</button>
-      </div>
-      {/* This should be show in ascending order --> make sure sending date property over and write a sort in the order single component */}
+      <HomeButton />
+      <HeaderLogic />
+      {orderFilterButtons}
       <div className='order_outer'>
-        {
-          orders.length ?
-            <div >
-              <div className='order_elements'>
-                <OrderList resolve={props.resolve} setResolve={setResolve} user={props.user} orders={orders} />
-              </div>
-            </div>
-            :
-            <h2 className='empty_basket'>You have no orders</h2>
-        }
+        {orderOuter}
       </div>
     </>
 
