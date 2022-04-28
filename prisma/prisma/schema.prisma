@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // TODO wanna use email as ID instead?
+  id Int @id @default(autoincrement())
+  email String @unique
+  password String
+  firstName String?
+  lastName String?
+  isAdmin Boolean @default(false)
+  orders Order[]
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  submittedBy String // NECESSARY? we have user field at line 29!
+  resolved Boolean
+  products Product[]
+  totalCost Float // Number in Tom's schema
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  createdAt DateTime @default(now()) // ORIGINAL NAME --> date
+  //updatedAt DateTime @updatedAt // not in the original schema
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  pic_one String
+  pic_two String
+  price Float
+  description String?
+  title String
+  order Order @relation(fields: [orderId], references: [id])
+  orderId Int
+  colours String[] //original type Array?
+}
+
+// TODO define reviews model
