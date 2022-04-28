@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-// import { getReviews, postReview, resolveReviews, destroyReview } from '../services/reviewService';
+import { getReviews, postReview, resolveReviews, destroyReview } from '../services/reviewService';
 
 export default function Reviews(props) {
   

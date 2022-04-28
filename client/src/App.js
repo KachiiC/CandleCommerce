@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
 import './App.css';
-import Navbar from './pages/Navbar';
-import Products from './components/Products';
+// SERVICES
 import { getProducts } from './services/productService';
+// PAGES
+import Navbar from './pages/Navbar';
+import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import Basket from './pages/Basket';
 import LoginPage from './pages/LoginPage';
