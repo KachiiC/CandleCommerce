@@ -4,7 +4,7 @@ import './App.css';
 // SERVICES
 import { getProducts } from './services/productService';
 // PAGES
-import Navbar from './pages/Navbar';
+import Navbar from './components/Navbar';
 import Products from './pages/Products';
 import ProductDetails from './pages/ProductDetails';
 import Basket from './pages/Basket';
