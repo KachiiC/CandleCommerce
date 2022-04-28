@@ -1,12 +1,12 @@
 export default function BasketElement(props) {
 
-function removeItem() {
-  props.setBasket([
-    ...props.basket.slice(0, props.index),
-    ...props.basket.slice(props.index + 1)
-  ])
-  props.setTotal([...props.total, -props.element.price])
-}
+  function removeItem() {
+    props.setBasket([
+      ...props.basket.slice(0, props.index),
+      ...props.basket.slice(props.index + 1)
+    ])
+    props.setTotal([...props.total, -props.element.price])
+  }
 
   return (
     <div className='element_container'>
@@ -18,7 +18,7 @@ function removeItem() {
         <p className='basket_name'>Scent: {props.element.scent} </p>
       </div>
       <button onClick={removeItem} className='basket_delete_button'>X</button>
-  </div>
+    </div>
   )
 }
 
