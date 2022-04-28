@@ -1,4 +1,4 @@
-const Prisma = require('/');
+const Prisma = require('.');
 const bcrypt = require('bcrypt');
 
 const index = async (req, res) => {
@@ -24,7 +24,7 @@ const create = async (req, res) => {
   }
   try {
     if (password === '') throw new Error();
-    const hash = await bcrypt.hash(password, 10);
+    const hash = await bcrypt.hash(password, 10); // TODO store salt in .env
     // const newUser = { // TODO delete if refactor is working
     //   ...req.body,
     //   password: hash
