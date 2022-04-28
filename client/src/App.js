@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch, useLocation } from 'react-router-dom';
-
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './pages/Navbar';
 import Products from './components/Products';
 import { getProducts } from './services/productService';
-import ProductDetails from './components/ProductDetails';
-import Basket from './components/Basket';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
-import Orders from './components/Orders';
-import ProfilePage from './components/ProfilePage';
-import Reviews from './components/Reviews';
+import ProductDetails from './pages/ProductDetails';
+import Basket from './pages/Basket';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import Orders from './pages/Orders';
+import ProfilePage from './pages/ProfilePage';
+import Reviews from './pages/Reviews';
 
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
 
   //create custom hook useScroll --> neaten this up
   const location = useLocation();
+  
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location]);
@@ -36,8 +36,8 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Navbar user={user} setUser={setUser} />
         <Route exact path="/">
-          <Navbar user={user} setUser={setUser} />
           <Products products={products} />
         </Route>
         <Route path="/product/:id" >
