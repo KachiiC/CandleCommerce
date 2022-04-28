@@ -27,34 +27,49 @@ const App = () => {
     })
   }, [])
 
+  const pagesData = [
+    {
+      path: "/product/:id",
+      component: <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
+    },
+    {
+      path: "/basket",
+      component: <Basket user={user} setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
+    },
+    {
+      path: "/login",
+      component: <LoginPage setUser={setUser} />
+    },
+    {
+      path: "/register",
+      component: <RegisterPage />
+    },
+    {
+      path: "/profile",
+      component: <ProfilePage setUser={setUser} user={user} />
+    },
+    {
+      path: "/orders",
+      component: <Orders user={user} />
+    },
+    {
+      path: "/reviews",
+      component: <Reviews user={user} />
+    },
+  ]
+
+  const displayPages = pagesData.map((page) => (
+    <Route path={page.path} children={page.component} />
+  ))
+
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-        <Navbar user={user} setUser={setUser} />
+          <Navbar user={user} setUser={setUser} />
           <Products products={products} />
         </Route>
-        <Route path="/product/:id" >
-          <ProductDetails setBasket={setBasket} total={total} setTotal={setTotal} />
-        </Route>
-        <Route path="/basket">
-          <Basket user={user} setTotal={setTotal} total={total} setBasket={setBasket} basket={basket} />
-        </Route>
-        <Route path="/login">
-          <LoginPage setUser={setUser} />
-        </Route>
-        <Route path="/register">
-          <RegisterPage />
-        </Route>
-        <Route path="/profile">
-          <ProfilePage setUser={setUser} user={user} />
-        </Route>
-        <Route path="/orders">
-          <Orders user={user} />
-        </Route>
-        <Route path="/reviews">
-          <Reviews user={user} />
-        </Route>
+        {displayPages}
       </Switch>
     </BrowserRouter >
   );
