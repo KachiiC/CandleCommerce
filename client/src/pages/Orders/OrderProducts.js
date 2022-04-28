@@ -1,4 +1,4 @@
-export default function OrderProducts(props) {
+const OrderProducts = (props) => {
 
   return (
     props.orderProducts.map(product => {
@@ -11,9 +11,10 @@ export default function OrderProducts(props) {
             <p className='basket_name'>Scent: {product.scent}</p>
             <p className='basket_name'>Price: {product.price}</p>
           </div>
-          {/* <p> className='basket_name'>Address :{product.address} </p> */}
         </>
       )
     })
   )
 }
+
+export default OrderProducts

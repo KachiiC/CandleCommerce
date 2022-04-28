@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Product(props) {
+const Product = (props) => {
 
   const linkStyle = {
     color: "black",
@@ -11,11 +11,11 @@ export default function Product(props) {
   };
 
   return (
-    <>
-      <Link style={linkStyle} to={`/product/${props.product._id}`} className="product">
-        <img src={props.product.pic_one} className="picture_home" alt="picture_of_each_candle"></img>
-        <p className="title_home" >{props.product.title}</p>
-      </Link>
-    </>
+    <Link style={linkStyle} to={`/product/${props.product._id}`} className="product">
+      <img src={props.product.pic_one} className="picture_home" alt="picture_of_each_candle"></img>
+      <p className="title_home" >{props.product.title}</p>
+    </Link>
   )
 }
+
+export default Product

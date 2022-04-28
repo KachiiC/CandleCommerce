@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { getOrders, getUserOrders } from '../../services/orderService'
 import OrderList from "./OrderList";
 
-export default function Orders(props) {
+const Orders = (props) => {
 
   const [resolve, setResolve] = useState([false])
 
@@ -80,3 +80,5 @@ export default function Orders(props) {
 
   )
 }
+
+export default Orders

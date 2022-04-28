@@ -2,7 +2,7 @@ import Product from './Product'
 import { useState } from 'react'
 
 
-export default function Products(props) {
+const Products = (props) => {
 
   const [searchWord, setSearchWord] = useState('')
 
@@ -27,3 +27,5 @@ export default function Products(props) {
     </>
   )
 }
+
+export default Products

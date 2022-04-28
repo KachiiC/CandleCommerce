@@ -1,7 +1,7 @@
 import OrderSingle from './OrderSingle'
 
 
-export default function OrderList(props) {
+const OrderList = (props) => {
 
   return (
     props.orders.map(order => {
@@ -12,3 +12,5 @@ export default function OrderList(props) {
     )
   )
 }
+
+export default OrderList
