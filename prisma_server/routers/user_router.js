@@ -1,11 +1,16 @@
 const router = require('express').Router();
-const userController = require('../prisma/controllers/user_controller');
+const {
+  create,
+  index,
+  logout,
+  updateDetails
+} = require('../prisma/controllers/user_controller');
 //const user_middleware = require('../middlewares/userMiddleware');
 
-router.post('/register', userController.create);
-router.post('/login', userController.index);
-router.post('/logout', /*user_middleware,*/ userController.logout);
+router.post('/register', create);
+router.post('/login', index);
+router.post('/logout', /*user_middleware,*/ logout);
 
-router.put('/profile', userController.updateDetails);
+router.put('/profile', updateDetails);
 
 module.exports = router;
