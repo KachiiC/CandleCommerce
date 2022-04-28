@@ -1,6 +1,6 @@
 # CandleCommerce
 
-To run:
+To deploy:
 
 1. Fork and clone repositoty
 2. npm i from inside server folder
@@ -12,12 +12,12 @@ To add products use PostMan: --
 url: http://localhost:3001/newProduct --
 JSON is as follows --
 {
-  "pic_one": "url_string",
-  "pic_two": "url_string", 
-  "price": number,
-  "description": "string",
-  "title": "string",
-  "colours": [
+"pic_one": "url_string",
+"pic_two": "url_string",
+"price": number,
+"description": "string",
+"title": "string",
+"colours": [
 {"colour":"Black","scents":["Baltic Amber and Clove","Bubblegum", "French Pear", "French Vanilla", "Fresh Linen","Pomegranate Noir"]},
 ]
 }
