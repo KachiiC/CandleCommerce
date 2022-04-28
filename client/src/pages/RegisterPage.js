@@ -1,26 +1,25 @@
 import { Link, useHistory } from "react-router-dom"
+import { Targeter } from "../helpers";
 import { createUser } from "../services/userService";
 
 const RegisterPage = () => {
 
   const history = useHistory();
 
-  function newUser(event) {
-    event.preventDefault();
+  const newUser = e => {
+    e.preventDefault();
     const userCheck = {
-      email: event.target.registerEmail.value,
-      password: event.target.registerPassword.value,
-      firstName: event.target.registerFirstName.value,
-      lastName: event.target.registerLastName.value,
+      email: Targeter(e, "registerEmail"),
+      password: Targeter(e, "registerPassword"),
+      firstName: Targeter(e, "registerFirstName"),
+      lastName: Targeter(e, "registerLastName"),
       isAdmin: false
     };
 
     createUser(userCheck)
-      .then(response => {
-        if (response) {
-          console.log('user created')
-          return history.push('/login');
-        }
+      .then(res => {
+        if (res) return history.push('/login');
+
         return alert('Invalid username or password')
       })
   }

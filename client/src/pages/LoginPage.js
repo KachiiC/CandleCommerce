@@ -1,29 +1,26 @@
 import { Link, useHistory } from "react-router-dom"
 import { checkUser } from '../services/userService.js';
+import { Targeter } from "../helpers/index.js";
 
 const LoginPage = (props) => {
 
   const history = useHistory();
+  const { setUser } = props
 
   //call the checkUser on form submit
-  function checkDetails(event) {
-    event.preventDefault();
+  const checkDetails = (e) => {
+
+    e.preventDefault();
     const userCheck = {
-      email: event.target.loginEmail.value,
-      password: event.target.loginPassword.value
+      email: Targeter(e, "loginEmail"),
+      password: Targeter(e, "loginPassword")
     };
 
     checkUser(userCheck)
       .then(response => {
+        const { _id, email, firstName, lastName, isAdmin } = response
         if (response) {
-          console.log('logged in')
-          props.setUser({
-            _id: response._id,
-            email: response.email,
-            firstName: response.firstName,
-            lastName: response.lastName,
-            isAdmin: response.isAdmin
-          })
+          setUser({ _id, email, firstName, lastName, isAdmin })
           return history.push('/');
         }
         return alert('Incorrect username or password')
@@ -32,7 +29,11 @@ const LoginPage = (props) => {
 
   return (
     <>
-      <Link to="/"><button className='continue_shopping_button'>Home</button></Link>
+      <Link to="/">
+        <button className='continue_shopping_button'>
+          Home
+        </button>
+      </Link>
       <div className='basket_header'>
         <h1>Login</h1>
       </div>
