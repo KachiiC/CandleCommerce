@@ -1,6 +1,5 @@
 //fetch method for the products
-
-const url = 'http://localhost:3001';
+import { url } from './urls'
 
 export const createUser = (user) => {
   return fetch(`${url}/register`, {

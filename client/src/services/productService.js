@@ -1,6 +1,6 @@
 //fetch method for the products
 
-const url = 'http://localhost:3001';
+import { url } from './urls'
 
 export const getProducts = (product) => {
   return fetch(`${url}/`, {

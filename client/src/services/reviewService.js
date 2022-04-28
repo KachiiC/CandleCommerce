@@ -1,5 +1,4 @@
-
-const url = 'http://localhost:3001';
+import { url } from './urls'
 
 export const getReviews = (review) => {
   return fetch(`${url}/reviews`, {

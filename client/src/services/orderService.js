@@ -1,5 +1,5 @@
 
-const url = 'http://localhost:3001';
+import { url } from './urls'
 
 export const getOrders = (order) => {
   return fetch(`${url}/orders`, {
