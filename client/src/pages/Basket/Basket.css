@@ -1,0 +1,110 @@
+.continue_shopping_button {
+  padding: 2%;
+  margin: 2%;
+  border: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #ffe4e1;
+
+  font-size: larger;
+}
+
+.continue_shopping_button:hover {
+  cursor: pointer;
+  background-color: #f8f1f3;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.basket_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  background-color: #f8f1f3;
+}
+
+.basket_outer {
+  display: flex;
+  justify-content: center;
+}
+
+.empty_basket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.basket_elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.basket_element {
+  padding: 20px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.element_container {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  align-items: center;
+  padding: 20px;
+  margin: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  background-color: #f8f1f3;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.basket_name {
+  padding: 20px;
+}
+/* Buttons in basket */
+
+.basket_delete_button {
+  display: flex;
+  justify-self: flex-end;
+  padding: 10%;
+  margin: 4%;
+  z-index: 1;
+  font-size: large;
+  justify-content: center;
+  border: none;
+  border-radius: 20%;
+  background-color: #ffe4e1;
+}
+
+.basket_delete_button:hover,
+.basket_order_button:hover,
+.order_button:hover {
+  cursor: pointer;
+  background-color: #f8f1f3;
+  border: 1px solid #f8f1f3;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.basket_total {
+  align-self: flex-end;
+}
+
+.total_order_button {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2%;
+}
+
+.basket_order_button {
+  background-color: #ffe4e1;
+  border: 1px solid #ecd2cf;
+  border-radius: 10px;
+  font-size: 30px;
+  align-self: flex-end;
+}

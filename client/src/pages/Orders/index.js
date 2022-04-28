@@ -3,6 +3,7 @@ import { getOrders, getUserOrders } from '../../services/orderService'
 import OrderList from "./OrderList";
 import { Compare } from "../../helpers";
 import { HomeButton } from "../../components/HomeButton";
+import './Orders.css'
 
 const Orders = (props) => {
 

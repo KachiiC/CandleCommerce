@@ -1,0 +1,76 @@
+.order_outer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.order_filter_buttons {
+  display: flex;
+  justify-content: space-around;
+  margin: 2%;
+}
+
+.order_filter_button {
+  background-color: #f8f1f3;
+  border: 1px solid #ffe4e1;
+  border-radius: 10px;
+  width: 30%;
+  justify-self: center;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  padding: 10px;
+}
+
+.order_filter_button:hover {
+  background-color: #ffe4e1;
+  cursor: pointer;
+}
+
+.order_elements {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.order_element_container {
+  display: grid;
+  padding: 20px;
+  margin: 20px;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: fit-content;
+  background-color: #f8f1f3;
+  border-radius: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.order_item {
+  display: flex;
+}
+
+.order_format {
+  display: grid;
+}
+
+.order_items {
+  display: flex;
+  background-color: #ffe4e1;
+  border-radius: 30px;
+  margin: 10px;
+}
+
+.order_name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+.order_button {
+  background-color: #ffe4e1;
+  border: 1px solid #ffe4e1;
+  border-radius: 10px;
+  width: 25%;
+  justify-self: center;
+  padding: 10px;
+}
