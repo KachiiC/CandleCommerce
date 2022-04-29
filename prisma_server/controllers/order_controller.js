@@ -7,7 +7,7 @@ const index = async (req, res) => {
     res.send(allOrders);
   } catch (err) {
     console.error(err);
-    res.status(500);
+    res.sendStatus(500);
   }
 };
 
@@ -57,10 +57,12 @@ const findUserOrders = async (req, res) => {
 const saveBasket = async (req, res) => {
   try {
     const { id } = req.body;
-    const userBasket = await Prisma.customer.update({
+    const user = await Prisma.customer.update({
       where: { id },
-      data: { basket: req.body.basket }
+      data: { basket: { connect: req.body.basket } },
+      include: { basket: true }
     }); // need to check the body object for exact prop name
+    const userBasket = user.basket;
     res.status(201).send(userBasket);
   } catch (err) {
     console.error(err);
@@ -68,4 +70,4 @@ const saveBasket = async (req, res) => {
   }
 };
 
-module.exports = { index, generate, findUserOrders, update };
+module.exports = { index, generate, findUserOrders, update, saveBasket };

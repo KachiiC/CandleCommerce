@@ -4,7 +4,7 @@ const {
   index,
   logout,
   updateDetails
-} = require('../prisma/controllers/user_controller');
+} = require('../controllers/user_controller');
 //const user_middleware = require('../middlewares/userMiddleware');
 
 router.post('/register', create);

@@ -4,7 +4,7 @@ const {
   index,
   generate,
   update
-} = require('../prisma/controllers/order_controller');
+} = require('../controllers/order_controller');
 
 router.get('/ordersUser/:id', findUserOrders);
 
