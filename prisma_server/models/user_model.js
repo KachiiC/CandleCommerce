@@ -2,9 +2,8 @@ const Prisma = require('.');
 
 const index = async (req, res) => {
   try {
-    const { email } = req.body; //
+    const { email } = req.body; // TODO shall we use auth0 instead?
     const user = await Prisma.customer.findUnique({ where: { email } });
-    //req.session.uid = user._id; // TODO do we need express session?
     return ({ email, address } = user);
   } catch (err) {
     return err;
@@ -20,10 +19,8 @@ const create = async (req, res) => {
     const createdUser = await Prisma.customer.create({
       data: { ...req.body }
     });
-    //req.session.uid = user._id; // TODO do we need express session?
     return ({ email, address } = createdUser);
   } catch (err) {
-    console.error(err);
     return err;
   }
   // }

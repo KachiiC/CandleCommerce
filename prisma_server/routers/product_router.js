@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const {
   index,
-  addProduct,
-  singleProduct
+  addOne,
+  returnOne
 } = require('../controllers/product_controller');
 
 router.get('/', index);
 
-router.get('/product/:id', singleProduct);
+router.get('/product/:id', returnOne);
 
-router.post('/newProduct', addProduct);
+router.post('/product', addOne);
 
 // TODO delete after populating db
 // const prisma = require('../controllers/index');

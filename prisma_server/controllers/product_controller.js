@@ -12,13 +12,12 @@ const index = async (req, res) => {
 };
 
 // TODO add controller for the admin to add a product
-const addProduct = async (req, res) => {
+const addOne = async (req, res) => {
   try {
-    // FOR COLOUR RELATION
-    // const newProducts = await Prisma.product.create({
-    //   data: { ...req.body, colours: { create: req.body.colours } }
-    // });
-    const newProducts = await Prisma.product.create({ data: req.body });
+    const newProducts = await Prisma.product.create({
+      data: { ...req.body, colours: { connect: req.body.colours } },
+      include: { colours: true } // not sure we need it in the frontend
+    });
     res.status(201).send(newProducts);
   } catch (err) {
     console.error(err);
@@ -28,12 +27,12 @@ const addProduct = async (req, res) => {
   }
 };
 
-const singleProduct = async (req, res) => {
+const returnOne = async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Prisma.product.findUnique({
       where: { id: +id },
-      include: { colours: true } // TODO no need for this since we're not populating the colours with relations enymore
+      include: { colours: { include: { scents: true } } }
     });
     res.status(201).send(product);
   } catch (err) {
@@ -42,4 +41,4 @@ const singleProduct = async (req, res) => {
   }
 };
 
-module.exports = { index, addProduct, singleProduct };
+module.exports = { index, addOne, returnOne };
