@@ -12,9 +12,11 @@ const index = async (req, res) => {
 };
 
 const generate = async (req, res) => {
-  console.log('order', req.body);
   try {
-    const newOrder = await Prisma.order.create({ data: req.body });
+    const newOrder = await Prisma.order.create({
+      data: { ...req.body, products: { connect: req.body.products } },
+      include: { products: true }
+    });
     res.status(201).send(newOrder);
   } catch (err) {
     console.error(err);
@@ -39,12 +41,12 @@ const update = async (req, res) => {
 
 const findUserOrders = async (req, res) => {
   try {
-    const { id } = req.body;
-    const userOrders = await Prisma.customer.findUnique({
-      where: { id },
-      select: orders,
-      include: { products: true }
+    const { id } = req.params;
+    const userWithOrders = await Prisma.customer.findUnique({
+      where: { id: +id },
+      include: { orders: { include: { products: true } } }
     });
+    const userOrders = userWithOrders.orders; // seems weird we can't do it in one shot
     res.status(200).send(userOrders);
   } catch (err) {
     console.error(err);

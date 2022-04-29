@@ -36,7 +36,7 @@ model Order {
   fulfilled Boolean @default(false)
   products Product[]
   totalPrice Float
-  customer Customer? @relation(fields: [customerId], references: [id])
+  customer Customer @relation(fields: [customerId], references: [id])
   customerId Int
   createdAt DateTime @default(now())
   shippedAt DateTime?

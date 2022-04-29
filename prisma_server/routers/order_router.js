@@ -6,7 +6,7 @@ const {
   update
 } = require('../prisma/controllers/order_controller');
 
-router.post('/ordersUser', findUserOrders);
+router.get('/ordersUser/:id', findUserOrders);
 
 router.get('/orders', index);
 router.post('/orders', generate);
