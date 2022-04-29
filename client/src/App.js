@@ -22,7 +22,8 @@ const App = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    getProducts().then(data => {
+    getProducts()
+    .then(data => {
       return setProducts(data)
     })
   }, [])

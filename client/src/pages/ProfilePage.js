@@ -19,9 +19,9 @@ const ProfilePage = (props) => {
     e.preventDefault();
     const userCheck = {
       email: user.email,
-      password: Targeter(e, "updatePassword") ? Targeter("updatePassword") : password,
-      firstName: Targeter(e, "updateFirstName") ? Targeter("updateFirstName") : firstName,
-      lastName: Targeter(e, "updateLastName") ? Targeter("updateLastName") : lastName,
+      password: Targeter(e, "updatePassword") ? Targeter(e, "updatePassword") : password,
+      firstName: Targeter(e, "updateFirstName") ? Targeter(e, "updateFirstName") : firstName,
+      lastName: Targeter(e, "updateLastName") ? Targeter(e, "updateLastName") : lastName,
     };
 
     sendUpdatedUser(userCheck)

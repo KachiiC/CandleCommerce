@@ -9,13 +9,12 @@ const Navbar = (props) => {
 
     const { user, setUser } = props
 
-    const logout = event  =>{
+    const logout = event => {
         event.preventDefault();
 
         logoutUser(user)
             .then(response => {
                 if (response) {
-                    console.log('logged out')
                     setUser({})
                     return history.push('/');
                 }
@@ -48,7 +47,7 @@ const Navbar = (props) => {
             <button className='login_basket'>Your Profile</button>
         </Link>
     const TitleLogic = () => {
-        const title = user.firstName ? `back ${user.firstName}!` : "to Candle Commerce!" 
+        const title = user.firstName ? `back ${user.firstName}!` : "to Candle Commerce!"
         return (
             <h3 className='nav_title'>
                 Welcome {title}
