@@ -1,3 +1,5 @@
+import Home from './Home'
+
 const pagesData = [
     {
         path: "/orders",
@@ -21,7 +23,7 @@ const pagesData = [
     },
     {
         path: "/",
-        component: <h1>Home</h1>
+        component: <Home />
     }
 ]
 
