@@ -1,71 +1,37 @@
-import { Link } from 'react-router-dom'
+import { Menu } from 'antd';
 import './Navbar.css'
-// import NavHeader from './NavHeader';
-import { useAuth0 } from "@auth0/auth0-react"
+import { Link } from 'react-router-dom'
+import AccountButton, { HomeButton } from './AccountButtons';
+import NavLinks from './NavLinks';
 
 const Navbar = () => {
 
-    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
-    const linkStyle = {
-        color: "black",
-        textDecoration: 'none',
-        textEmphasis: '500'
-    };
-
-    const LoginButton = () => {
-
-        return <button onClick={() => loginWithRedirect()} className='login_basket' >Log In</button>;
-    };
-
-    const LogoutButton = () => {
-
-        return (
-            <button onClick={() => logout({ returnTo: "http://127.0.0.1:3000" }) }>
-                Log Out
-            </button>
-        );
-    };
-
-    const loggedInLogic = isAuthenticated ?
-        <LogoutButton />
-        :
-        <LoginButton />
-
-
-    const ordersLogic = isAuthenticated &&
-        <Link style={linkStyle} to='/orders'>
-            <button className='login_basket'>Orders</button>
-        </Link>
-
-    const profileLogic = isAuthenticated &&
-        <Link style={linkStyle} to='/profile'>
-            <button className='login_basket'>Your Profile</button>
-        </Link>
-
-    const TitleLogic = () => {
-        const title = isAuthenticated ? `back ${user.name}!` : "to Candle Commerce!"
-        return (
-            <h3 className='nav_title'>
-                Welcome {title}
-            </h3>
-        )
+    const navBarStyle = {
+        backgroundColor: "#ffd5d1",
+        border: "none",
+        opacity: 0.8,
     }
 
-    return (
-        <div className="navbar">
-            <div className='login_basket_wrapper'>
-                <Link style={linkStyle} to='/basket'>
-                    <button className='login_basket'>Basket</button>
+    const { Item } = Menu
+
+    const displayLinks = NavLinks.map((nav_link) => {
+        const { path, icon } = nav_link
+        return (
+            <Item key={path} icon={icon}>
+                <Link to={`/${path}`}>
+                    {path.toUpperCase()}
                 </Link>
-                {loggedInLogic}
-                {ordersLogic}
-                {profileLogic}
-            </div>
-            <TitleLogic />
-        </div>
+            </Item>
+        )
+    })
+
+    return (
+        <Menu mode="horizontal" style={navBarStyle}>
+            <HomeButton />
+            {displayLinks}
+            <AccountButton />
+        </Menu>
     )
-}
+};
 
-
-export default Navbar
+export default Navbar;

@@ -1,8 +1,9 @@
-* {
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-}
 body {
   background-color: #ffe4e1;
+}
+
+main {
+  padding: 20px;
 }
 
 /* Navbar styling */

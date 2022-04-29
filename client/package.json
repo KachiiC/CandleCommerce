@@ -7,6 +7,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-regular-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
+    "antd": "^4.20.1",
     "auth0": "^2.40.0",
     "babel-plugin-macros": "^3.1.0",
     "moment": "^2.29.3",

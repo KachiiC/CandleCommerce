@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Navbar from './components/Navbar';
+import PagesData from './pages'
+import "antd/dist/antd.css";
+import './App.css';
 // SERVICES
 // PAGES
 // import Products from './pages/Products';
@@ -12,30 +14,7 @@ import Navbar from './components/Navbar';
 
 const App = () => {
 
-  const pagesData = [
-    {
-      path: "/basket",
-      component: <h1>Basket Page</h1>
-    },
-    {
-      path: "/product/:id",
-      component: <h1>product detail</h1>
-    },
-    {
-      path: "/profile",
-      component: <h1>Profile Page</h1>
-    },
-    {
-      path: '/products',
-      component: <h1>Products Page</h1>
-    },
-    {
-      path: "/",
-      component: <h1>Home</h1>
-    }
-  ]
-
-  const displayPages = pagesData.map((page) => {
+  const displayPages = PagesData.map((page) => {
 
     const { path, component } = page
 
@@ -47,9 +26,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Routes>
-        {displayPages}
-      </Routes>
+      <main>
+        <Routes>
+          {displayPages}
+        </Routes>
+      </main>
     </BrowserRouter >
   );
 }
