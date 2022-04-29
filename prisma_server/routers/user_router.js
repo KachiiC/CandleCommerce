@@ -1,16 +1,8 @@
 const router = require('express').Router();
-const {
-  create,
-  index,
-  logout,
-  updateDetails
-} = require('../controllers/user_controller');
-//const user_middleware = require('../middlewares/userMiddleware');
+const { userCheck, userUpdate } = require('../controllers/user_controller');
 
-router.post('/register', create);
-router.post('/login', index);
-router.post('/logout', /*user_middleware,*/ logout);
+router.post('/signin', userCheck);
 
-router.put('/profile', updateDetails);
+router.put('/profile', userUpdate);
 
 module.exports = router;

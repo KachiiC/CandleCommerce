@@ -10,23 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-// TODO migrate to database
-model Admin {
-  id Int @id @default(autoincrement())
-  email String
-  password String
-  userName String
-  isAdmin Boolean @default(true)
-}
-
 // MANY ORDERS AND PRODUCTS
-model Customer {
+model User {
   id Int @id @default(autoincrement())
   email String @unique
-  sub String
-  address String?
+  name String // editable
+  sub String @unique
+  role Role? @default(USER) // yes but only by the ADMIN
+  address String? // editable
+  phone_number String? //editable
   orders Order[]
+}
+
+enum Role {
+ ADMIN
+ USER
 }
 
 // ONE CUSTOMER PER ORDER, MANY ITEMS PER ORDER
@@ -34,27 +32,12 @@ model Order {
   id Int @id @default(autoincrement())
   fulfilled Boolean @default(false)
   products Product[]
-  totalPrice Float
-  customer Customer @relation(fields: [customerId], references: [id]) //if when we delete a user we want all of its orders to be canceled we need to set: onDelete: Cascade
+  total_price Float
+  customer User @relation(fields: [customerId], references: [id]) //if when we delete a user we want all of its orders to be canceled we need to set: onDelete: Cascade
   customerId Int
   createdAt DateTime @default(now())
   shippedAt DateTime?
 }
-
-// MANY ORDERS PER PRODUCT AND IN THE BASKET OF MANY CUSTOMERS
-// model Product {
-//   id Int @id @default(autoincrement())
-//   pictures String[]
-//   title String @unique
-//   price Float
-//   description String
-//   orders Order[]
-//   customers Customer[]
-//   colours String[]
-//   scents String[]
-// }
-
-
 
 // IMPLICIT MANY TO MANY RELATION WITH ORDER TABLE, COUT INVENTORY!
 model Product {
@@ -66,42 +49,19 @@ model Product {
   inventory Int?
   orders Order[]
   colours Colour[]
-  // colours ProductToColours[]
 }
-
-// model ProductToColours {
-//   colour Colour @relation(fields: [colourId], references: [id])
-//   colourId Int
-//   product Product @relation(fields: [productId], references: [id])
-//   productId Int
-//   @@id([productId, colourId])
-// }
 
 model Colour {
   id Int @id @default(autoincrement())
   colour String @unique
   products Product[]
   scents Scent[]
-  // products ProductToColours[]
-  // scents ColourToScents[]
 }
-
-// model ColourToScents {
-//   colour Colour @relation(fields: [colourId], references: [id])
-//   colourId Int
-//   scent Scent @relation(fields: [scentId], references: [id])
-//   scentId Int
-//   @@id([colourId, scentId])
-// }
 
 model Scent {
   id Int @id @default(autoincrement())
   name String @unique
   colour Colour[]
-  // colour ColourToScents[]
-
 }
-
-
 
 // TODO define reviews model

@@ -30,9 +30,22 @@ const addOne = async (req, res) => {
 const returnOne = async (req, res) => {
   try {
     const { id } = req.params;
+    // const product = await Prisma.product.findUnique({
+    //   where: { id: +id },
+    //   include: { colours: { include: { scents: true } } }
+    // });
+    const { colour, scent } = req.body;
     const product = await Prisma.product.findUnique({
+      //this query returns a product with a single colour/scent combination
       where: { id: +id },
-      include: { colours: { include: { scents: true } } }
+      include: {
+        colours: {
+          where: { colour: colour },
+          include: {
+            scents: { where: { name: scent } }
+          }
+        }
+      }
     });
     res.status(201).send(product);
   } catch (err) {
