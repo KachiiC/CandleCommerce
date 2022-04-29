@@ -23,9 +23,9 @@ const App = () => {
 
   useEffect(() => {
     getProducts()
-    .then(data => {
-      return setProducts(data)
-    })
+      .then(data => {
+        return setProducts(data)
+      })
   }, [])
 
   const pagesData = [
@@ -59,9 +59,14 @@ const App = () => {
     },
   ]
 
-  const displayPages = pagesData.map((page) => (
-    <Route path={page.path} children={page.component} />
-  ))
+  const displayPages = pagesData.map((page) => {
+
+    const { path, component } = page
+
+    return (
+      <Route path={path} children={component} />
+    )
+  })
 
   return (
     <BrowserRouter>
