@@ -1,26 +1,11 @@
-import { Link, useHistory } from 'react-router-dom'
-import { logoutUser } from '../../services/userService';
+import { Link } from 'react-router-dom'
 import './Navbar.css'
-import NavHeader from './NavHeader';
+// import NavHeader from './NavHeader';
+import { useAuth0 } from "@auth0/auth0-react"
 
-const Navbar = (props) => {
+const Navbar = () => {
 
-    const history = useHistory();
-
-    const { user, setUser } = props
-
-    const logout = event  =>{
-        event.preventDefault();
-
-        logoutUser(user)
-            .then(response => {
-                if (response) {
-                    setUser({})
-                    return history.push('/');
-                }
-                return console.log('Cannot logout')
-            })
-    }
+    const { user, isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
     const linkStyle = {
         color: "black",
@@ -28,46 +13,56 @@ const Navbar = (props) => {
         textEmphasis: '500'
     };
 
-    const loggedInLogic = !user.firstName ?
-        <Link style={linkStyle} to={'/login'} >
-            <button className='login_basket'>Login</button>
-        </Link>
-        :
-        <Link style={linkStyle} to='/logout' >
-            <button onClick={logout} className='login_basket'>Logout</button>
-        </Link>
+    const LoginButton = () => {
 
-    const ordersLogic = user._id &&
+        return <button onClick={() => loginWithRedirect()} className='login_basket' >Log In</button>;
+    };
+
+    const LogoutButton = () => {
+
+        return (
+            <button onClick={() => logout({ returnTo: "http://127.0.0.1:3000" }) }>
+                Log Out
+            </button>
+        );
+    };
+
+    const loggedInLogic = isAuthenticated ?
+        <LogoutButton />
+        :
+        <LoginButton />
+
+
+    const ordersLogic = isAuthenticated &&
         <Link style={linkStyle} to='/orders'>
             <button className='login_basket'>Orders</button>
         </Link>
 
-    const profileLogic = user._id &&
+    const profileLogic = isAuthenticated &&
         <Link style={linkStyle} to='/profile'>
             <button className='login_basket'>Your Profile</button>
         </Link>
+
     const TitleLogic = () => {
-        const title = user.firstName ? `back ${user.firstName}!` : "to Candle Commerce!" 
+        const title = isAuthenticated ? `back ${user.name}!` : "to Candle Commerce!"
         return (
             <h3 className='nav_title'>
                 Welcome {title}
             </h3>
-
         )
     }
 
     return (
         <div className="navbar">
-            <NavHeader />
-            <TitleLogic />
             <div className='login_basket_wrapper'>
                 <Link style={linkStyle} to='/basket'>
                     <button className='login_basket'>Basket</button>
                 </Link>
                 {loggedInLogic}
-                {profileLogic}
                 {ordersLogic}
+                {profileLogic}
             </div>
+            <TitleLogic />
         </div>
     )
 }
