@@ -1,7 +1,7 @@
 const Prisma = require('.');
 
 // TODO rename function
-const returnAllWithColours = async (req, res) => {
+const returnAllWithColours = async () => {
   try {
     const allProducts = await Prisma.product.findMany({ include: colours });
     return allProducts;
@@ -10,24 +10,11 @@ const returnAllWithColours = async (req, res) => {
   }
 };
 
-// TODO add controller for the admin to add a product
-const addOneWithColours = async req => {
-  try {
-    const newProduct = await Prisma.product.create({
-      data: { ...req, colours: { connect: req.colours } },
-      include: { colours: true } // not sure we need it in the frontend
-    });
-    return newProduct;
-  } catch (err) {
-    console.error(err);
-    return err;
-  }
-};
 const returnOneFull = async req => {
   try {
     const { id } = req;
     const product = await Prisma.product.findUnique({
-      where: { id },
+      where: { id: +id },
       include: { colours: { include: { scents: true } } }
     });
     return product;
@@ -36,12 +23,11 @@ const returnOneFull = async req => {
   }
 };
 
-const returnSingleCombo = async (req, res) => {
+// returns a product with a single colour/scent combination
+const returnSingleCombo = async (id, req) => {
   try {
-    const { id } = req.params;
-    const { colour, scent } = req.body;
+    const { colour, scent } = req;
     const product = await Prisma.product.findUnique({
-      //this query returns a product with a single colour/scent combination
       where: { id: +id },
       include: {
         colours: {
@@ -58,9 +44,48 @@ const returnSingleCombo = async (req, res) => {
   }
 };
 
+// TODO add controller for the admin to add a product
+const addOneWithColours = async req => {
+  try {
+    const { colours } = req;
+    const newProduct = await Prisma.product.create({
+      data: { ...req, colours: { connect: colours } },
+      include: { colours: true } // not sure we need it in the frontend
+    });
+    return newProduct;
+  } catch (err) {
+    return err;
+  }
+};
+
+// dynamically adds/remove connection, also updates inventory if passed // TODO test what happens when trying to delete a non-existing relation
+const updateProduct = async (id, req) => {
+  try {
+    const { update, colours, description, price } = req;
+    // needed because of bug in connection update if atomic/inventory are not passed
+    let { atomic, inventory } = req;
+    if (!atomic || !inventory) (atomic = 'increment') && (inventory = 0);
+    console.log('newvalues', atomic, inventory);
+    const updated = await Prisma.product.update({
+      where: { id: +id },
+      data: {
+        price,
+        description,
+        inventory: { [atomic]: inventory },
+        colours: { [update]: colours }
+      },
+      include: { colours: true }
+    });
+    return updated;
+  } catch (err) {
+    return err;
+  }
+};
+
 module.exports = {
   returnAllWithColours,
-  addOneWithColours,
   returnSingleCombo,
-  returnOneFull
+  returnOneFull,
+  addOneWithColours,
+  updateProduct
 };
