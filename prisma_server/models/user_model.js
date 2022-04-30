@@ -1,15 +1,15 @@
 const Prisma = require('.');
 
 const loginAndRegister = async req => {
-  console.log('IN MODEL', req);
   const { sub } = req; // TODO shall we use sub from auth0? // TODO email is already @unique, if duplicate prisma throws an error
   const user = await Prisma.user.findUnique({ where: { sub } });
   if (!user) {
     try {
-      const createdUser = await Prisma.user.create({
-        data: { ...req }
+      const newUser = await Prisma.user.create({
+        data: { ...req },
+        select: { email: true, name: true, address: true, phone_number: true }
       });
-      return ({ email, name, address, phone_number } = createdUser);
+      return newUser;
     } catch (err) {
       return err;
     }
@@ -17,20 +17,14 @@ const loginAndRegister = async req => {
 };
 
 const updateDetails = async req => {
-  const { sub, name, address, phone_number } = req; // TODO shall we use the sub?
+  const { sub, name, address, phone_number } = req; // TODO check the sub from auth0 is always the same for a given user or changes at every login
   try {
     const user = await Prisma.user.update({
       where: { sub },
-      data: { name, address, phone_number } // in prisma, if a field value is undefined no changes are made
+      data: { name, address, phone_number }, // in prisma, if a field value is undefined no changes are made
+      select: { email: true, name: true, address: true, phone_number: true }
     });
-    console.log(user);
-    const updatedUser = {
-      email: user.email,
-      name: user.name,
-      address: user.address,
-      phone_number: user.phone_number
-    };
-    return updatedUser;
+    return user;
   } catch (err) {
     return err;
   }
