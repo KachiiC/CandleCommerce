@@ -33,7 +33,7 @@ const generateOrder = async req => {
       data: {
         total_price,
         customerId: custId.id,
-        products: { connect: products } // TODO use mapping to connect (see color scents population)
+        products: { connect: products } // TODO use mapping to connect (see product model addonewithcolors)
       },
       include: { products: true }
     });
@@ -51,7 +51,7 @@ const updateOrder = async req => {
       where: { id: +id },
       data: {
         total_price,
-        products: { [update]: products } // TODO use mapping to connect (see color scents population)
+        products: { [update]: products } // TODO use mapping to connect (see product model addonewithcolors)
       },
       include: { products: true }
     });

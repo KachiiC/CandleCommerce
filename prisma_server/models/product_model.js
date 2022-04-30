@@ -52,7 +52,12 @@ const addOneWithColours = async req => {
   try {
     const { colours } = req;
     const newProduct = await Prisma.product.create({
-      data: { ...req, colours: { connect: colours } },
+      data: {
+        ...req,
+        colours: {
+          connect: colours.map(col => ({ colour: col }))
+        }
+      },
       include: { colours: true } // not sure we need it in the frontend
     });
     return newProduct;
