@@ -1,7 +1,10 @@
-import { LoginOutlined, HomeFilled } from '@ant-design/icons';
+// TOOLS
 import { useAuth0 } from '@auth0/auth0-react'
+// Components
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom'
+// ICONS
+import { LoginOutlined, HomeFilled } from '@ant-design/icons';
 
 const AccountButton = () => {
 
@@ -25,7 +28,8 @@ const AccountButton = () => {
         icon: <LoginOutlined style={{ color: "grey" }} />,
         key: "account",
         style: {
-            marginLeft: "auto", width: "120px" 
+            marginLeft: "auto",
+            width: "120px"
         }
     }
 
@@ -37,7 +41,7 @@ const AccountButton = () => {
 }
 
 export const HomeButton = () => {
-    
+
     const { Item } = Menu
 
     return (
