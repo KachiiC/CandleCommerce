@@ -1,103 +1,18 @@
-import { useState, useEffect } from 'react'
-import { getOrders, getUserOrders } from '../../services/orderService'
-import OrderList from "./OrderList";
-import { Compare } from "../../helpers";
-import { HomeButton } from "../../components/HomeButton";
-import './Orders.css'
+import { ProductsData } from "../../data/products"
+import "./Orders.css"
+import SingleOrder from "./SingleOrder"
 
-const Orders = ({ user }) => {
-
-  const [resolve, setResolve] = useState([false])
-  const [orders, setOrders] = useState([]);
-  const [ORDERS, setORDERS] = useState([])
-
-  const { isAdmin, _id } = user
-
-  useEffect(() => {
-    isAdmin ?
-      getOrders()
-        .then(data => {
-          data.sort(Compare())
-          setOrders(data)
-          setORDERS(data)
-        })
-      :
-      getUserOrders(_id)
-        .then(data => {
-          if (data) {
-            data.sort(Compare())
-            setOrders(data)
-            setORDERS(data)
-          }
-          else {
-            setOrders([])
-          }
-        })
-  }, [isAdmin, _id, resolve])
-
-  const showAllOrders = () => setOrders(ORDERS)
-
-  const showPendingOrders = () => setOrders(ORDERS.filter(order => !order.resolved))
-
-  const showCompletedOrders = () => setOrders(ORDERS.filter(order => order.resolved))
-
-  const HeaderLogic = () => {
-
-    const header = isAdmin ? "All Orders" : "Your Orders"
-
+const Orders = () => {
+    const displayOrders = ProductsData.map(order => {
+        const { pictures, title, description, price } = order
+        const SingleOrderArgs = { pictures, title, description, price }
+        return <SingleOrder {...SingleOrderArgs} />
+    })
     return (
-      <div className='basket_header'>
-        <h1>{header}</h1>
-      </div >
+        <>
+            {displayOrders}
+        </>
     )
-  }
-
-  const orderFilters = [
-    {
-      title: "Show all orders",
-      click: showAllOrders
-    },
-    {
-      title: "Show completed orders",
-      click: showCompletedOrders
-    },
-    {
-      title: "Show pending orders",
-      click: showPendingOrders
-    },
-  ]
-
-  const orderFilterButtons = orderFilters.map((btn) => (
-    <button onClick={btn.click} className="order_filter_button">
-      {btn.title}
-    </button>
-  ))
-
-  const orderListArgs = {
-    resolve,
-    setResolve,
-    user,
-    orders
-  }
-
-  const orderOuter = orders.length ?
-    <div className='order_elements'>
-      <OrderList {...orderListArgs} />
-    </div>
-    :
-    <h2 className='empty_basket'>You have no orders</h2>
-
-  return (
-    <>
-      <HomeButton />
-      <HeaderLogic />
-      {orderFilterButtons}
-      <div className='order_outer'>
-        {orderOuter}
-      </div>
-    </>
-
-  )
 }
 
 export default Orders

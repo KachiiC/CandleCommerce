@@ -1,7 +1,7 @@
 import Home from './Home'
 import Products from './Products'
 import ProductDetails from './ProductDetails'
-import Orders from './NewOrders'
+import Orders from './Orders'
 import Profile from './Profile'
 import { Routes, Route } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react'
