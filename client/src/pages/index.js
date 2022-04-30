@@ -1,9 +1,12 @@
 import Home from './Home'
+import ProductsList from './NewProducts'
+import NewProductDetails from './NewProductDetails'
+import Orders from './NewOrders'
 
 const pagesData = [
     {
         path: "/orders",
-        component: <h1>Orders Page</h1>
+        component: <Orders />
     },
     {
         path: "/basket",
@@ -11,7 +14,7 @@ const pagesData = [
     },
     {
         path: "/product/:id",
-        component: <h1>product detail</h1>
+        component: <NewProductDetails />
     },
     {
         path: "/profile",
@@ -19,7 +22,7 @@ const pagesData = [
     },
     {
         path: '/products',
-        component: <h1>Products Page</h1>
+        component: <ProductsList />
     },
     {
         path: "/",
