@@ -25,7 +25,7 @@
 }
 
 .product-list-card:hover .product-list-card-caption p {
-  margin: 20px 0;
+  margin-top: 20px;
 }
 
 .product-list-card-thumb {
@@ -75,6 +75,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+
 .product-list-card-caption p {
   display: -webkit-box;
   max-height: 150px;
@@ -90,6 +91,7 @@
 }
 
 .product-list-card-button {
+  cursor: pointer;
   display: inline-block;
   padding: 10px 20px;
   background-color: #ffe4e1;
@@ -101,6 +103,7 @@
   text-decoration: none;
   transition: 0.3s;
 }
+
 .product-list-card-button:hover {
   color: black;
   background-color: white;
@@ -110,21 +113,15 @@
   .product-list-card-thumb {
     max-height: 500px;
   }
-}
 
-@media (min-width: 1024px) {
   .product-list-card-thumb::after {
     top: calc(100% - 140px);
   }
-}
 
-@media (min-width: 1024px) {
   .product-list-card-caption p {
     margin: 80px 0;
   }
-}
 
-@media (min-width: 1024px) {
   .product-list-card-caption {
     top: calc(100% - 110px);
     transform: unset;

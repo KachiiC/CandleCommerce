@@ -2,6 +2,7 @@ import Home from './Home'
 import ProductsList from './NewProducts'
 import NewProductDetails from './NewProductDetails'
 import Orders from './NewOrders'
+import Profile from './Profile'
 
 const pagesData = [
     {
@@ -18,7 +19,7 @@ const pagesData = [
     },
     {
         path: "/profile",
-        component: <h1>Profile Page</h1>
+        component: <Profile />
     },
     {
         path: '/products',
