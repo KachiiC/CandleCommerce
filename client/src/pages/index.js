@@ -1,8 +1,10 @@
 import Home from './Home'
 import ProductsList from './NewProducts'
-import NewProductDetails from './NewProductDetails'
+import ProductDetails from './ProductDetails'
 import Orders from './NewOrders'
 import Profile from './Profile'
+import { Route } from 'react-router-dom';
+
 
 const pagesData = [
     {
@@ -15,7 +17,7 @@ const pagesData = [
     },
     {
         path: "/product/:id",
-        component: <NewProductDetails />
+        component: <ProductDetails />
     },
     {
         path: "/profile",
@@ -31,4 +33,11 @@ const pagesData = [
     }
 ]
 
-export default pagesData
+const PageRoutes = pagesData.map((page) => {
+
+    const { path, component } = page
+
+    return <Route path={path} element={component} key={path} />
+})
+
+export default PageRoutes
