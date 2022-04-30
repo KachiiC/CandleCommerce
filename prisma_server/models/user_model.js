@@ -12,7 +12,7 @@ const loginAndRegister = async req => {
       return newUser;
     } catch (err) {
       console.error(err);
-      res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+      throw new Error('\nFailed in the model\n');
     }
   } else return ({ email, name, address, phone_number } = user);
 };
@@ -28,7 +28,7 @@ const updateDetails = async req => {
     return user;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 

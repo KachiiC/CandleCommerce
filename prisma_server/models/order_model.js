@@ -6,20 +6,20 @@ const getAllOrders = async () => {
     return allOrders;
   } catch (err) {
     console.error(err);
-    res.sendStatus(404);
+    throw new Error('\nFailed in the model\n');
   }
 };
 
 const getUserOrders = async id => {
   try {
-    const userWithOrders = await Prisma.customer.findUnique({
+    const userWithOrders = await Prisma.user.findUnique({
       where: { id: +id },
       include: { orders: { include: { products: true } } }
     });
     return userWithOrders.orders; // seems weird we can't do it in one shot (no include and select on the same level)
   } catch (err) {
     console.error(err);
-    res.sendStatus(404);
+    throw new Error('\nFailed in the model\n');
   }
 };
 
@@ -39,7 +39,7 @@ const generateOrder = async req => {
     return newOrder;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 
@@ -58,7 +58,7 @@ const updateOrder = async req => {
     return order;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 
@@ -76,7 +76,7 @@ const shipOrder = async req => {
     return order;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 

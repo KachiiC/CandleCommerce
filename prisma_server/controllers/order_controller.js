@@ -1,5 +1,6 @@
 const {
   getAllOrders,
+  getUserOrders,
   updateOrder,
   generateOrder,
   shipOrder
@@ -18,11 +19,7 @@ const findAllOrders = async (req, res) => {
 const findUserOrders = async (req, res) => {
   try {
     const { id } = req.params;
-    const userWithOrders = await Prisma.customer.findUnique({
-      where: { id: +id },
-      include: { orders: { include: { products: true } } }
-    });
-    const userOrders = userWithOrders.orders; // seems weird we can't do it in one shot
+    const userOrders = await getUserOrders(id);
     res.status(200).send(userOrders);
   } catch (err) {
     console.error(err);

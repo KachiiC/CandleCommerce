@@ -58,7 +58,7 @@ const addOneWithColours = async req => {
     return newProduct;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 
@@ -69,7 +69,6 @@ const updateProduct = async (id, req) => {
     // needed because of bug in connection update if atomic/inventory are not passed
     let { atomic, inventory } = req;
     if (!atomic || !inventory) (atomic = 'increment') && (inventory = 0);
-    console.log('newvalues', atomic, inventory);
     const updated = await Prisma.product.update({
       where: { id: +id },
       data: {
@@ -83,7 +82,7 @@ const updateProduct = async (id, req) => {
     return updated;
   } catch (err) {
     console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    throw new Error('\nFailed in the model\n');
   }
 };
 
