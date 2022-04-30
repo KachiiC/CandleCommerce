@@ -46,7 +46,7 @@ model Product {
   price Float
   description String
   title String @unique
-  inventory Int?
+  inventory Int @default(0)
   orders Order[]
   colours Colour[]
 }

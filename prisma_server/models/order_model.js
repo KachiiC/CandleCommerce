@@ -1,4 +1,5 @@
 const Prisma = require('.');
+const { updateProduct } = require('./product_model');
 
 const getAllOrders = async () => {
   try {
@@ -32,7 +33,7 @@ const generateOrder = async req => {
       data: {
         total_price,
         customerId: custId.id,
-        products: { connect: products }
+        products: { connect: products } // TODO use mapping to connect (see color scents population)
       },
       include: { products: true }
     });
@@ -43,7 +44,6 @@ const generateOrder = async req => {
   }
 };
 
-//used to change the status of resolved
 const updateOrder = async req => {
   try {
     const { id, update, products, total_price } = req;
@@ -51,7 +51,7 @@ const updateOrder = async req => {
       where: { id: +id },
       data: {
         total_price,
-        products: { [update]: products }
+        products: { [update]: products } // TODO use mapping to connect (see color scents population)
       },
       include: { products: true }
     });
@@ -65,14 +65,18 @@ const updateOrder = async req => {
 const shipOrder = async req => {
   try {
     const { id } = req;
-    const order = await Prisma.order.update({
+    let order = await Prisma.order.update({
       where: { id: +id },
       data: {
         fulfilled: true,
         shippedAt: new Date(Date.now())
-      }
+      },
+      include: { products: true }
     });
-    // TODO add logic to update product inventory
+    order.products = order.products.forEach(
+      async product =>
+        await updateProduct(product.id, { atomic: 'decrement', inventory: 1 })
+    );
     return order;
   } catch (err) {
     console.error(err);
