@@ -1,34 +1,34 @@
 const Prisma = require('.');
 
 // TODO rename function
-const index = async (req, res) => {
+const returnAllWithColours = async (req, res) => {
   try {
-    const allProducts = await Prisma.product.findMany();
+    const allProducts = await Prisma.product.findMany({ include: colours });
     return allProducts;
   } catch (err) {
-    console.error(err);
     return err;
   }
 };
 
 // TODO add controller for the admin to add a product
-const addProduct = async (req, res) => {
+const addOneWithColours = async req => {
   try {
     const newProduct = await Prisma.product.create({
-      data: { ...req.body, colours: { connect: req.body.colours } }
+      data: { ...req, colours: { connect: req.colours } },
+      include: { colours: true } // not sure we need it in the frontend
     });
     return newProduct;
   } catch (err) {
+    console.error(err);
     return err;
   }
 };
-
-const singleProduct = async (req, res) => {
+const returnOneFull = async req => {
   try {
-    const { id } = req.params;
+    const { id } = req;
     const product = await Prisma.product.findUnique({
-      where: { id: +id },
-      include: { colours: true }
+      where: { id },
+      include: { colours: { include: { scents: true } } }
     });
     return product;
   } catch (err) {
@@ -36,4 +36,31 @@ const singleProduct = async (req, res) => {
   }
 };
 
-module.exports = { index, addProduct, singleProduct };
+const returnSingleCombo = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { colour, scent } = req.body;
+    const product = await Prisma.product.findUnique({
+      //this query returns a product with a single colour/scent combination
+      where: { id: +id },
+      include: {
+        colours: {
+          where: { colour: colour },
+          include: {
+            scents: { where: { name: scent } }
+          }
+        }
+      }
+    });
+    return product;
+  } catch (err) {
+    return err;
+  }
+};
+
+module.exports = {
+  returnAllWithColours,
+  addOneWithColours,
+  returnSingleCombo,
+  returnOneFull
+};
