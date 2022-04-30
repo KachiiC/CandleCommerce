@@ -22,10 +22,16 @@ const getUserOrders = async id => {
 };
 
 // TODO specify data to generate order to avoid injection
+// TODO would it be better to update the user product field instead? Maybe not
 const generateOrder = async req => {
   try {
+    const { products, total_price, custId } = req.body;
     const newOrder = await Prisma.order.create({
-      data: { ...req, products: { connect: req.products } },
+      data: {
+        total_price,
+        customerId: custId.id,
+        products: { connect: products }
+      },
       include: { products: true }
     });
     return newOrder;

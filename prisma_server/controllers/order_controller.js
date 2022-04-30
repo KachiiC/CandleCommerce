@@ -1,22 +1,23 @@
-const Prisma = require('.');
+const {
+  getAllOrders,
+  getUserOrders,
+  generateOrder,
+  fulfillOrder
+} = require('../models/order_model');
 
-const index = async (req, res) => {
+const findAllOrders = async (req, res) => {
   try {
-    const allOrders = await Prisma.order.findMany();
-    res.status(200);
-    res.send(allOrders);
+    const allOrders = await getAllOrders();
+    res.status(200).send(allOrders);
   } catch (err) {
     console.error(err);
-    res.sendStatus(500);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
   }
 };
 
-const generate = async (req, res) => {
+const createOrder = async (req, res) => {
   try {
-    const newOrder = await Prisma.order.create({
-      data: { ...req.body, products: { connect: req.body.products } },
-      include: { products: true }
-    });
+    const newOrder = await generateOrder(req);
     res.status(201).send(newOrder);
   } catch (err) {
     console.error(err);
@@ -70,4 +71,10 @@ const saveBasket = async (req, res) => {
   }
 };
 
-module.exports = { index, generate, findUserOrders, update, saveBasket };
+module.exports = {
+  findAllOrders,
+  createOrder,
+  findUserOrders,
+  update,
+  saveBasket
+};
