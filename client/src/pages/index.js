@@ -1,43 +1,65 @@
 import Home from './Home'
-import ProductsList from './NewProducts'
+import Products from './Products'
 import ProductDetails from './ProductDetails'
 import Orders from './NewOrders'
 import Profile from './Profile'
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useAuth0 } from '@auth0/auth0-react'
 
 
 const pagesData = [
     {
         path: "/orders",
-        component: <Orders />
+        component: <Orders />,
+        authentication_required: true
     },
     {
         path: "/basket",
-        component: <h1>Basket Page</h1>
+        component: <h1>Basket Page</h1>,
+        authentication_required: true
     },
     {
         path: "/product/:id",
-        component: <ProductDetails />
+        component: <ProductDetails />,
+        authentication_required: false
     },
     {
         path: "/profile",
-        component: <Profile />
+        component: <Profile />,
+        authentication_required: true
     },
     {
         path: '/products',
-        component: <ProductsList />
+        component: <Products />,
+        authentication_required: false
     },
     {
         path: "/",
-        component: <Home />
+        component: <Home />,
+        authentication_required: false
     }
 ]
 
-const PageRoutes = pagesData.map((page) => {
+const PageRoutes = () => {
 
-    const { path, component } = page
+    const { isAuthenticated } = useAuth0()
 
-    return <Route path={path} element={component} key={path} />
-})
+    const noAuthRequired = pagesData.filter(page => !page.authentication_required)
+
+    const authRoutesLogic = isAuthenticated ? pagesData : noAuthRequired
+
+    const displayedRoutes = authRoutesLogic.map((page) => {
+        
+        const { path, component } = page
+
+        return <Route path={path} element={component} key={path} />
+    })
+
+    return (
+        <Routes>
+            {displayedRoutes}
+        </Routes>
+    )
+}
 
 export default PageRoutes

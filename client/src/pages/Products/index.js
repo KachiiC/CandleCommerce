@@ -1,33 +1,29 @@
-import { useState } from 'react'
-import Product from './Product'
 import './Products.css'
+import SingleProductCard from './SingleProductCard'
+import { ProductsData } from '../../data/products'
 
-const Products = (props) => {
+const ProductsList = () => {
 
-  const { products } = props
+    const displayImages = ProductsData.map((product) => {
 
-  const [searchWord, setSearchWord] = useState('')
+        const { title, description, pictures, price, id } = product
 
-  // eslint-disable-next-line
-  const productFilter = products.filter((val) => {
-    if (searchWord === '') return val;
+        const SingleProductArgs = {
+            title,
+            description,
+            price,
+            id,
+            image: pictures[0],
+        }
 
-    else if (searchWord(val.title, searchWord)) {
-      return val;
-    }
-  })
-    .map(product => <Product key={product._id} product={product} />)
+        return <SingleProductCard {...SingleProductArgs} />
+    })
 
-  return (
-    <>
-      <div className='searchContainer'>
-        <input className='searchBar' type="text" placeholder='Search' onChange={e => setSearchWord(e.target.value)} />
-      </div>
-      <div className='products'>
-        {productFilter}
-      </div>
-    </>
-  )
+    return (
+        <div className="product-list-container">
+            {displayImages}
+        </div>
+    )
 }
 
-export default Products
+export default ProductsList

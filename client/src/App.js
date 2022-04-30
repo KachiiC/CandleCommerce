@@ -12,9 +12,7 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <main>
-        <Routes>
-          {PageRoutes}
-        </Routes>
+        <PageRoutes />
       </main>
     </BrowserRouter >
   );
