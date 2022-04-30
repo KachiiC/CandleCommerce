@@ -11,7 +11,8 @@ const loginAndRegister = async req => {
       });
       return newUser;
     } catch (err) {
-      return err;
+      console.error(err);
+      res.status(500).send({ err, message: 'Ooops, something went wrong...' });
     }
   } else return ({ email, name, address, phone_number } = user);
 };
@@ -26,32 +27,9 @@ const updateDetails = async req => {
     });
     return user;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
   }
 };
-
-// IS IT NECESSARY ?
-// const index = async req => {
-//   try {
-//     const { email } = req.body; // TODO shall we use auth0 instead?
-//     const user = await Prisma.user.findUnique({ where: { email } });
-//     return ({ email, address } = user);
-//   } catch (err) {
-//     return err;
-//   }
-// };
-
-// // TODO express session related
-// const logout = (req, res) => {
-//   req.session.destroy(error => {
-//     if (error) {
-//       console.error(error);
-//       res.status(500).send('Could not log out, please try again');
-//     } else {
-//       res.clearCookie('sid');
-//       res.status(200).send(true);
-//     }
-//   });
-// };
 
 module.exports = { loginAndRegister, updateDetails };

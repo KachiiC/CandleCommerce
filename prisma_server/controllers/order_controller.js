@@ -1,39 +1,14 @@
 const {
   getAllOrders,
-  getUserOrders,
+  updateOrder,
   generateOrder,
-  fulfillOrder
+  shipOrder
 } = require('../models/order_model');
 
 const findAllOrders = async (req, res) => {
   try {
     const allOrders = await getAllOrders();
     res.status(200).send(allOrders);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
-  }
-};
-
-const createOrder = async (req, res) => {
-  try {
-    const newOrder = await generateOrder(req);
-    res.status(201).send(newOrder);
-  } catch (err) {
-    console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
-  }
-};
-
-//used to change the status of resolved
-const update = async (req, res) => {
-  try {
-    const { id } = req.body;
-    let order = await Prisma.order.update(
-      { where: { id } },
-      { data: { fulfilled: true, shippedAt: Date.now() } }
-    );
-    res.status(201).send(order);
   } catch (err) {
     console.error(err);
     res.status(500).send({ err, message: 'Ooops, something went wrong...' });
@@ -55,16 +30,31 @@ const findUserOrders = async (req, res) => {
   }
 };
 
-const saveBasket = async (req, res) => {
+const createOne = async (req, res) => {
   try {
-    const { id } = req.body;
-    const user = await Prisma.customer.update({
-      where: { id },
-      data: { basket: { connect: req.body.basket } },
-      include: { basket: true }
-    }); // need to check the body object for exact prop name
-    const userBasket = user.basket;
-    res.status(201).send(userBasket);
+    const newOrder = await generateOrder(req);
+    res.status(201).send(newOrder);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+  }
+};
+
+//used to change the status of resolved
+const updateOne = async (req, res) => {
+  try {
+    const updated = await updateOrder(req.body);
+    res.status(200).send(updated);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+  }
+};
+
+const shipOne = async (req, res) => {
+  try {
+    const shipped = await shipOrder(req.body);
+    res.status(200).send(shipped);
   } catch (err) {
     console.error(err);
     res.status(500).send({ err, message: 'Ooops, something went wrong...' });
@@ -73,8 +63,8 @@ const saveBasket = async (req, res) => {
 
 module.exports = {
   findAllOrders,
-  createOrder,
+  createOne,
   findUserOrders,
-  update,
-  saveBasket
+  updateOne,
+  shipOne
 };

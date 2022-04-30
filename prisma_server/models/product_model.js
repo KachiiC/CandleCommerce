@@ -6,7 +6,8 @@ const returnAllWithColours = async () => {
     const allProducts = await Prisma.product.findMany({ include: colours });
     return allProducts;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.sendStatus(404);
   }
 };
 
@@ -19,7 +20,8 @@ const returnOneFull = async req => {
     });
     return product;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.sendStatus(404);
   }
 };
 
@@ -40,7 +42,8 @@ const returnSingleCombo = async (id, req) => {
     });
     return product;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.sendStatus(404);
   }
 };
 
@@ -54,7 +57,8 @@ const addOneWithColours = async req => {
     });
     return newProduct;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
   }
 };
 
@@ -78,7 +82,8 @@ const updateProduct = async (id, req) => {
     });
     return updated;
   } catch (err) {
-    return err;
+    console.error(err);
+    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
   }
 };
 
