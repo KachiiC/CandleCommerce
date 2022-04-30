@@ -6,28 +6,38 @@ import { Link } from 'react-router-dom'
 const AccountButton = () => {
 
     const { Item } = Menu
+    // Auth 0 buttons
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
+    // Login in and out logic
     const authLogin = () => loginWithRedirect()
     const authLogout = () => logout({ returnTo: "http://127.0.0.1:3000" })
 
+    // Button Label
     const authenticationLogic = isAuthenticated ? "Logout" : "Login"
+
+    // If autheticated return logout, if not return login,
     const actionLogic = isAuthenticated ? authLogout : authLogin
 
+    // Arguments for account 
     const LogButtonArgs = {
-        key: "account",
+        onClick: () => actionLogic(),
         icon: <LoginOutlined style={{ color: "grey" }} />,
-        onClick: () => actionLogic()
+        key: "account",
+        style: {
+            marginLeft: "auto", width: "120px" 
+        }
     }
 
     return (
-        <Item {...LogButtonArgs} style={{ marginLeft: "auto" }}>
+        <Item {...LogButtonArgs}>
             {authenticationLogic}
         </Item>
     )
 }
 
 export const HomeButton = () => {
+    
     const { Item } = Menu
 
     return (
