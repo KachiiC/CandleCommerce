@@ -2,7 +2,7 @@
 
 
 body {
-  background-color: hsl(6, 100%, 94%) !important;
+  background-color: #f6cbc6 !important;
   font-family: "Lato" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -19,4 +19,8 @@ code {
 
 body::-webkit-scrollbar {
   display: none;
+}
+
+#root {
+  margin-bottom: 0px;
 }

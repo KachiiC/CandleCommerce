@@ -10,6 +10,7 @@
 .product-list-card {
   width: 325px;
   margin: 20px 10px;
+  z-index: 5;
 }
 
 .product-list-card:hover .product-list-card-caption {

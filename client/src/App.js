@@ -5,6 +5,7 @@ import PageRoutes from 'pages';
 // CSS
 import 'antd/dist/antd.min.css'
 import './App.css';
+import Footer from 'components/Footer';
 // SERVICES
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <main>
         <PageRoutes />
       </main>
+      <Footer />
     </BrowserRouter >
   );
 }

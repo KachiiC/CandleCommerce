@@ -44,12 +44,12 @@
   cursor: pointer;
 }
 
-.home-container  button {
+.home-container button {
   color: black;
   background-color: #ffd5d1;
 }
 
-.home-container  button:hover,
+.home-container button:hover,
 .home-container a:hover {
   border: 1px solid #ffd5d1;
   background-color: black;

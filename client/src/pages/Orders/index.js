@@ -3,7 +3,7 @@ import "./Orders.css"
 import SingleOrder from "./SingleOrder"
 
 const Orders = () => {
-    
+
     const displayOrders = ProductsData.map((order) => {
 
         const { pictures, title, description, price } = order
@@ -19,8 +19,12 @@ const Orders = () => {
         return <SingleOrder {...SingleOrderArgs} />
     })
 
-    return displayOrders
-    
+    return (
+        <div className="order-list-page">
+            {displayOrders}
+        </div>
+    )
+
 }
 
 export default Orders

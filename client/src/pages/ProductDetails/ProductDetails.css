@@ -70,6 +70,7 @@
 }
 
 @media (min-width: 720px) {
+  
   .product-detail-container h1::after {
     left: var(--box-x-padding);
     top: var(--box-y-padding);
@@ -96,6 +97,17 @@
     z-index: -1;
     background: #fff;
     box-shadow: 0 0.2em 1em rgba(61, 48, 41, 0.2);
+  }
+
+  .product-detail-container::after {
+    z-index: 3
+  }
+
+  .product-detail-container,
+  .product-detail-container h1,
+  .product-detail-content,
+  .product-detail-img {
+    z-index: 4
   }
 
   .product-detail-container h1 {
