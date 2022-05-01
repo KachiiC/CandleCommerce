@@ -50,8 +50,7 @@ const updateOne = async (req, res) => {
 
 const shipOne = async (req, res) => {
   try {
-    const { id } = req.params;
-    const shipped = await shipOrder(id);
+    const shipped = await shipOrder(req.body);
     res.status(200).send(shipped);
   } catch (err) {
     console.error(err);

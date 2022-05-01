@@ -1,9 +1,9 @@
-const prisma = require('../models/index');
+const Prisma = require('../models/index');
 
 const checkOrderStatus = async (req, res, next) => {
   try {
     const { id } = req.body;
-    const status = await prisma.order.findUnique({
+    const status = await Prisma.order.findUnique({
       where: { id: +id },
       select: { fulfilled: true }
     });

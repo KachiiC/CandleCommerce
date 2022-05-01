@@ -65,10 +65,11 @@ const updateOrder = async req => {
 };
 
 // TODO ONLY BY THE ADMIN
-const shipOrder = async id => {
+const shipOrder = async req => {
   try {
+    const { id } = req;
     let order = await Prisma.order.update({
-      where: { id: +id },
+      where: { id },
       data: {
         fulfilled: true,
         shippedAt: new Date()
