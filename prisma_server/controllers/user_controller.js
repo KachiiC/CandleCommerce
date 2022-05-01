@@ -20,7 +20,7 @@ const userUpdate = async (req, res) => {
     console.error(err);
     res
       .status(400)
-      .send({ error, message: 'Something went wrong, please try again' });
+      .send({ err, message: 'Something went wrong, please try again' });
   }
 };
 

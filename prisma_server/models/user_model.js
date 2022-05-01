@@ -2,7 +2,10 @@ const Prisma = require('.');
 
 const loginAndRegister = async req => {
   const { sub } = req; // TODO shall we use sub from auth0? // TODO email is already @unique, if duplicate prisma throws an error
-  const user = await Prisma.user.findUnique({ where: { sub } });
+  const user = await Prisma.user.findUnique({
+    where: { sub },
+    include: { address: true }
+  });
   if (!user) {
     try {
       const newUser = await Prisma.user.create({
@@ -20,11 +23,28 @@ const loginAndRegister = async req => {
 const updateDetails = async req => {
   const { sub, name, address, phone_number } = req; // TODO check the sub from auth0 is always the same for a given user or changes at every login
   try {
-    const user = await Prisma.user.update({
-      where: { sub },
-      data: { name, address, phone_number }, // in prisma, if a field value is undefined no changes are made
-      select: { email: true, name: true, address: true, phone_number: true }
-    });
+    let user;
+    if (address && address.id) {
+      user = await Prisma.user.update({
+        where: { sub },
+        data: {
+          name,
+          address: { update: { where: { id: address.id }, data: address } },
+          phone_number
+        }, // in prisma, if a field value is undefined no changes are made
+        select: { email: true, name: true, address: true, phone_number: true }
+      });
+    } else {
+      user = await Prisma.user.update({
+        where: { sub },
+        data: {
+          name,
+          address: { create: address },
+          phone_number
+        }, // in prisma, if a field value is undefined no changes are made
+        select: { email: true, name: true, address: true, phone_number: true }
+      });
+    }
     return user;
   } catch (err) {
     console.error(err);

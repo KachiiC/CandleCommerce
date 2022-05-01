@@ -46,13 +46,13 @@ const generateOrder = async req => {
 
 const updateOrder = async req => {
   try {
-    const { id, prodUpdate, products, address, addrUpdate, total_price } = req;
+    const { id, prodUpdate, products, addrId, addrUpdate, total_price } = req;
     let order = await Prisma.order.update({
       where: { id: +id },
       data: {
         total_price,
-        products: { [prodUpdate]: products.map(prod => ({ id: prod })) } // TODO use mapping to connect (see product model addonewithcolors)
-        //address: { [addrUpdate]: address }
+        products: { [prodUpdate]: products.map(prod => ({ id: prod })) }, // TODO use mapping to connect (see product model addonewithcolors)
+        address: { [addrUpdate]: addrId } // connect || disconnect
       },
       include: { products: true }
     });
