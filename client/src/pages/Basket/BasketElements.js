@@ -19,7 +19,7 @@ const BasketElements = (props) => {
   ))
 
   return basketItems
-  
+
 }
 
 export default BasketElements

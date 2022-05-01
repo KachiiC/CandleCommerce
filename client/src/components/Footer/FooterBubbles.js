@@ -303,8 +303,8 @@ const FooterBubblesData = [
 ]
 
 const FooterBubbles = FooterBubblesData.map((bubble, index) => (
-    <div className="footer-bubble" 
-        style={{ ...bubble }} 
+    <div className="footer-bubble"
+        style={{ ...bubble }}
         key={index}
     />
 ))

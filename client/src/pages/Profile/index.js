@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Form } from 'antd';
 import ProfileFormInputs from './ProfileFormInputs';
 import ProfileFormButtons from './ProfileFormButtons';
-import { defaultProfileFields } from '../../data/profile'
+import { defaultProfileFields } from 'data/profile'
 import './Profile.css'
 
 const Demo = () => {

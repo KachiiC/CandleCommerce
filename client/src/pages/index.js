@@ -54,7 +54,7 @@ const PageRoutes = () => {
 
     // Return routes depending on authentication
     const displayedRoutes = authRoutesLogic.map((page) => {
-        
+
         const { path, component } = page
 
         return <Route path={path} element={component} key={path} />

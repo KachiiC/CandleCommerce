@@ -35,15 +35,15 @@ footer {
 }
 
 .footer-icon {
-    font-size: 50px;
-    margin: 20px auto;
+  font-size: 50px;
+  margin: 20px auto;
 }
 
 .footer-content h3 {
   margin-bottom: 0px;
   font-size: 15px;
 }
- 
+
 @keyframes bubble-size {
   0%,
   75% {

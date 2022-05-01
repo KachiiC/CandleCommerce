@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { Link, useLocation, useHistory } from 'react-router-dom'
 import BasketElements from './BasketElements'
-import { createOrder } from '../../services/orderService'
-import { TotalAmount } from '../../helpers'
+import { createOrder } from 'services/orderService'
+import { TotalAmount } from 'helpers'
 import './Basket.css'
 
 const Basket = (props) => {

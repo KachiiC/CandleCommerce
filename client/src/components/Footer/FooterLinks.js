@@ -25,7 +25,7 @@ const FooterLinksData = [
 ]
 
 const FooterLinks = () => {
-    
+
     return FooterLinksData.map((obj) => (
         <a href={obj.link} target="_blank" rel="noreferrer">
             {obj.icon}
