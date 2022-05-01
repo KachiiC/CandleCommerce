@@ -33,7 +33,7 @@ const generateOrder = async req => {
       data: {
         total_price,
         customerId: custId.id,
-        products: { connect: products } // TODO use mapping to connect (see product model addonewithcolors)
+        products: { connect: products.map(prod => ({ product: prod })) } // TODO use mapping to connect (see product model addonewithcolors)
       },
       include: { products: true }
     });
@@ -46,12 +46,13 @@ const generateOrder = async req => {
 
 const updateOrder = async req => {
   try {
-    const { id, update, products, total_price } = req;
+    const { id, prodUpdate, products, address, addrUpdate, total_price } = req;
     let order = await Prisma.order.update({
       where: { id: +id },
       data: {
         total_price,
-        products: { [update]: products } // TODO use mapping to connect (see product model addonewithcolors)
+        products: { [prodUpdate]: products.map(prod => ({ id: prod })) } // TODO use mapping to connect (see product model addonewithcolors)
+        //address: { [addrUpdate]: address }
       },
       include: { products: true }
     });
@@ -69,11 +70,11 @@ const shipOrder = async req => {
       where: { id: +id },
       data: {
         fulfilled: true,
-        shippedAt: new Date(Date.now())
+        shippedAt: new Date()
       },
       include: { products: true }
     });
-    order.products = order.products.forEach(
+    order.products.forEach(
       async product =>
         await updateProduct(product.id, { atomic: 'decrement', inventory: 1 })
     );

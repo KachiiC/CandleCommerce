@@ -1,0 +1,26 @@
+{
+  "colour": "Yellow",
+  "scents": ["Baltic Amber and Clove", "Bubblegum", "French Pear", "French Vanilla", "Fresh Linen", "Lime Basil & Mandarin", "Pomegranate Noir"]
+}
+
+// PRODUCT UPDATE JSON SCHEMA FOR COLOURS AND INVENTORY
+{
+  "inventory": 5, // q.ty
+  "atomic": "increment", // || "decrement"
+  "colours": ["Pink"], // colour targets
+  "update": "connect" // || "disconnect"
+}
+
+// ORDER UPDATE SCHEMA FOR PRODUCTS
+{
+  "id": 4,  // orderId
+  "total_price": 50,
+  "products": [6, 8], // || array of titles but need to update the function in the model
+  "update": "connect" // || disconnect
+}
+
+// ORDER UPDATE FOR SHIPPED
+{
+  "id": 3, // orderId
+  "fulfilled": true
+}

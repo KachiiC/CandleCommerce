@@ -10,14 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// MANY ORDERS AND PRODUCTS
+// MANY ORDERS AND PRODUCTS, 1-n address
 model User {
   id Int @id @default(autoincrement())
   email String @unique
   name String // editable
   sub String @unique
   role Role? @default(USER) // yes but only by the ADMIN
-  address String? // editable
+  address Address[] // editable
   phone_number String? //editable
   orders Order[]
 }
@@ -25,6 +25,19 @@ model User {
 enum Role {
  ADMIN
  USER
+}
+
+// 1-n relation with orders
+model Address {
+  id Int @id @default(autoincrement())
+  address1 String
+  address2 String?
+  country String
+  city String
+  postcode String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+  orders Order[]
 }
 
 // ONE CUSTOMER PER ORDER, MANY ITEMS PER ORDER
@@ -35,6 +48,8 @@ model Order {
   total_price Float
   customer User @relation(fields: [customerId], references: [id]) //if when we delete a user we want all of its orders to be canceled we need to set: onDelete: Cascade
   customerId Int
+  address Address @relation(fields: [addressId], references: [id])
+  addressId Int
   createdAt DateTime @default(now())
   shippedAt DateTime?
 }
