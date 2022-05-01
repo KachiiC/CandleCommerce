@@ -13,6 +13,6 @@ router.get('/orders', findAllOrders);
 router.get('/orders/:id', findUserOrders);
 router.post('/orders', getUserIdIfExists, createOne);
 router.put('/orders/update', checkOrderStatus, updateOne);
-router.put('/orders/ship', shipOne);
+router.put('/orders/ship/:id', shipOne);
 
 module.exports = router;

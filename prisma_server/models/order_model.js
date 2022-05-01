@@ -24,18 +24,19 @@ const getUserOrders = async id => {
   }
 };
 
-// TODO specify data to generate order to avoid injection
-// TODO would it be better to update the user product field instead? Though I personally don't like the idea
+// CUSTOMER ID comes from the middleware through the sub, ADDRESS ID is sent from the client
 const generateOrder = async req => {
   try {
-    const { products, total_price, custId } = req.body;
+    const { products, total_price, custId, addrId } = req.body;
+    console.log('custId', custId, 'addrId', addrId);
     const newOrder = await Prisma.order.create({
       data: {
         total_price,
         customerId: custId.id,
-        products: { connect: products.map(prod => ({ product: prod })) } // TODO use mapping to connect (see product model addonewithcolors)
+        products: { connect: products.map(prod => ({ id: prod })) }, // can be changed with title or other unique fields
+        addressId: addrId
       },
-      include: { products: true }
+      include: { products: true, address: true }
     });
     return newOrder;
   } catch (err) {
@@ -46,15 +47,15 @@ const generateOrder = async req => {
 
 const updateOrder = async req => {
   try {
-    const { id, prodUpdate, products, addrId, addrUpdate, total_price } = req;
+    const { id, update, products, addrId, total_price } = req;
     let order = await Prisma.order.update({
-      where: { id: +id },
+      where: { id },
       data: {
         total_price,
-        products: { [prodUpdate]: products.map(prod => ({ id: prod })) }, // TODO use mapping to connect (see product model addonewithcolors)
-        address: { [addrUpdate]: addrId } // connect || disconnect
+        products: { [update]: products.map(prod => ({ id: prod })) }, // can be changed with title or other unique fields
+        addressId: addrId
       },
-      include: { products: true }
+      include: { products: true } // TODO do we also need the user and the address details?
     });
     return order;
   } catch (err) {
@@ -63,9 +64,9 @@ const updateOrder = async req => {
   }
 };
 
-const shipOrder = async req => {
+// TODO ONLY BY THE ADMIN
+const shipOrder = async id => {
   try {
-    const { id } = req;
     let order = await Prisma.order.update({
       where: { id: +id },
       data: {
