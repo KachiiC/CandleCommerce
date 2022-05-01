@@ -3,7 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 import NavLinksData from './NavLinksData'
 
-const SmallMenu = () => {
+const SmallMenu = (props) => {
 
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
@@ -25,11 +25,11 @@ const SmallMenu = () => {
     const displaySmallLinks = linksLogic.map((nav) => {
 
         return (
-            <div className="small-nav-link" key={nav.path}>
-                <Link to={`/${nav.path}`}>
+            <Link to={`/${nav.path}`}>
+                <div className="small-nav-link" key={nav.path} onClick={() => props.setMenu(false)}>
                     {nav.path.toUpperCase()}
-                </Link>
-            </div>
+                </div>
+            </Link>
         )
     })
 

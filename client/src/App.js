@@ -6,6 +6,7 @@ import PageRoutes from 'pages';
 import 'antd/dist/antd.min.css'
 import './App.css';
 import Footer from 'components/Footer';
+import ScrollToTop from 'helpers/ScrollToTop';
 // SERVICES
 
 const App = () => {
@@ -13,9 +14,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <main>
-        <PageRoutes />
-      </main>
+      <ScrollToTop>
+        <main>
+          <PageRoutes />
+        </main>
+      </ScrollToTop>
       <Footer />
     </BrowserRouter >
   );

@@ -3,32 +3,22 @@ import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import SmallMenu from './SmallMenu';
-import NavLinksData from './NavLinksData';
-import { ShoppingOutlined, MenuOutlined } from '@ant-design/icons';
+import NavLinksData, { unauthedLinks } from './NavLinksData';
+import { MenuOutlined } from '@ant-design/icons';
+import BasketMenu from './BasketMenu';
+import AuthenticationButton from './AuthenticationButton';
 
 
 const Navbar = () => {
 
     const [smallMenu, setSmallMenu] = useState(false);
-    const [basketItems, setBasketItems] = useState(0)
 
-    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
-
-    // Login in and out logic
-    const authLogin = () => loginWithRedirect()
-    const authLogout = () => logout({ returnTo: "http://127.0.0.1:3000" })
-
-    const authenticationLogic = isAuthenticated ? "LOGOUT" : "LOGIN"
-
-    // filter out pages which do not require authentication
-    const unauthedLinks = NavLinksData.filter((link) => !link.authentication_required)
+    const { isAuthenticated } = useAuth0();
 
     // If unautheticated no access to authentication required pages.
     const linksLogic = isAuthenticated ? NavLinksData : unauthedLinks
 
-    // If autheticated return logout, if not return login,
-    const actionLogic = isAuthenticated ? authLogout : authLogin
-
+    // tool small menu
     const clickLogic = () => setSmallMenu(!smallMenu)
 
     const iconStyles = {
@@ -55,15 +45,10 @@ const Navbar = () => {
                 <div className="nav-list-icon" onClick={clickLogic}>
                     <MenuOutlined style={iconStyles} />
                 </div>
-                <div className="account-button" onClick={() => actionLogic()}>
-                    {authenticationLogic}
-                </div>
-                <div className="shopping-cart-menu" onClick={() => setBasketItems(prev => prev + 1)}>
-                    {basketItems > 0 && <span className="badge">{basketItems}</span>}
-                    <ShoppingOutlined style={iconStyles} />
-                </div>
+                <AuthenticationButton />
+                <BasketMenu />
             </div>
-            {smallMenu && <SmallMenu />}
+            {smallMenu && <SmallMenu setMenu={setSmallMenu} />}
         </header>
     )
 }
