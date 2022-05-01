@@ -9,6 +9,7 @@ const ProductsList = () => {
         const { title, description, pictures, price, id } = product
 
         const SingleProductArgs = {
+            key: title,
             title,
             description,
             price,

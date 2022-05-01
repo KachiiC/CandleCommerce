@@ -1,6 +1,6 @@
 import { UserOutlined, ShoppingOutlined, FireFilled } from '@ant-design/icons';
 
-const NavLinks = [
+const NavLinksData = [
     {
         path: "profile",
         icon: <UserOutlined style={{ color: "grey" }} />,
@@ -18,4 +18,4 @@ const NavLinks = [
     }
 ]
 
-export default NavLinks
+export default NavLinksData

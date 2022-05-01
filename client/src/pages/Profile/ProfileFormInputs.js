@@ -3,37 +3,37 @@ import { Form, Input } from 'antd';
 const formInputsData = [
     {
         name: "name",
-        label: "name",
+        label: "Name",
         placeholder: "name",
         required: true
     },
     {
         name: "address1",
-        label: "address line 1",
+        label: "Address line 1",
         placeholder: "address line 1",
         required: true
     },
     {
         name: "address2",
-        label: "address line 2",
+        label: "Address line 2",
         placeholder: "address line 2",
         required: false
     },
     {
         name: "city",
-        label: "city",
+        label: "City",
         placeholder: "city",
         required: true
     },
     {
         name: "country",
-        label: "country",
+        label: "Country",
         placeholder: "country",
         required: true
     },
     {
         name: "post_code",
-        label: "post code",
+        label: "Post Code",
         placeholder: "post code",
         required: true
     }

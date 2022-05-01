@@ -6,6 +6,7 @@
   width: 100vw;
   height: 96vh;
   display: flex;
+  animation: fadeIn 4s;
 }
 
 .left-content {
@@ -37,10 +38,26 @@
   padding: 0.9rem 1.2rem;
   border-radius: 25px;
   border: 0;
-  background-color: #ffd5d1;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   font-size: 1rem;
-  color: var(--white);
   cursor: pointer;
+}
+
+.home-container  button {
+  color: black;
+  background-color: #ffd5d1;
+}
+
+.home-container  button:hover,
+.home-container a:hover {
+  border: 1px solid #ffd5d1;
+  background-color: black;
+  color: #ffd5d1;
+}
+
+@media screen and (max-width: 1080px) {
+  .left-content {
+    width: 100vh;
+  }
 }

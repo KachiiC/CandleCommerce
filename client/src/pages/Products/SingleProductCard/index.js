@@ -5,17 +5,17 @@ const SingleProductCard = (props) => {
     const { title, description, price, image, id } = props
 
     return (
-        <div class="product-list-card">
+        <div className="product-list-card">
             <figure className="product-list-card-thumb">
                 <img src={image} alt="single product" />
                 <figcaption className="product-list-card-caption">
                     <h2>{title} - £{price}</h2>
                     <p>{description}</p>
-                    <button className="product-list-card-button">
-                        <Link to={`/product/${id}`}>
+                    <Link to={`/product/${id}`}>
+                        <button className="product-list-card-button">
                             View Product
-                        </Link>
-                    </button>
+                        </button>
+                    </Link>
                 </figcaption>
             </figure >
         </div>

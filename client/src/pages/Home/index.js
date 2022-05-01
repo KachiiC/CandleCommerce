@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom'
 const Home = () => {
 
     const HomeButton = (
-        <button>
-            <Link to="/products">
+        <Link to="/products">
+            <button>
                 Light it up!
-            </Link>
-        </button>
+            </button>
+        </Link>
     )
-    
+
     return (
-        <div class="home-container">
-            <div class="left-content">
-                <p class="stay-home">You just got lit up</p>
+        <div className="home-container">
+            <div className="left-content">
+                <p className="stay-home">You just got lit up</p>
                 <h1>Glowzo Candles</h1>
                 <p>Light up the world, one candle at a time...</p>
                 {HomeButton}

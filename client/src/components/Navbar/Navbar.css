@@ -1,7 +1,129 @@
-.site-navbar {
-  background-color: "#ffe4e1";
+header {
+  user-select: none; /* supported by Chrome and Opera */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
-.ant-menu-title-content:hover {
+.topnav {
+  overflow: hidden;
+  background-color: #ffe4e1;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100vw;
+  height: 50px;
+}
+
+.nav-link {
+  float: left;
+  display: block;
   color: #747474;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav-link a {
+  color: #747474;
+}
+
+.topnav .nav-link:hover {
+  background-color: black;
+}
+
+.topnav .nav-link:hover a,
+.topnav .nav-link a:hover {
+  color: #ffe4e1;
+}
+
+.nav-list-icon {
+  display: none;
+}
+
+.nav-list-icon {
+  padding: 15px 15px 0px;
+}
+
+.shopping-cart-menu {
+  padding: 15px 0px;
+}
+
+.account-button {
+  font-size: 17px;
+  color: #747474;
+  cursor: pointer;
+  padding: 15px;
+}
+
+.shopping-cart-menu,
+.account-button {
+  border-radius: 1px;
+  text-decoration: none;
+  float: right;
+}
+
+.shopping-cart-menu {
+  padding: 15px 0px; 
+  display: flex;
+}
+
+.account-button:hover {
+  background-color: black;
+  color: #ffe4e1;
+}
+
+.badge {
+  padding: 2px 8px;
+  border-radius: 50%;
+  background-color: #bb0000;
+  color: white;
+}
+
+.small-menu {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-link,
+  .account-button {
+    display: none;
+  }
+
+  .nav-list-icon {
+    display: block;
+    float: right;
+  }
+
+  .small-menu {
+    display: block;
+    color: #747474;
+    margin-top: 50px;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    background-color: #ffe4e1;
+  }
+
+  .small-nav-link a {
+    color: #747474;
+  }
+
+  .small-nav-link {
+    padding: 10px;
+    display: block;
+    text-align: center;
+    font-weight: 800;
+    cursor: pointer;
+    color: #747474;
+  }
+
+  .small-nav-link:hover,
+  .small-nav-link:hover a {
+    background-color: black;
+    color: #ffe4e1;
+  }
 }

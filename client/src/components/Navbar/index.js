@@ -1,53 +1,71 @@
-// TOOLS
-import { useAuth0 } from '@auth0/auth0-react';
-// CSS
-import './Navbar.css'
-// COMPONENTS
-import { Menu } from 'antd';
+import { useState } from 'react'
+import { useAuth0 } from '@auth0/auth0-react'
 import { Link } from 'react-router-dom'
-import AccountButton, { HomeButton } from './AccountButtons';
-import NavLinks from './NavLinks';
+import './Navbar.css'
+import SmallMenu from './SmallMenu';
+import NavLinksData from './NavLinksData';
+import { ShoppingOutlined, MenuOutlined } from '@ant-design/icons';
+
 
 const Navbar = () => {
-    // Auth0 Logic
-    const { isAuthenticated } = useAuth0()
 
-    const { Item } = Menu
+    const [smallMenu, setSmallMenu] = useState(false);
+    const [basketItems, setBasketItems] = useState(0)
 
-    // Button Style
-    const navBarStyle = {
-        backgroundColor: "#ffd5d1",
-        border: "none",
-        opacity: 0.8,
-    }
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    // Login in and out logic
+    const authLogin = () => loginWithRedirect()
+    const authLogout = () => logout({ returnTo: "http://127.0.0.1:3000" })
+
+    const authenticationLogic = isAuthenticated ? "LOGOUT" : "LOGIN"
 
     // filter out pages which do not require authentication
-    const unauthedLinks = NavLinks.filter((link) => !link.authentication_required)
+    const unauthedLinks = NavLinksData.filter((link) => !link.authentication_required)
 
     // If unautheticated no access to authentication required pages.
-    const linksLogic = isAuthenticated ? NavLinks : unauthedLinks
+    const linksLogic = isAuthenticated ? NavLinksData : unauthedLinks
 
-    // display links according to logic
-    const DisplayLinks = linksLogic.map((nav_link) => {
+    // If autheticated return logout, if not return login,
+    const actionLogic = isAuthenticated ? authLogout : authLogin
 
-        const { path, icon } = nav_link
+    const clickLogic = () => setSmallMenu(!smallMenu)
+
+    const iconStyles = {
+        color: "grey",
+        fontSize: "25px",
+        cursor: "pointer"
+    }
+
+    const displayLink = linksLogic.map((nav) => {
 
         return (
-            <Item key={path} icon={icon}>
-                <Link to={`/${path}`}>
-                    {path.toUpperCase()}
+            <div className="nav-link" key={nav.path}>
+                <Link to={`/${nav.path}`}>
+                    {nav.path.toUpperCase()}
                 </Link>
-            </Item>
+            </div>
         )
     })
 
     return (
-        <Menu mode="horizontal" style={navBarStyle}>
-            <HomeButton />
-            {DisplayLinks}
-            <AccountButton />
-        </Menu>
+        <header>
+            <div className="topnav">
+                {displayLink}
+                <div className="nav-list-icon" onClick={clickLogic}>
+                    <MenuOutlined style={iconStyles} />
+                </div>
+                <div className="account-button" onClick={() => actionLogic()}>
+                    {authenticationLogic}
+                </div>
+                <div className="shopping-cart-menu" onClick={() => setBasketItems(prev => prev + 1)}>
+                    {basketItems > 0 && <span className="badge">{basketItems}</span>}
+                    <ShoppingOutlined style={iconStyles} />
+                </div>
+            </div>
+            {smallMenu && <SmallMenu />}
+        </header>
     )
-};
+}
 
-export default Navbar;
+export default Navbar
