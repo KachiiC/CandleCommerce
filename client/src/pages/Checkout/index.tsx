@@ -17,7 +17,7 @@ const Checkout = () => {
     return <SingleOrder {...SingleOrderArgs} />;
   });
 
-  return displayOrders;
+  return <>{displayOrders}</>;
 };
 
 export default Checkout;
