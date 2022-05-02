@@ -1,6 +1,6 @@
 import './Products.css'
 import SingleProductCard from './SingleProductCard'
-import { ProductsData } from 'data/products'
+import ProductsData from 'data/products'
 
 const ProductsList = () => {
 

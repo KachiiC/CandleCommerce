@@ -9,14 +9,12 @@ const FootIcon = {
 
 const FooterLinksData = [
     {
-
         link: "https://www.instagram.com/",
         icon: <InstagramFilled style={FootIcon} />
     },
     {
         link: "https://www.facebook.com/",
         icon: <FacebookFilled style={FootIcon} />
-
     },
     {
         link: "https://www.twitter.com/",
@@ -27,7 +25,7 @@ const FooterLinksData = [
 const FooterLinks = () => {
 
     return FooterLinksData.map((obj) => (
-        <a href={obj.link} target="_blank" rel="noreferrer">
+        <a href={obj.link} target="_blank" rel="noreferrer" key={obj.link}>
             {obj.icon}
         </a>
     ))

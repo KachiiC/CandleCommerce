@@ -1,19 +1,25 @@
 import { useAuth0 } from '@auth0/auth0-react'
 
-const AuthenticationButton = () => {
+export const AuthenticationButton = ({type}) => {
 
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+
+    const typeLogic = type === "small" ? 
+        "small-nav-link" 
+        :
+        "account-button"
 
     // Login in and out logic
     const authLogin = () => loginWithRedirect()
     const authLogout = () => logout({ returnTo: "http://127.0.0.1:3000" })
 
     const authenticationLogic = isAuthenticated ? "LOGOUT" : "LOGIN"
+
     // If autheticated return logout, if not return login,
     const actionLogic = isAuthenticated ? authLogout : authLogin
-    
+
     return (
-        <div className="account-button" onClick={() => actionLogic()}>
+        <div className={typeLogic} onClick={() => actionLogic()}>
             {authenticationLogic}
         </div>
     )

@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom"
-import { ProductsData } from "../../data/products"
 import './ProductDetails.css'
+import ProductsData from "data/products"
 
 const ProductDetails = () => {
 
     const { id } = useParams()
     // eslint-disable-next-line
     const correctProduct = ProductsData.find(product => product.id == id)
-    
+
     const { title, price, description, pictures } = correctProduct
 
     return (

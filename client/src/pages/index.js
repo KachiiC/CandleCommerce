@@ -8,6 +8,7 @@ import Products from './Products'
 import ProductDetails from './ProductDetails'
 import Orders from './Orders'
 import Profile from './Profile'
+import Checkout from './Checkout';
 
 const pagesData = [
     {
@@ -36,10 +37,15 @@ const pagesData = [
         authentication_required: false
     },
     {
+        path: '/checkout',
+        component: <Checkout />,
+        authentication_required: false
+    },
+    {
         path: "/",
         component: <Home />,
         authentication_required: false
-    }
+    },
 ]
 
 const PageRoutes = () => {

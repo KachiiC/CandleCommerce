@@ -1,4 +1,4 @@
-import { ProductsData } from "../../data/products"
+import ProductsData from "data/products"
 import "./Orders.css"
 import SingleOrder from "./SingleOrder"
 

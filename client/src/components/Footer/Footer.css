@@ -5,6 +5,7 @@ footer {
   position: relative;
   grid-area: footer;
   min-height: 10rem;
+  max-width: 100%;
 }
 
 .footer-bubbles {
