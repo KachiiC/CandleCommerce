@@ -32,7 +32,7 @@ const Navbar = () => {
         <AuthenticationButton type="menu" />
         <BasketIcon click={basketClick} />
       </div>
-      {smallMenu && <SmallMenu click={smallMenuClick} />}
+      {smallMenu && <SmallMenu toggleMenu={smallMenuClick} />}
       {basketView && <BasketMenu />}
     </header>
   );

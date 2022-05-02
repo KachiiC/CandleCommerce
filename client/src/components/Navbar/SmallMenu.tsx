@@ -1,9 +1,13 @@
 import SmallMenuLinks from './SmallMenuLinks';
 import AuthenticationButton from './AuthenticationButton';
 
-const SmallMenu = ({ click }) => (
+interface SmallMenuProps {
+  toggleMenu: () => void;
+}
+
+const SmallMenu = ({ toggleMenu }: SmallMenuProps) => (
   <div className="small-menu">
-    <SmallMenuLinks click={click} />
+    <SmallMenuLinks toggleMenu={toggleMenu} />
     <AuthenticationButton type="small" />
   </div>
 );

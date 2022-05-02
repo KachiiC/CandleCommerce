@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import NavLinksData from './NavLinksData';
 
-const SmallMenuLinks = ({ click }) => {
+interface SmallMenuProps {
+  toggleMenu: () => void;
+}
+
+const SmallMenuLinks = ({ toggleMenu }: SmallMenuProps) => {
   const { isAuthenticated } = useAuth0();
 
   const unauthedLinks = NavLinksData.filter(
@@ -15,14 +19,14 @@ const SmallMenuLinks = ({ click }) => {
   const displaySmallLinks = linksLogic.map(nav => {
     return (
       <Link to={`/${nav.path}`} key={nav.path}>
-        <div className="small-nav-link" onClick={click}>
+        <div className="small-nav-link" onClick={toggleMenu}>
           {nav.path.toUpperCase()}
         </div>
       </Link>
     );
   });
 
-  return displaySmallLinks;
+  return <>{displaySmallLinks}</>;
 };
 
 export default SmallMenuLinks;

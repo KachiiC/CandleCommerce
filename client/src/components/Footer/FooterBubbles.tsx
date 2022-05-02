@@ -302,7 +302,12 @@ const FooterBubblesData = [
   }
 ];
 
-const FooterBubbles = FooterBubblesData.map((bubble, index) => (
+// declaring an interface of key value pairs both of string type and applying it to our bubble variable
+interface Bubble {
+  [key: string]: string;
+}
+
+const FooterBubbles = FooterBubblesData.map((bubble: Bubble, index) => (
   <div className="footer-bubble" style={{ ...bubble }} key={index} />
 ));
 
