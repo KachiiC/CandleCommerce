@@ -1,30 +1,23 @@
-import ProductsData from "data/products"
-import "./Orders.css"
-import SingleOrder from "./SingleOrder"
+import ProductsData from '../../data/products';
+import './Orders.css';
+import SingleOrder from './SingleOrder';
 
 const Orders = () => {
+  const displayOrders = ProductsData.map(order => {
+    const { pictures, title, description, price } = order;
 
-    const displayOrders = ProductsData.map((order) => {
+    const SingleOrderArgs = {
+      key: title,
+      title,
+      price,
+      description,
+      pictures
+    };
 
-        const { pictures, title, description, price } = order
+    return <SingleOrder {...SingleOrderArgs} />;
+  });
 
-        const SingleOrderArgs = {
-            key: title,
-            title,
-            price,
-            description,
-            pictures
-        }
+  return <div className="order-list-page">{displayOrders}</div>;
+};
 
-        return <SingleOrder {...SingleOrderArgs} />
-    })
-
-    return (
-        <div className="order-list-page">
-            {displayOrders}
-        </div>
-    )
-
-}
-
-export default Orders
+export default Orders;

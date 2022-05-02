@@ -7,7 +7,7 @@ import NavLinks from './NavLinks';
 // BASKET
 import '../Basket/Basket.css';
 import BasketIcon from '../Basket/BasketIcon';
-import BasketMenu from 'components/Basket/BasketMenu';
+import BasketMenu from '../Basket/BasketMenu';
 
 const Navbar = () => {
   const [smallMenu, setSmallMenu] = useState(false);

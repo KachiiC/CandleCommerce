@@ -1,30 +1,24 @@
-import './Products.css'
-import SingleProductCard from './SingleProductCard'
-import ProductsData from 'data/products'
+import './Products.css';
+import SingleProductCard from './SingleProductCard';
+import ProductsData from '../../data/products';
 
 const ProductsList = () => {
+  const displayImages = ProductsData.map(product => {
+    const { title, description, pictures, price, id } = product;
 
-    const displayImages = ProductsData.map((product) => {
+    const SingleProductArgs = {
+      key: title,
+      title,
+      description,
+      price,
+      id,
+      image: pictures[0]
+    };
 
-        const { title, description, pictures, price, id } = product
+    return <SingleProductCard {...SingleProductArgs} />;
+  });
 
-        const SingleProductArgs = {
-            key: title,
-            title,
-            description,
-            price,
-            id,
-            image: pictures[0],
-        }
+  return <div className="product-list-container">{displayImages}</div>;
+};
 
-        return <SingleProductCard {...SingleProductArgs} />
-    })
-
-    return (
-        <div className="product-list-container">
-            {displayImages}
-        </div>
-    )
-}
-
-export default ProductsList
+export default ProductsList;

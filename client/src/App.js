@@ -1,15 +1,14 @@
 import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/Navbar'
-import PageRoutes from 'pages';
+import Navbar from './components/Navbar';
+import PageRoutes from './pages';
 // CSS
-import 'antd/dist/antd.min.css'
+import 'antd/dist/antd.min.css';
 import './App.css';
-import Footer from 'components/Footer';
-import ScrollToTop from 'helpers/ScrollToTop';
+import Footer from './components/Footer';
+import ScrollToTop from './helpers/ScrollToTop';
 // SERVICES
 
 const App = () => {
-
   return (
     <BrowserRouter>
       <Navbar />
@@ -19,8 +18,8 @@ const App = () => {
         </main>
       </ScrollToTop>
       <Footer />
-    </BrowserRouter >
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
