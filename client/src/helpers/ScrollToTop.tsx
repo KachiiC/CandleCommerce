@@ -7,7 +7,6 @@ interface ScrollProps {
 }
 
 const ScrollToTop = (props: ScrollProps) => {
-  console.log(props);
   const location = useLocation();
 
   useEffect(() => {
