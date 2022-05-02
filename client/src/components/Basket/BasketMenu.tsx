@@ -3,13 +3,13 @@ import BasketItem from './BasketItem';
 import UniqueValues from '../../helpers/UniqueValues';
 import { Link } from 'react-router-dom';
 
-const BasketMenu = props => {
+const BasketMenu = () => {
   const basketList = UniqueValues(Cart).map(item => (
     <BasketItem item={item} key={item.id} />
   ));
   const total = Cart.map(obj => obj.price).reduce((a, b) => a + b);
   return (
-    <div className="basket-list" onClick={props.click}>
+    <div className="basket-list">
       {basketList}
       <h2>Total: £{total}</h2>
       <Link to="/checkout">

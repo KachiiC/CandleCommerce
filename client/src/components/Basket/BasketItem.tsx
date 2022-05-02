@@ -1,9 +1,18 @@
 import Cart from '../../data/cart';
 
-const BasketItem = props => {
+type BasketItemProps = {
+  item: {
+    id: number;
+    pictures: string[];
+    title: string;
+    price: number;
+  };
+};
+
+const BasketItem = (props: BasketItemProps) => {
   const { id, pictures, title, price } = props.item;
 
-  const quanitiy = Cart.filter(cart_item => cart_item.id === id).length;
+  const quantity = Cart.filter(cart_item => cart_item.id === id).length;
 
   return (
     <div className="basket-item">
@@ -11,7 +20,7 @@ const BasketItem = props => {
       <h3>
         {title}: £{price}
       </h3>
-      <h3>x {quanitiy}</h3>
+      <h3>x {quantity}</h3>
     </div>
   );
 };
