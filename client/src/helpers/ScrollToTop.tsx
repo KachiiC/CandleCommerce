@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 interface ScrollProps {
-  children: React.FunctionComponent;
+  children: React.FunctionComponent | ReactNode;
 }
 
 const ScrollToTop = (props: ScrollProps) => {
