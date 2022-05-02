@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const {
   findAllOrders,
   findUserOrders,
@@ -14,7 +15,9 @@ const {
 
 const { checkOrderStatus } = require('../middleware/order_check');
 
-router.get('/orders', findAllOrders);
+console.log('in order router');
+
+router.get('/orders', checkForAdminRole, findAllOrders);
 router.get('/orders/:id', findUserOrders);
 router.post('/orders', getUserIdIfExists, createOne);
 router.put('/orders/update', checkOrderStatus, updateOne);

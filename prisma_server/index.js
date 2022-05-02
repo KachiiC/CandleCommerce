@@ -4,9 +4,10 @@ const cors = require('cors');
 const session = require('express-session');
 const SECRET = process.env.SECRET || 'this is not very secure';
 
-const productRouter = require('./routers/product_router');
 const userRouter = require('./routers/user_router');
-const ordersRouter = require('./routers/order_router');
+const productRouter = require('./routers/product_router');
+const orderRouter = require('./routers/order_router');
+const colourRouter = require('./routers/order_router');
 //const reviewsRouter = require('./routers/reviews_router');
 
 const app = Express();
@@ -32,7 +33,8 @@ app
   .use(Express.json())
   .use(userRouter)
   .use(productRouter)
-  .use(ordersRouter);
+  .use(orderRouter)
+  .use(colourRouter);
 
 async function bootstrap() {
   try {
