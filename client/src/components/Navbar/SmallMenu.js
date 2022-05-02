@@ -1,12 +1,11 @@
 import SmallMenuLinks from './SmallMenuLinks';
-import AuthenticationButton from './AuthenticationButton'
+import AuthenticationButton from './AuthenticationButton';
 
-const SmallMenu = () => (
-    <div className="small-menu">
-        <SmallMenuLinks />
-        <AuthenticationButton type="small" />
-    </div>
-)
+const SmallMenu = ({ click }) => (
+  <div className="small-menu">
+    <SmallMenuLinks click={click} />
+    <AuthenticationButton type="small" />
+  </div>
+);
 
-
-export default SmallMenu
+export default SmallMenu;
