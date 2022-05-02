@@ -1,6 +1,6 @@
 const Prisma = require('.');
 
-const addColour = (req) => {
+const addColour = async req => {
   const { colour, scents } = req;
   try {
     const newColor = await Prisma.colour.create({
@@ -18,15 +18,15 @@ const addColour = (req) => {
   } catch (error) {
     res.status(500).send('\nFailed in the model\n');
   }
-}
+};
 
-const deleteColour = (id) => {
+const deleteColour = async id => {
   try {
-    await Prisma.colour.delete({where: {id: +id}});
+    await Prisma.colour.delete({ where: { id: +id } });
     res.sendStatus(204);
   } catch (err) {
     res.status(500).send('\nFailed in the model\n');
   }
-}
+};
 
-module.exports = {addColour, deleteColour};
+module.exports = { addColour, deleteColour };
