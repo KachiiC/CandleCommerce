@@ -1,7 +1,11 @@
 import { ShoppingOutlined } from '@ant-design/icons';
 import Cart from '../../data/cart';
 
-const BasketIcon = props => {
+interface BasketProps {
+  click: () => void;
+}
+
+const BasketIcon = ({ click }: BasketProps) => {
   const iconStyles = {
     color: 'grey',
     fontSize: '25px',
@@ -13,7 +17,7 @@ const BasketIcon = props => {
   );
 
   return (
-    <div className="shopping-cart-menu" onClick={props.click}>
+    <div className="shopping-cart-menu" onClick={click}>
       {basketNumber}
       <ShoppingOutlined style={iconStyles} />
     </div>
