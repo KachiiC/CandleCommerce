@@ -5,11 +5,20 @@ import ProfileFormButtons from './ProfileFormButtons';
 import { defaultProfileFields } from '../../data/profile';
 import './Profile.css';
 
+interface FormValues {
+  name: string;
+  address1: string;
+  address2: string;
+  city: string;
+  country: string;
+  post_code: string;
+}
+
 const Demo = () => {
   const [profileForm] = Form.useForm();
   const { user } = useAuth0();
 
-  const handleFinish = values => {
+  const handleFinish = (values: FormValues) => {
     const { name, address1, address2, city, country, post_code } = values;
 
     console.log({
