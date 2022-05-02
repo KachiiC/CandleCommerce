@@ -4,7 +4,7 @@ const checkOrderStatus = async (req, res, next) => {
   try {
     const { id } = req.body;
     const status = await Prisma.order.findUnique({
-      where: { id: +id },
+      where: { id },
       select: { fulfilled: true }
     });
     if (!status.fulfilled) next();
