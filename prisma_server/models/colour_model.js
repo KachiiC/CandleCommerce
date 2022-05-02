@@ -14,18 +14,18 @@ const addColour = async req => {
       },
       include: { scents: true }
     });
-    res.status(201).send(newColor);
+    return newColor;
   } catch (error) {
-    res.status(500).send('\nFailed in the model\n');
+    throw new Error('\nFailed in the model\n');
   }
 };
 
 const deleteColour = async id => {
   try {
     await Prisma.colour.delete({ where: { id: +id } });
-    res.sendStatus(204);
+    return;
   } catch (err) {
-    res.status(500).send('\nFailed in the model\n');
+    throw new Error('\nFailed in the model\n');
   }
 };
 

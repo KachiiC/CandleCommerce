@@ -3,7 +3,8 @@ const {
   getUserOrders,
   updateOrder,
   generateOrder,
-  shipOrder
+  shipOrder,
+  deleteOrder
 } = require('../models/order_model');
 
 const findAllOrders = async (req, res) => {
@@ -53,8 +54,20 @@ const shipOne = async (req, res) => {
     const shipped = await shipOrder(req.body);
     res.status(200).send(shipped);
   } catch (err) {
-    console.error(err);
-    res.status(500).send({ err, message: 'Ooops, something went wrong...' });
+    res
+      .status(500)
+      .send({ err, message: 'Something went wrong, please try again' });
+  }
+};
+
+const deleteOne = async (req, res) => {
+  try {
+    await deleteOrder(req.body);
+    res.sendStatus(204);
+  } catch (err) {
+    res
+      .status(500)
+      .send({ err, message: 'Something went wrong, please try again' });
   }
 };
 
@@ -63,5 +76,6 @@ module.exports = {
   createOne,
   findUserOrders,
   updateOne,
-  shipOne
+  shipOne,
+  deleteOne
 };

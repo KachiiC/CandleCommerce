@@ -87,10 +87,22 @@ const shipOrder = async req => {
   }
 };
 
+const deleteOrder = async req => {
+  try {
+    const { id } = req;
+    await Prisma.order.delete({ where: { id } });
+    return;
+  } catch (err) {
+    console.error(err);
+    throw new Error('\nFailed in the model\n');
+  }
+};
+
 module.exports = {
   getAllOrders,
   getUserOrders,
   generateOrder,
   updateOrder,
-  shipOrder
+  shipOrder,
+  deleteOrder
 };
