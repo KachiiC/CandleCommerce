@@ -1,6 +1,5 @@
 import { Request } from 'express';
 import Prisma from '.';
-import { addColourModelProps } from './props/colorModelProps';
 
 export const addColour = async (req: Request) => {
   const { colour, scents } = req.body;

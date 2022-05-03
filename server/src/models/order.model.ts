@@ -1,7 +1,5 @@
 import { Request } from 'express';
 import Prisma from '.';
-import { updateProduct } from './product.model';
-import { generateOrderProps, updateOrderProps } from './props/orderModelProps';
 
 export const getAllOrders = async () => {
   try {
@@ -15,9 +13,9 @@ export const getAllOrders = async () => {
 
 export const getUserOrders = async (req: Request) => {
   try {
-    const { id } = req.params;
+    const { sub } = req.body;
     const userWithOrders = await Prisma.user.findUnique({
-      where: { id: +id },
+      where: { sub },
       include: { orders: { include: { products: true } } }
     });
     // seems weird we can't do it in one shot (no include and select on the same level)
