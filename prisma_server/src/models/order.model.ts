@@ -1,7 +1,8 @@
-const Prisma = require('.');
-const { updateProduct } = require('./product_model');
+import Prisma from '.';
+import { updateProduct } from './product.model';
+import { generateOrderProps, updateOrderProps } from './props/orderModelProps';
 
-const getAllOrders = async () => {
+export const getAllOrders = async () => {
   try {
     const allOrders = await Prisma.order.findMany();
     return allOrders;
@@ -11,13 +12,14 @@ const getAllOrders = async () => {
   }
 };
 
-const getUserOrders = async id => {
+export const getUserOrders = async (id: string | number) => {
   try {
     const userWithOrders = await Prisma.user.findUnique({
       where: { id: +id },
       include: { orders: { include: { products: true } } }
     });
-    return userWithOrders.orders; // seems weird we can't do it in one shot (no include and select on the same level)
+    // seems weird we can't do it in one shot (no include and select on the same level)
+    return userWithOrders.orders;
   } catch (err) {
     console.error(err);
     throw new Error('\nFailed in the model\n');
@@ -25,16 +27,18 @@ const getUserOrders = async id => {
 };
 
 // CUSTOMER ID comes from the middleware through the sub, ADDRESS ID is sent from the client
-const generateOrder = async req => {
+export const generateOrder = async (body: generateOrderProps) => {
   try {
-    const { products, total_price, custId, addrId } = req.body;
-    console.log('custId', custId, 'addrId', addrId);
+    const { products, total_price, custId, addrId } = body;
+
     const newOrder = await Prisma.order.create({
       data: {
-        total_price,
+        addressId: addrId,
         customerId: custId.id,
-        products: { connect: products.map(prod => ({ id: prod })) }, // can be changed with title or other unique fields
-        addressId: addrId
+        total_price,
+        products: {
+          connect: products.map((prod: any) => ({ id: prod }))
+        }, // can be changed with title or other unique fields
       },
       include: { products: true, address: true }
     });
@@ -45,17 +49,21 @@ const generateOrder = async req => {
   }
 };
 
-const updateOrder = async req => {
+export const updateOrder = async (body: updateOrderProps) => {
   try {
-    const { id, update, products, addrId, total_price } = req;
+    const { id, update, products, addrId, total_price } = body;
     let order = await Prisma.order.update({
       where: { id },
       data: {
+        addressId: addrId,
         total_price,
-        products: { [update]: products.map(prod => ({ id: prod })) }, // can be changed with title or other unique fields
-        addressId: addrId
+        products: {
+          [update]: products.map((prod: any) => ({ id: prod }))
+        }, // can be changed with title or other unique fields
       },
-      include: { products: true } // TODO do we also need the user and the address details?
+      include: {
+        products: true
+      } // TODO do we also need the user and the address details?
     });
     return order;
   } catch (err) {
@@ -65,9 +73,8 @@ const updateOrder = async req => {
 };
 
 // TODO ONLY BY THE ADMIN
-const shipOrder = async req => {
+export const shipOrder = async (id: any) => {
   try {
-    const { id } = req;
     let order = await Prisma.order.update({
       where: { id },
       data: {
@@ -87,22 +94,12 @@ const shipOrder = async req => {
   }
 };
 
-const deleteOrder = async req => {
+export const deleteOrder = async (id: any) => {
   try {
-    const { id } = req;
     await Prisma.order.delete({ where: { id } });
     return;
   } catch (err) {
     console.error(err);
     throw new Error('\nFailed in the model\n');
   }
-};
-
-module.exports = {
-  getAllOrders,
-  getUserOrders,
-  generateOrder,
-  updateOrder,
-  shipOrder,
-  deleteOrder
 };
