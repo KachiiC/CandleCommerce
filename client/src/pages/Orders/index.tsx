@@ -3,6 +3,8 @@ import './Orders.css';
 import SingleOrder from './SingleOrder';
 
 const Orders = () => {
+  // fetch orders info by sub
+
   const displayOrders = ProductsData.map(order => {
     const { pictures, title, description, price } = order;
 

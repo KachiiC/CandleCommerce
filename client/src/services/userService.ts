@@ -1,6 +1,7 @@
+import { sanitiseUserData } from './helpers';
 export interface UserAuth {
-  user: {
-    sub: string;
+  userData: {
+    sub?: string;
     name?: string;
     address?: {
       id?: number;
@@ -8,17 +9,18 @@ export interface UserAuth {
       address2?: string;
       city?: string;
       country?: string;
-      post_code?: string;
+      postcode?: string;
     };
     phone_number?: string;
   };
 }
 
 export const loginOrRegister = (user: UserAuth) => {
-  return fetch(process.env.BASE_URL + '/signin', {
+  const loggedUser = sanitiseUserData(user);
+  return fetch(process.env.REACT_APP_BASE_URL + '/signin', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user)
+    body: JSON.stringify(loggedUser)
   })
     .then(response =>
       response.status < 400 ? response : Promise.reject(response)
@@ -28,11 +30,14 @@ export const loginOrRegister = (user: UserAuth) => {
 };
 
 export const updateUserDetails = (user: UserAuth) => {
-  return fetch(process.env.BASE_URL + '/profile', {
+  return fetch(process.env.REACT_APP_BASE_URL + '/profile', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user)
+    body: JSON.stringify(user.userData)
   })
+    .then(response =>
+      response.status < 400 ? response : Promise.reject(response)
+    )
     .then(response => response.json())
     .catch(err => console.error(err));
 };

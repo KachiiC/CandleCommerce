@@ -32,10 +32,16 @@ const formInputsData = [
     required: true
   },
   {
-    name: 'post_code',
+    name: 'postcode',
     label: 'Post Code',
     placeholder: 'post code',
     required: true
+  },
+  {
+    name: 'phone_number',
+    label: 'Phone number',
+    placeholder: 'phone number',
+    required: false
   }
 ];
 

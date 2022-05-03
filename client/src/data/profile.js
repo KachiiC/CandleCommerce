@@ -1,8 +1,8 @@
 export const defaultProfileFields = {
-    name: 'default name',
-    address1: '123 Example street',
-    address2: 'wow estate',
-    city: "London",
-    country: "United Kingdom",
-    post_code: "N1 6bb",
-}
+  name: '',
+  address1: '',
+  address2: '',
+  city: '',
+  country: '',
+  post_code: ''
+};

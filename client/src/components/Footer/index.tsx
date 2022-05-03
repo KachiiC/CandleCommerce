@@ -1,19 +1,15 @@
-import FooterBubbles from "./FooterBubbles"
-import './Footer.css'
-import FooterLinks from "./FooterLinks"
+import FooterBubbles from './FooterBubbles';
+import './Footer.css';
+import FooterLinks from './FooterLinks';
 
-const Footer = () => {
+const Footer = () => (
+  <footer>
+    <div className="footer-bubbles">{FooterBubbles}</div>
+    <div className="footer-content">
+      <FooterLinks />
+      <h3>&copy; Cheong & Ceron</h3>
+    </div>
+  </footer>
+);
 
-    return (
-        <footer>
-            <div className="footer-bubbles">
-                {FooterBubbles}
-            </div>
-            <div className="footer-content">
-                <FooterLinks />
-                <h3>&copy; Cheong & Ceron</h3>
-            </div>
-        </footer>
-    )
-}
-export default Footer
+export default Footer;

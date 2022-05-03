@@ -2,7 +2,7 @@ import './Products.css';
 import SingleProductCard from './SingleProductCard';
 import ProductsData from '../../data/products';
 
-const ProductsList = () => {
+const Products = () => {
   const displayImages = ProductsData.map(product => {
     const { title, description, pictures, price, id } = product;
 
@@ -21,4 +21,4 @@ const ProductsList = () => {
   return <div className="product-list-container">{displayImages}</div>;
 };
 
-export default ProductsList;
+export default Products;

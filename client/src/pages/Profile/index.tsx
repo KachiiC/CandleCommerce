@@ -4,6 +4,12 @@ import ProfileFormInputs from './ProfileFormInputs';
 import ProfileFormButtons from './ProfileFormButtons';
 import { defaultProfileFields } from '../../data/profile';
 import './Profile.css';
+import { useEffect, useState } from 'react';
+import {
+  loginOrRegister,
+  updateUserDetails,
+  UserAuth
+} from '../../services/userService';
 
 interface FormValues {
   name: string;
@@ -11,29 +17,45 @@ interface FormValues {
   address2: string;
   city: string;
   country: string;
-  post_code: string;
+  postcode: string;
+  phone_number: string;
 }
 
-const Demo = () => {
+const Profile = () => {
   const [profileForm] = Form.useForm();
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
+  const [userInfo, setUserInfo] = useState<any>(defaultProfileFields);
+
+  const onFill = () => profileForm.setFieldsValue(userInfo);
+  // fetch check user info on DB
+  useEffect(() => {
+    if (isAuthenticated)
+      loginOrRegister(user as UserAuth).then((res: Response) =>
+        setUserInfo(res)
+      );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFinish = (values: FormValues) => {
-    const { name, address1, address2, city, country, post_code } = values;
-
-    console.log({
-      name,
-      address: {
-        address1,
-        address2,
-        country,
-        city,
-        post_code
+    const { name, address1, address2, city, country, postcode, phone_number } =
+      values;
+    // fetch PUT seUserInfo(res);
+    const data = {
+      userData: {
+        sub: user!.sub,
+        name,
+        address: {
+          address1,
+          address2,
+          country,
+          city,
+          postcode
+        },
+        phone_number
       }
-    });
+    };
+    updateUserDetails(data).then((res: Response) => setUserInfo(res)); // TODO ADD ALERT FOR SUCCESS
   };
-
-  const onFill = () => profileForm.setFieldsValue(defaultProfileFields);
 
   return (
     <div className="profile-form-container">
@@ -53,4 +75,4 @@ const Demo = () => {
   );
 };
 
-export default Demo;
+export default Profile;
