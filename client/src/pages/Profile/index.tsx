@@ -10,6 +10,7 @@ import {
   updateUserDetails,
   UserAuth
 } from '../../services/userService';
+import { UpdateAlert } from './UpdateAlert';
 
 interface FormValues {
   name: string;
@@ -25,6 +26,7 @@ const Profile = () => {
   const [profileForm] = Form.useForm();
   const { user, isAuthenticated } = useAuth0();
   const [userInfo, setUserInfo] = useState<any>(defaultProfileFields);
+  const [formSent, setFormSent] = useState(false);
 
   const onFill = () => profileForm.setFieldsValue(userInfo);
   // fetch check user info on DB
@@ -39,7 +41,6 @@ const Profile = () => {
   const handleFinish = (values: FormValues) => {
     const { name, address1, address2, city, country, postcode, phone_number } =
       values;
-    // fetch PUT seUserInfo(res);
     const data = {
       userData: {
         sub: user!.sub,
@@ -54,24 +55,30 @@ const Profile = () => {
         phone_number
       }
     };
-    updateUserDetails(data).then((res: Response) => setUserInfo(res)); // TODO ADD ALERT FOR SUCCESS
+    updateUserDetails(data as UserAuth).then((res: Response) => {
+      setUserInfo(res);
+      setFormSent(!formSent);
+    });
   };
 
   return (
-    <div className="profile-form-container">
-      <h1>{defaultProfileFields.name}</h1>
-      <div className="profile-form-img-container">
-        <img src={user?.picture} alt="profile-placeholder" />
+    <>
+      {formSent ? <UpdateAlert /> : null}
+      <div className="profile-form-container">
+        <h1>{defaultProfileFields.name}</h1>
+        <div className="profile-form-img-container">
+          <img src={user?.picture} alt="profile-placeholder" />
+        </div>
+        <Form
+          form={profileForm}
+          onFinish={handleFinish}
+          initialValues={defaultProfileFields}
+        >
+          <ProfileFormInputs />
+          <ProfileFormButtons click={onFill} />
+        </Form>
       </div>
-      <Form
-        form={profileForm}
-        onFinish={handleFinish}
-        initialValues={defaultProfileFields}
-      >
-        <ProfileFormInputs />
-        <ProfileFormButtons click={onFill} />
-      </Form>
-    </div>
+    </>
   );
 };
 

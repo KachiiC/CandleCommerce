@@ -1,7 +1,7 @@
 import { sanitiseUserData } from './helpers';
 export interface UserAuth {
   userData: {
-    sub?: string;
+    sub: string;
     name?: string;
     address?: {
       id?: number;
