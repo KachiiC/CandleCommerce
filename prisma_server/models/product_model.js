@@ -3,7 +3,9 @@ const Prisma = require('.');
 // TODO rename function
 const returnAllWithColours = async () => {
   try {
-    const allProducts = await Prisma.product.findMany({ include: colours });
+    const allProducts = await Prisma.product.findMany({
+      include: { colours: true } // TODO check for merge conflicts
+    });
     return allProducts;
   } catch (err) {
     console.error(err);

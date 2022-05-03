@@ -1,9 +1,17 @@
 import './Products.css';
 import SingleProductCard from './SingleProductCard';
-import ProductsData from '../../data/products';
+import { SingleProduct } from '../../interfaces/SingleProduct';
+import { useEffect, useState } from 'react';
+import { getAllProducts } from '../../services/productService';
 
 const Products = () => {
-  const displayImages = ProductsData.map(product => {
+  const [products, setProducts] = useState<SingleProduct[]>([]);
+
+  useEffect(() => {
+    getAllProducts().then((res: SingleProduct[]) => setProducts(res));
+  }, []);
+
+  const displayImages = products.map((product: SingleProduct) => {
     const { title, description, pictures, price, id } = product;
 
     const SingleProductArgs = {

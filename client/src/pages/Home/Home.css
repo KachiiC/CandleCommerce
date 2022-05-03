@@ -6,7 +6,7 @@
   width: 100vw;
   height: 96vh;
   display: flex;
-  animation: fadeIn 4s;
+  animation: fadeIn 2s;
 }
 
 .left-content {

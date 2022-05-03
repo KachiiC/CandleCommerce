@@ -3,6 +3,7 @@ export interface UserAuth {
   userData: {
     sub: string;
     name?: string;
+    email: string;
     address?: {
       id?: number;
       address1?: string;

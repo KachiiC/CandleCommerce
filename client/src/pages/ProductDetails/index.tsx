@@ -1,24 +1,21 @@
 import { useParams } from 'react-router-dom';
 import './ProductDetails.css';
-import ProductsData from '../../data/products';
-
-interface Details {
-  title: string;
-  price: number;
-  description: string;
-  pictures: string[];
-}
+import { useEffect, useState } from 'react';
+import { SingleProduct } from '../../interfaces/SingleProduct';
+import { getOneProduct } from '../../services/productService';
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const [product, setProduct] = useState<SingleProduct>();
 
-  const correctProduct: Details | undefined = ProductsData.find(
-    product => product.id === Number(id)
-  );
+  useEffect(() => {
+    getOneProduct(Number(id)).then((res: SingleProduct) => setProduct(res));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // type-guard / type-narrowing
-  if (correctProduct) {
-    const { title, price, description, pictures } = correctProduct;
+  if (product) {
+    const { title, price, description, pictures } = product;
 
     return (
       <div className="product-detail-page">
