@@ -7,6 +7,7 @@ import { getAllProducts } from '../../services/productService';
 const Products = () => {
   const [products, setProducts] = useState<SingleProduct[]>([]);
 
+  // TODO now we call the backend on every product page load, the backend doesn't really like it
   useEffect(() => {
     getAllProducts().then((res: SingleProduct[]) => setProducts(res));
   }, []);

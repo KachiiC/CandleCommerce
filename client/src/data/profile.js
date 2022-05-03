@@ -1,8 +1,15 @@
 export const defaultProfileFields = {
-  name: '',
-  address1: '',
-  address2: '',
-  city: '',
-  country: '',
-  post_code: ''
+  userData: {
+    sub: '',
+    name: '',
+    email: '',
+    address: {
+      address1: '',
+      address2: '',
+      city: '',
+      country: '',
+      postcode: ''
+    },
+    phone_number: ''
+  }
 };

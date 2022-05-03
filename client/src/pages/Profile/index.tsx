@@ -21,17 +21,38 @@ interface FormValues {
 
 const Profile = () => {
   const [profileForm] = Form.useForm();
-  const { user, isAuthenticated } = useAuth0();
-  const [userInfo, setUserInfo] = useState<any>(defaultProfileFields);
+  const { user } = useAuth0();
+  const [userInfo, setUserInfo] = useState<UserAuth>(defaultProfileFields);
   const [formSent, setFormSent] = useState(false);
 
   const onFill = () => profileForm.setFieldsValue(userInfo);
   // fetch check user info on DB
   useEffect(() => {
-    if (isAuthenticated)
-      loginOrRegister(user as UserAuth).then((res: Response) =>
-        setUserInfo(res)
-      );
+    loginOrRegister(user as UserAuth).then((res: UserAuth) => {
+      setUserInfo(res);
+      console.log('Here', res);
+      const { name, address, phone_number } = res;
+      const { address1, address2, city, country, postcode } = address!;
+      console.log({
+        name,
+        phone_number,
+        address1,
+        address2,
+        city,
+        country,
+        postcode
+      });
+      profileForm.setFieldsValue({
+        name,
+        phone_number,
+        address1,
+        address2,
+        city,
+        country,
+        postcode
+      });
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -52,7 +73,7 @@ const Profile = () => {
         phone_number
       }
     };
-    updateUserDetails(data as UserAuth).then((res: Response) => {
+    updateUserDetails(data as UserAuth).then((res: UserAuth) => {
       setUserInfo(res);
       setFormSent(!formSent);
     });
@@ -62,7 +83,7 @@ const Profile = () => {
     <>
       {formSent ? <UpdateAlert /> : null}
       <div className="profile-form-container">
-        <h1>{defaultProfileFields.name}</h1>
+        <h1>{defaultProfileFields.userData.name}</h1>
         <div className="profile-form-img-container">
           <img src={user?.picture} alt="profile-placeholder" />
         </div>
