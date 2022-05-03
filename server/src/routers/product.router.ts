@@ -1,11 +1,11 @@
-import { 
-    addProductController, 
-    findAllProductsController, 
-    findProductWithComboController, 
-    findProductWithDetailsController, 
-    updateProductController 
-} from 'controllers/product.controller';
-import { Router } from 'express'
+import {
+  addProductController,
+  findAllProductsController,
+  findProductWithComboController,
+  findProductWithDetailsController,
+  updateProductController
+} from '../controllers/product.controller';
+import { Router } from 'express';
 
 const router = Router();
 

@@ -4,7 +4,7 @@ import { UserAuth } from '../interfaces/UserAuth';
 export const loginOrRegister = (user: UserAuth) => {
   const loggedUser = sanitiseUserData(user);
   return fetch(process.env.REACT_APP_BASE_URL + '/signin', {
-    method: 'POST',
+    method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(loggedUser)
   })

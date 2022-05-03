@@ -12,6 +12,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "src",
-    "incremental": true
-  }
+    "incremental": true,
+    "esModuleInterop": true
+  },
+  "include": ["./src"]
 }

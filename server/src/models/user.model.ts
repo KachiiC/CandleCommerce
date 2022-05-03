@@ -1,24 +1,29 @@
 import { Address } from '@prisma/client';
+import { Request } from 'express';
 import Prisma from '.';
-import { updateDetailsProps } from './props/userModelProps';
 
-export const loginAndRegister = async (sub: string) => {
+export const loginAndRegister = async (req: Request) => {
   // TODO shall we use sub from auth0? // TODO email is already @unique, if duplicate prisma throws an error
-  
+  const { sub } = req.body;
   const user = await Prisma.user.findUnique({
     where: { sub },
-    include: { address: true }
+    select: {
+      email: true,
+      name: true,
+      address: true,
+      phone_number: true
+    }
   });
 
   if (!user) {
     try {
       const newUser = await Prisma.user.create({
-        data: { sub },
-        select: { 
+        data: { ...req.body },
+        select: {
           email: true,
           name: true,
           address: true,
-          phone_number: true 
+          phone_number: true
         }
       });
       return newUser;
@@ -26,16 +31,20 @@ export const loginAndRegister = async (sub: string) => {
       console.error(err);
       throw new Error('\nFailed in the model\n');
     }
-  } else return ({ email, name, address, phone_number } = user);
+  } else return user;
 };
 
-export const updateDetails = async (body: updateDetailsProps) => {
-
+export const updateDetails = async req => {
   // TODO check the sub from auth0 is always the same for a given user or changes at every login
-  const { sub, name, address, phone_number } = body; 
+  const { sub, name, address, phone_number } = req.body;
 
   try {
-    let user: { address: Address[]; email: string; name: string; phone_number: string; };
+    let user: {
+      address: Address[];
+      email: string;
+      name: string;
+      phone_number: string;
+    };
     if (address && address.id) {
       user = await Prisma.user.update({
         where: { sub },

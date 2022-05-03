@@ -1,18 +1,12 @@
 import { Product } from '@prisma/client';
+import { Request } from 'express';
 import Prisma from '.';
-import { returnSingleComboBodyProps, updateProductBodyProps } from './props/productModelProps';
 
 // TODO rename function
-export const returnAllWithColours = async () : Promise<Product[]>=> {
+export const returnAllWithColours = async (): Promise<Product[]> => {
   try {
-<<<<<<< HEAD:prisma_server/models/product_model.js
-    const allProducts = await Prisma.product.findMany({
-      include: { colours: true } // TODO check for merge conflicts
-=======
-    // what is colours?
     const allProducts = await Prisma.product.findMany({
       include: { colours: true }
->>>>>>> f70017aebc8029c01b23f7449a911a6b0eb5ae08:prisma_server/src/models/product.model.ts
     });
     return allProducts;
   } catch (err) {
@@ -21,8 +15,9 @@ export const returnAllWithColours = async () : Promise<Product[]>=> {
   }
 };
 
-export const returnOneFull = async (id: string | number) => {
+export const returnOneFull = async (req: Request) => {
   try {
+    const { id } = req.params;
     const product = await Prisma.product.findUnique({
       where: { id: +id },
       include: { colours: { include: { scents: true } } }
@@ -35,9 +30,10 @@ export const returnOneFull = async (id: string | number) => {
 };
 
 // returns a product with a single colour/scent combination
-export const returnSingleCombo = async (id: string | number, body: returnSingleComboBodyProps) => {
+export const returnSingleCombo = async (req: Request) => {
   try {
-    const { colour, scent } = body;
+    const { id } = req.params;
+    const { colour, scent } = req.body;
     const product = await Prisma.product.findUnique({
       where: { id: +id },
       include: {
@@ -57,14 +53,14 @@ export const returnSingleCombo = async (id: string | number, body: returnSingleC
 };
 
 // TODO add controller for the admin to add a product
-export const addProductWithColours = async (body: { colours: ; }) => {
+export const addProductWithColours = async (req: Request) => {
   try {
-    const { colours } = body;
+    const { colours } = req.body;
     const newProduct = await Prisma.product.create({
       data: {
-        ...body,
+        ...req.body,
         colours: {
-          connect: colours.map(col => ({ colour: col }))
+          connect: colours.map((col: string) => ({ colour: col }))
         }
       },
       include: { colours: true } // not sure we need it in the frontend
@@ -77,11 +73,12 @@ export const addProductWithColours = async (body: { colours: ; }) => {
 };
 
 // dynamically adds/remove connection, also updates inventory if passed // TODO test what happens when trying to delete a non-existing relation
-export const updateProduct = async (id: number | string, body: updateProductBodyProps) => {
+export const updateProduct = async (req: Request) => {
   try {
-    const { update, colours, description, price } = body;
+    const { id } = req.params;
+    const { update, colours, description, price } = req.body;
     // needed because of bug in connection update if atomic/inventory are not passed
-    let { atomic, inventory } = body;
+    let { atomic, inventory } = req.body;
     if (!atomic || !inventory) (atomic = 'increment') && (inventory = 0);
 
     const updated = await Prisma.product.update({
@@ -94,7 +91,7 @@ export const updateProduct = async (id: number | string, body: updateProductBody
       },
       include: { colours: true }
     });
-    
+
     return updated;
   } catch (err) {
     console.error(err);

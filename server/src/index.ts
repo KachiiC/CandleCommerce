@@ -1,17 +1,18 @@
-import express from 'express';
+import Express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import userRouter from './routers/user.router';
 import productRouter from './routers/product.router';
 import orderRouter from './routers/order.router';
-import colourRouter from './routers/order.router';
+import colourRouter from './routers/colour.router';
 
-const app = express();
-const Route = 3001
+const app = Express();
+const Route = 8000;
 
-app.use(cors())
+app
+  .use(cors())
   .use(morgan('short'))
-  .use(express.json())
+  .use(Express.json())
   .use(userRouter)
   .use(productRouter)
   .use(orderRouter)

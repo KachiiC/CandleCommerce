@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import Prisma from '.';
 import { updateProduct } from './product.model';
 import { generateOrderProps, updateOrderProps } from './props/orderModelProps';
@@ -12,8 +13,9 @@ export const getAllOrders = async () => {
   }
 };
 
-export const getUserOrders = async (id: string | number) => {
+export const getUserOrders = async (req: Request) => {
   try {
+    const { id } = req.params;
     const userWithOrders = await Prisma.user.findUnique({
       where: { id: +id },
       include: { orders: { include: { products: true } } }
@@ -27,9 +29,9 @@ export const getUserOrders = async (id: string | number) => {
 };
 
 // CUSTOMER ID comes from the middleware through the sub, ADDRESS ID is sent from the client
-export const generateOrder = async (body: generateOrderProps) => {
+export const generateOrder = async (req: Request) => {
   try {
-    const { products, total_price, custId, addrId } = body;
+    const { products, total_price, custId, addrId } = req.body;
 
     const newOrder = await Prisma.order.create({
       data: {
@@ -37,8 +39,8 @@ export const generateOrder = async (body: generateOrderProps) => {
         customerId: custId.id,
         total_price,
         products: {
-          connect: products.map((prod: any) => ({ id: prod }))
-        }, // can be changed with title or other unique fields
+          connect: products.map((prod: number) => ({ id: prod }))
+        } // can be changed with title or other unique fields
       },
       include: { products: true, address: true }
     });
@@ -49,17 +51,17 @@ export const generateOrder = async (body: generateOrderProps) => {
   }
 };
 
-export const updateOrder = async (body: updateOrderProps) => {
+export const updateOrder = async (req: Request) => {
   try {
-    const { id, update, products, addrId, total_price } = body;
+    const { id, update, products, addrId, total_price } = req.body;
     let order = await Prisma.order.update({
       where: { id },
       data: {
         addressId: addrId,
         total_price,
         products: {
-          [update]: products.map((prod: any) => ({ id: prod }))
-        }, // can be changed with title or other unique fields
+          [update]: products.map((prod: number) => ({ id: prod }))
+        } // can be changed with title or other unique fields
       },
       include: {
         products: true
@@ -73,8 +75,9 @@ export const updateOrder = async (body: updateOrderProps) => {
 };
 
 // TODO ONLY BY THE ADMIN
-export const shipOrder = async (id: any) => {
+export const shipOrder = async (req: Request) => {
   try {
+    const { id } = req.body;
     let order = await Prisma.order.update({
       where: { id },
       data: {
@@ -83,9 +86,16 @@ export const shipOrder = async (id: any) => {
       },
       include: { products: true }
     });
+    // update product inventory
     order.products.forEach(
       async product =>
-        await updateProduct(product.id, { atomic: 'decrement', inventory: 1 })
+        await Prisma.product.update({
+          where: { id: product.id },
+          data: {
+            inventory: { decrement: 1 }
+          },
+          include: { colours: true }
+        })
     );
     return order;
   } catch (err) {
@@ -94,8 +104,9 @@ export const shipOrder = async (id: any) => {
   }
 };
 
-export const deleteOrder = async (id: any) => {
+export const deleteOrder = async (req: Request) => {
   try {
+    const { id } = req.body;
     await Prisma.order.delete({ where: { id } });
     return;
   } catch (err) {

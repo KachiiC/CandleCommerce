@@ -8,7 +8,7 @@ const app = (
   <Auth0Provider
     domain={process.env.REACT_APP_AUTH0_DOMAIN!}
     clientId={process.env.REACT_APP_AUTH0_CLIENT_ID!}
-    redirectUri="http://127.0.0.1:3000"
+    redirectUri="http://127.0.0.1:3000/products"
   >
     <StrictMode>
       <App />
