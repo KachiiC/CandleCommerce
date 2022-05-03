@@ -1,20 +1,5 @@
 import { sanitiseUserData } from './helpers';
-export interface UserAuth {
-  userData: {
-    sub: string;
-    name?: string;
-    email: string;
-    address?: {
-      id?: number;
-      address1?: string;
-      address2?: string;
-      city?: string;
-      country?: string;
-      postcode?: string;
-    };
-    phone_number?: string;
-  };
-}
+import { UserAuth } from '../interfaces/UserAuth';
 
 export const loginOrRegister = (user: UserAuth) => {
   const loggedUser = sanitiseUserData(user);

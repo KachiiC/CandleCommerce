@@ -5,11 +5,8 @@ import ProfileFormButtons from './ProfileFormButtons';
 import { defaultProfileFields } from '../../data/profile';
 import './Profile.css';
 import { useEffect, useState } from 'react';
-import {
-  loginOrRegister,
-  updateUserDetails,
-  UserAuth
-} from '../../services/userService';
+import { loginOrRegister, updateUserDetails } from '../../services/userService';
+import { UserAuth } from '../../interfaces/UserAuth';
 import { UpdateAlert } from './UpdateAlert';
 
 interface FormValues {
