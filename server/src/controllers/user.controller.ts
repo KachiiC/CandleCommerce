@@ -8,7 +8,6 @@ export const userCheck = async (req: Request, res: Response) => {
     res.send(user);
   } catch (err) {
     console.error(err);
-    res.status(400);
     res.sendStatus(400);
   }
 };
@@ -20,7 +19,6 @@ export const userUpdate = async (req: Request, res: Response) => {
     res.send(user);
   } catch (err) {
     console.error(err);
-    res.status(400);
     res.sendStatus(400);
   }
 };
