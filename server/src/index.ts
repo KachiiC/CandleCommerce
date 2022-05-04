@@ -18,9 +18,6 @@ app
   .use(orderRouter)
   .use(colourRouter);
 
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server up and running on http://localhost:${PORT}`);
 });
-
-// for testing
-export { server, app };
