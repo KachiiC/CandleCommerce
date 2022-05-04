@@ -1,6 +1,6 @@
 import { app, server } from '../../index';
 import request from 'supertest';
-import { newColour, newColourWithScents } from './test.data';
+import { newColour, newColourWithScents } from './mocks';
 import prisma from '../../models/index';
 
 // group test using describe
