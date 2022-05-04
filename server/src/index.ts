@@ -7,7 +7,7 @@ import orderRouter from './routers/order.router';
 import colourRouter from './routers/colour.router';
 
 const app = Express();
-const Route = 8000;
+const PORT = 8000;
 
 app
   .use(cors())
@@ -18,6 +18,9 @@ app
   .use(orderRouter)
   .use(colourRouter);
 
-app.listen(Route, () => {
-  console.log(`Server up and running on http://localhost:${Route}`);
+const server = app.listen(PORT, () => {
+  console.log(`Server up and running on http://localhost:${PORT}`);
 });
+
+// for testing
+export { server, app };
