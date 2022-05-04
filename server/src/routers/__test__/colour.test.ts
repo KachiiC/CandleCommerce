@@ -1,12 +1,11 @@
-import request from './index';
+import request from '.';
 import { newColour, newColourWithScents } from './mocks';
 import prisma from '../../models/index';
 
 // group test using describe
 describe('colour route', () => {
-  afterAll(() => {
-    prisma.scent.delete({ where: { name: 'Enchanted Jasmine' } });
-    //.then(() => server.close());
+  afterAll(async () => {
+    await prisma.scent.delete({ where: { name: 'Enchanted Jasmine' } });
   });
 
   describe('POST /colour', () => {
