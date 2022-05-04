@@ -13,13 +13,12 @@ export const getAllOrders = async () => {
 
 export const getUserOrders = async (req: Request) => {
   try {
-    const { sub } = req.body;
-    const userWithOrders = await Prisma.user.findUnique({
-      where: { sub },
-      include: { orders: { include: { products: true } } }
+    const { id } = req.params;
+    const userOrders = await Prisma.order.findMany({
+      where: { customerId: +id },
+      include: { products: true }
     });
-    // seems weird we can't do it in one shot (no include and select on the same level)
-    return userWithOrders.orders;
+    return userOrders;
   } catch (err) {
     console.error(err);
     throw new Error('\nFailed in the model\n');

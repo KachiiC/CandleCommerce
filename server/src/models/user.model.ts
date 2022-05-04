@@ -3,7 +3,6 @@ import { Request } from 'express';
 import Prisma from '.';
 
 export const loginAndRegister = async (req: Request) => {
-  // TODO shall we use sub from auth0? // TODO email is already @unique, if duplicate prisma throws an error
   const { sub } = req.body;
   const user = await Prisma.user.findUnique({
     where: { sub },
@@ -35,7 +34,6 @@ export const loginAndRegister = async (req: Request) => {
 };
 
 export const updateDetails = async req => {
-  // TODO check the sub from auth0 is always the same for a given user or changes at every login
   const { sub, name, address, phone_number } = req.body;
 
   try {
@@ -62,7 +60,7 @@ export const updateDetails = async req => {
           name,
           address: { create: address },
           phone_number
-        }, // in prisma, if a field value is undefined no changes are made
+        },
         select: { email: true, name: true, address: true, phone_number: true }
       });
     }
