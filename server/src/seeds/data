@@ -1,0 +1,41 @@
+// SINGLE COLOUR POPULATION QUERY
+{
+  "colour": "Yellow",
+  "scents": ["Baltic Amber and Clove", "Bubblegum", "French Pear", "French Vanilla", "Fresh Linen", "Lime Basil & Mandarin", "Pomegranate Noir"]
+}
+
+//PRODUCT GENERATION, FILL ONE AT A TIME
+{
+	"pictures": ["https://s3-us-west-2.amazonaws.com/cdn.panda-gossips.com/production/posts/eyecatches/000/001/637/original.jpg?1515668442",
+   "https://cdn.shopify.com/s/files/1/0092/5096/3518/products/CA20025_4-TruGlow-Red-Slim-LED-Candles-Christmas_2000x2000.jpg?v=1596631539"],
+	"price": 18.99,
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "title": "Jar",
+  "colours": ["Black","Blue","Cream","Green","Grey","Orange","Pink","Purple","Red","White","Yellow"]
+}
+
+// PRODUCT UPDATE JSON QUERY FOR COLOURS AND INVENTORY
+{
+  "inventory": 5, // q.ty
+  "atomic": "increment", // || "decrement"
+  "colours": ["Pink"], // colour targets
+  "update": "connect" // || "disconnect"
+}
+
+
+//ORDER GENERATION QUERY
+{
+  "total_price": 37.98,
+  "products": [1,3], // || array of titles but need to update the function in the model
+  "sub": "abc123", // user sub from auth0
+  "addrId": 1 // addressId from db
+}
+
+// ORDER UPDATE QUERY FOR PRODUCTS
+{
+  "id": 2,  // orderId
+  "total_price": 50,
+  "products": [1, 3], // could also be a list of title but need to update the function in the model
+  "update": "connect", // || disconnect
+  "addrId": 2 // addressId of the new address
+}

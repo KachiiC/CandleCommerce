@@ -1,0 +1,49 @@
+.basket-list {
+  animation: fadeIn 1s;
+  float: right;
+  position: fixed;
+  background-color: #f6cbc6;
+  width: 300px;
+  top: 0;
+  right: 0;
+  margin: 50px 0px;
+  padding: 20px;
+  z-index: 100;
+}
+
+.basket-list h2 {
+  border-top: 1px solid grey;
+  text-align: center;
+}
+
+.basket-item {
+  display: flex;
+}
+
+.basket-item {
+    margin: 10px;
+}
+
+.basket-item h3 {
+  padding: 0px 10px; 
+}
+
+.basket-item img {
+  width: 30px;
+  height: 30px;
+}
+
+.checkout-btn {
+    width: 100%;
+    background-color: #ffe4e1;
+    border: 1px solid #ffe4e1;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {  
+    color: #ffe4e1;
+    background-color: black;
+    border: 1px solid black;
+}

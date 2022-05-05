@@ -1,0 +1,135 @@
+.order-list-page {
+  padding: 20px 0px 60px;
+  min-height: 80vh;
+}
+
+.order-card-list-container {
+  width: 100%;
+  padding: 20px;
+  animation: fadeIn 2s;
+}
+
+.order-card {
+  position: relative;
+  display: block;
+  width: 800px;
+  height: 400px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.4s;
+  box-shadow: 0px 0px 120px -25px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.order-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 80px -25px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s;
+}
+
+.order-info-section {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.order-header {
+  position: relative;
+  padding: 25px;
+  height: 40%;
+}
+
+.order-header h1 {
+  color: black;
+  font-weight: 400;
+}
+
+.order-header h4 {
+  color: #555;
+  font-weight: 400;
+}
+
+.order-header .type {
+  display: inline-block;
+  color: #959595;
+  margin-left: 10px;
+}
+
+.order-header .locandina {
+  position: relative;
+  float: left;
+  margin-right: 20px;
+  height: 120px;
+  box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.5);
+}
+
+.order_desc {
+  padding: 25px;
+  height: 50%;
+}
+
+.order_desc p {
+  width: 100%;
+  color: #545454;
+}
+
+.blur_back {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  right: 0;
+  background-size: cover;
+  border-radius: 11px;
+}
+
+@media screen and (max-width: 850px) {
+  .order-card {
+    width: 95%;
+    margin: 10px auto;
+    min-height: 350px;
+    height: auto;
+  }
+
+  .blur_back {
+    width: 100%;
+    background-position: 50% 50% !important;
+  }
+
+  .order-header {
+    width: 100%;
+    margin-top: 85px;
+  }
+
+  .order_desc {
+    width: 90%;
+  }
+
+  .order-info-section {
+    background: linear-gradient(to top, #e5e6e6 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .order-header {
+    width: 65%;
+  }
+
+  .order_desc {
+    width: 50%;
+  }
+
+  .order-info-section {
+    background: linear-gradient(to right, #e5e6e6 50%, transparent 100%);
+  }
+
+  .blur_back {
+    width: 80%;
+    background-position: -100% 10% !important;
+  }
+}

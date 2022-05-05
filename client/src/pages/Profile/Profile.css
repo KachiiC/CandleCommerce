@@ -1,0 +1,30 @@
+.profile-form-container {
+  padding: 10px;
+  width: 80vw;
+  margin: auto;
+  animation: fadeIn 2s;
+}
+
+.profile-form-container h1 {
+  text-align: center;
+}
+
+.profile-form-img-container {
+  margin: 20px auto 40px;
+  text-align: center;
+}
+.profile-form-container img {
+  border-radius: 50%;
+}
+
+.profile-form-buttons {
+  text-align: center;
+}
+
+.profile-form-buttons button {
+  /* padding: 10px; */
+  width: 100px;
+  height: 50px;
+  margin: 20px;
+  z-index: 10;
+}
