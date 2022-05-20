@@ -1,5 +1,6 @@
 .order-list-page {
   padding: 20px 0px 60px;
+  min-height: 80vh;
 }
 
 .order-card-list-container {

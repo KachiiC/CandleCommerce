@@ -11,14 +11,16 @@ export const getOrders = (order) => {
     .catch(err => console.error(err))
 }
 
-export const getUserOrders = (submittedByUser) => {
-  return fetch(`${url}/ordersUser`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ submittedByUser })
-  })
-    .then(response => response.json())
-    .catch(err => console.error(err))
+export const GetUserOrders = async (userSub) => {
+  try {
+    const response = await fetch(`${url}/user-orders/${userSub}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    return await response.json()
+  } catch (err) {
+    return console.error(err)
+  }
 }
 
 export const createOrder = (order) => {

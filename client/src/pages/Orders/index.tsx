@@ -1,25 +1,33 @@
-import ProductsData from '../../data/products';
-import './Orders.css';
-import SingleOrder from './SingleOrder';
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+import { GetUserOrders } from "../../services/orderService";
+import OrderList from "./OrderList";
+import "./Orders.css";
 
 const Orders = () => {
   // fetch orders info by sub
 
-  const displayOrders = ProductsData.map(order => {
-    const { pictures, title, description, price } = order;
+  const { isAuthenticated, user } = useAuth0();
+  const [userOrders, setUserOrders] = useState([]);
 
-    const SingleOrderArgs = {
-      key: title,
-      title,
-      price,
-      description,
-      pictures
-    };
+  useEffect(() => {
+    if (isAuthenticated) {
+      GetUserOrders(user?.sub)
+        .then((res) => {
+          console.log(res)
+          setUserOrders(res)
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user, isAuthenticated]);
 
-    return <SingleOrder {...SingleOrderArgs} />;
-  });
+  const displayOrders = userOrders.map(order => <OrderList {...order} />);
 
-  return <div className="order-list-page">{displayOrders}</div>;
+  return (
+    <div className="order-list-page">
+      {displayOrders}
+    </div>
+  );
 };
 
 export default Orders;

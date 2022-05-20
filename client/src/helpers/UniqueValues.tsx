@@ -1,6 +1,6 @@
-import { Item } from '../interfaces/item';
+import { Item } from "../interfaces/item";
 
-const UniqueValues = (array: Item[]) => {
+export const UniqueValues = (array: Item[]) => {
   const result = [];
   const map = new Map();
   for (const item of array) {
@@ -13,4 +13,6 @@ const UniqueValues = (array: Item[]) => {
   return result;
 };
 
-export default UniqueValues;
+export const CountDuplicates = (value: string, arr: { title: string }[]) => {
+  return arr.filter((obj) => obj.title === value).length;
+};

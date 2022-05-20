@@ -7,7 +7,7 @@ export const getUserIdIfExists = async (
   next: NextFunction
 ) => {
   try {
-    const { sub } = req.body;
+    const { sub } = req.params;
     req.body.custId = await Prisma.user.findUnique({
       where: { sub },
       select: { id: true }

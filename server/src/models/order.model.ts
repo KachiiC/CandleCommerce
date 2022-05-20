@@ -13,7 +13,7 @@ export const getAllOrders = async () => {
 
 export const getUserOrders = async (req: Request) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body.custId;
     const userOrders = await Prisma.order.findMany({
       where: { customerId: +id },
       include: { products: true }

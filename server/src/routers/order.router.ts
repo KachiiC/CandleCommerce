@@ -13,8 +13,8 @@ import checkOrderStatus from '../middleware/order.check';
 const router = Router();
 
 router.get('/orders/:sub', checkForAdminRole, findAllOrdersController);
-router.get('/user-orders/:id', findUserOrdersController);
-router.post('/orders', getUserIdIfExists, createOrderController);
+router.get('/user-orders/:sub', getUserIdIfExists, findUserOrdersController);
+router.post('/orders/:sub', getUserIdIfExists, createOrderController);
 router.put('/orders/update', checkOrderStatus, updateOrderController);
 router.put('/orders/ship', checkForAdminRole, shipOrderController);
 router.delete('/orders', checkOrderStatus, deleteOrderController);

@@ -1,4 +1,4 @@
-export const url = 'http://localhost:3001';
+export const url = 'http://localhost:8000';
 
 export const instagramUrl = 'https://www.instagram.com/glowzocandles/?hl=en'
 

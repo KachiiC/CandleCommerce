@@ -4,6 +4,4 @@ export interface Item {
   description: string;
   title: string;
   price: number;
-  colours: string;
-  scents: string;
 }
