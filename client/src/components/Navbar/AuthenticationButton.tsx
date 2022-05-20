@@ -8,13 +8,11 @@ export const AuthenticationButton = ({ type }: AuthButtonProps) => {
 
   const typeLogic = type === 'small' ? 'small-nav-link' : 'account-button';
 
-  // Login in and out logic
   const authLogin = () => loginWithRedirect();
   const authLogout = () => logout({ returnTo: 'http://127.0.0.1:3000' });
 
   const authenticationLogic = isAuthenticated ? 'LOGOUT' : 'LOGIN';
 
-  // If autheticated return logout, if not return login,
   const actionLogic = isAuthenticated ? authLogout : authLogin;
 
   return (

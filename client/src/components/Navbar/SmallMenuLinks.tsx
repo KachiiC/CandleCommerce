@@ -13,7 +13,6 @@ const SmallMenuLinks = ({ toggleMenu }: SmallMenuProps) => {
     link => !link.authentication_required
   );
 
-  // If unautheticated no access to authentication required pages.
   const linksLogic = isAuthenticated ? NavLinksData : unauthedLinks;
 
   const displaySmallLinks = linksLogic.map(nav => {

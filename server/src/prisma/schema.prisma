@@ -10,15 +10,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// MANY ORDERS AND PRODUCTS, 1-n address
 model User {
   id           Int       @id @default(autoincrement())
   email        String    @unique
-  name         String // editable
+  name         String
   sub          String    @unique
-  role         Role?     @default(USER) // yes but only by the ADMIN
-  address      Address[] // editable
-  phone_number String? //editable
+  role         Role?     @default(USER)
+  address      Address[]
+  phone_number String?
   orders       Order[]
 }
 
@@ -27,7 +26,6 @@ enum Role {
   USER
 }
 
-// 1-n relation with orders
 model Address {
   id       Int     @id @default(autoincrement())
   address1 String
@@ -40,13 +38,12 @@ model Address {
   orders   Order[]
 }
 
-// ONE CUSTOMER PER ORDER, MANY ITEMS PER ORDER
 model Order {
   id          Int       @id @default(autoincrement())
   fulfilled   Boolean   @default(false)
   products    Product[]
   total_price Float
-  customer    User      @relation(fields: [customerId], references: [id]) //if when we delete a user we want all of its orders to be canceled we need to set: onDelete: Cascade
+  customer    User      @relation(fields: [customerId], references: [id])
   customerId  Int
   address     Address   @relation(fields: [addressId], references: [id])
   addressId   Int
@@ -54,7 +51,6 @@ model Order {
   shippedAt   DateTime?
 }
 
-// IMPLICIT MANY TO MANY RELATION WITH ORDER TABLE, COUT INVENTORY!
 model Product {
   id          Int      @id @default(autoincrement())
   pictures    String[]
@@ -78,5 +74,3 @@ model Scent {
   name   String   @unique
   colour Colour[]
 }
-
-// TODO define reviews model

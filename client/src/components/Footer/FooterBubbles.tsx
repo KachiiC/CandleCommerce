@@ -302,7 +302,6 @@ const FooterBubblesData = [
   }
 ];
 
-// declaring an interface of key value pairs both of string type and applying it to our bubble variable
 interface Bubble {
   [key: string]: string;
 }

@@ -28,7 +28,6 @@ export const addColour = async (req: Request) => {
       return newColor;
     }
   } catch (error) {
-    //console.error(error);
     throw new Error('\nFailed in the model\n');
   }
 };
@@ -39,7 +38,6 @@ export const deleteColour = async (req: Request) => {
     await Prisma.colour.delete({ where: { colour: colName } });
     return;
   } catch (error) {
-    //console.error(error);
     throw new Error('\nFailed in the model\n');
   }
 };

@@ -2,7 +2,6 @@ import request from '.';
 import { newColour, newColourWithScents } from './mocks';
 import prisma from '../../models/index';
 
-// group test using describe
 describe('colour route', () => {
   afterAll(async () => {
     await prisma.scent.delete({ where: { name: 'Enchanted Jasmine' } });
@@ -11,7 +10,6 @@ describe('colour route', () => {
   describe('POST /colour', () => {
     it('returns status code 201 and the newly created colour if passed a new colour', async () => {
       const res = await request.post('/colour').send(newColour);
-      // toEqual recursively checks every field of an object or array
       expect(res.statusCode).toEqual(201);
       expect(res.text.includes(',"colour":"Gold"}')).toBe(true);
     });

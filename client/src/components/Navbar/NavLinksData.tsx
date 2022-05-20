@@ -18,7 +18,6 @@ const NavLinksData = [
   }
 ];
 
-// filter out pages which do not require authentication
 export const unauthedLinks = NavLinksData.filter(
   link => !link.authentication_required
 );

@@ -13,7 +13,6 @@ const ProductDetails = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // type-guard / type-narrowing
   if (product) {
     const { title, price, description, pictures } = product;
 

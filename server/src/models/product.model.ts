@@ -52,7 +52,6 @@ export const returnSingleCombo = async (req: Request) => {
   }
 };
 
-// TODO add controller for the admin to add a product
 export const addProductWithColours = async (req: Request) => {
   try {
     const { colours } = req.body;
@@ -63,7 +62,7 @@ export const addProductWithColours = async (req: Request) => {
           connect: colours.map((col: string) => ({ colour: col }))
         }
       },
-      include: { colours: true } // not sure we need it in the frontend
+      include: { colours: true }
     });
     return newProduct;
   } catch (err) {
@@ -72,12 +71,10 @@ export const addProductWithColours = async (req: Request) => {
   }
 };
 
-// dynamically adds/remove connection, also updates inventory if passed // TODO test what happens when trying to delete a non-existing relation
 export const updateProduct = async (req: Request) => {
   try {
     const { id } = req.params;
     const { update, colours, description, price } = req.body;
-    // needed because of bug in connection update if atomic/inventory are not passed
     let { atomic, inventory } = req.body;
     if (!atomic || !inventory) (atomic = 'increment') && (inventory = 0);
 

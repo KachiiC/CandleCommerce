@@ -1,8 +1,5 @@
-// TOOLS
 import { useAuth0 } from '@auth0/auth0-react';
-// ROUTER
 import { Routes, Route } from 'react-router-dom';
-// PAGES
 import Home from './Home';
 import Products from './Products';
 import ProductDetails from './ProductDetails';
@@ -51,15 +48,12 @@ const pagesData = [
 const PageRoutes = () => {
   const { isAuthenticated } = useAuth0();
 
-  // Pages that do not need authentication
   const noAuthRequired = pagesData.filter(
     page => !page.authentication_required
   );
 
-  // Check if user is authenticated, if so return only non authenticated pages
   const authRoutesLogic = isAuthenticated ? pagesData : noAuthRequired;
 
-  // Return routes depending on authentication
   const displayedRoutes = authRoutesLogic.map(page => {
     const { path, component } = page;
 

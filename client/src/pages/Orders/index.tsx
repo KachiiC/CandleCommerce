@@ -5,7 +5,6 @@ import OrderList from "./OrderList";
 import "./Orders.css";
 
 const Orders = () => {
-  // fetch orders info by sub
 
   const { isAuthenticated, user } = useAuth0();
   const [userOrders, setUserOrders] = useState([]);

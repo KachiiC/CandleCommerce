@@ -1,12 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import PageRoutes from './pages';
-// CSS
 import 'antd/dist/antd.min.css';
 import './App.css';
 import Footer from './components/Footer';
 import ScrollToTop from './helpers/ScrollToTop';
-// SERVICES
 
 const App = () => {
   return (

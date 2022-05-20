@@ -1,9 +1,7 @@
-
-
 import { DescriptionTrimmer } from "../../helpers/DescriptionTrimmer";
 import { OrderCardProps } from "../../interfaces/Orders";
 
-const OrderCardDetails = (props: OrderCardProps) => {
+const OrderCardDetails = (data : OrderCardProps) => {
 
   const {
     title,
@@ -12,7 +10,7 @@ const OrderCardDetails = (props: OrderCardProps) => {
     fulfilled,
     createdAt,
     description
-  } = props;
+  } = data;
 
   const backgroundImage = {
     backgroundImage: `url(${pictures[1]})`,

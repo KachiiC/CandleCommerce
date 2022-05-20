@@ -4,7 +4,6 @@ import SmallMenu from './SmallMenu';
 import { MenuOutlined } from '@ant-design/icons';
 import AuthenticationButton from './AuthenticationButton';
 import NavLinks from './NavLinks';
-// BASKET
 import '../Basket/Basket.css';
 import BasketIcon from '../Basket/BasketIcon';
 import BasketMenu from '../Basket/BasketMenu';

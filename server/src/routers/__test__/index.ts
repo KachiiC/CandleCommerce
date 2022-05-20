@@ -14,6 +14,6 @@ app
   .use(orderRouter)
   .use(colourRouter);
 
-const request = supertest(app); //supertest hits the HTTP server (your app)
+const request = supertest(app);
 
 export default request;

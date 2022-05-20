@@ -1,5 +1,3 @@
-//fetch method for the products
-
 export const getAllProducts = () => {
   return fetch(process.env.REACT_APP_BASE_URL! + '/products')
     .then(response =>

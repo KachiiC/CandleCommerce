@@ -5,7 +5,6 @@ import NavLinksData, { unauthedLinks } from './NavLinksData';
 const NavLinks = () => {
   const { isAuthenticated } = useAuth0();
 
-  // If unautheticated no access to authentication required pages.
   const linksLogic = isAuthenticated ? NavLinksData : unauthedLinks;
 
   const displayLinks = linksLogic.map(nav => (

@@ -1,5 +1,4 @@
 import OrderCardDetails from './OrderCardDetails';
-// import { Item } from '../../interfaces/item';
 
 interface SingleOrderProps {
   title: string;

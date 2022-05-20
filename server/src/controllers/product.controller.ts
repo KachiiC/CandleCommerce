@@ -7,7 +7,6 @@ import {
   addProductWithColours
 } from '../models/product.model';
 
-// TODO rename function
 export const findAllProductsController = async (
   req: Request,
   res: Response
@@ -50,7 +49,6 @@ export const findProductWithComboController = async (
   }
 };
 
-// TODO add controller for the admin to add a product
 export const addProductController = async (req: Request, res: Response) => {
   try {
     const newProduct = await addProductWithColours(req);

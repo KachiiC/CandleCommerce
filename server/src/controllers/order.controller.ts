@@ -42,7 +42,6 @@ export const createOrderController = async (req: Request, res: Response) => {
   }
 };
 
-//used to change the status of resolved
 export const updateOrderController = async (req: Request, res: Response) => {
   try {
     const updated = await updateOrder(req);

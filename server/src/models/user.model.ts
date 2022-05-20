@@ -50,7 +50,7 @@ export const updateDetails = async req => {
           name,
           address: { update: { where: { id: address.id }, data: address } },
           phone_number
-        }, // in prisma, if a field value is undefined no changes are made
+        },
         select: { email: true, name: true, address: true, phone_number: true }
       });
     } else {

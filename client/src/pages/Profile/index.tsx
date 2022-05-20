@@ -26,21 +26,10 @@ const Profile = () => {
   const [formSent, setFormSent] = useState(false);
 
   const onFill = () => profileForm.setFieldsValue(userInfo);
-  // fetch check user info on DB
+
   useEffect(() => {
     loginOrRegister(user as UserAuth).then((res: UserAuth) => {
       setUserInfo(res);
-      // const { name, address, phone_number } = res;
-      // const { address1, address2, city, country, postcode } = address!;
-      // profileForm.setFieldsValue({
-      //   name,
-      //   phone_number,
-      //   address1,
-      //   address2,
-      //   city,
-      //   country,
-      //   postcode
-      // });
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
