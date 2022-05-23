@@ -4,7 +4,8 @@
 
 ---
 
-![Product page](<img src="https://media-exp1.licdn.com/dms/image/C562DAQE0Bt8orQjpqw/profile-treasury-image-shrink_800_800/0/1653327970475?e=1653933600&v=beta&t=gpFw50P31p1InmR3kJa28a6hYaDiDz5dxegV9nFA9lA" width="640px"/>)
+
+<img src="https://media-exp1.licdn.com/dms/image/C562DAQE0Bt8orQjpqw/profile-treasury-image-shrink_800_800/0/1653327970475?e=1653933600&v=beta&t=gpFw50P31p1InmR3kJa28a6hYaDiDz5dxegV9nFA9lA" width="520px" alt="products page"/>
 
 ---
 
